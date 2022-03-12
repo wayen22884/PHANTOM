@@ -1,4 +1,5 @@
 name: TestRunner
+uses: game-ci/unity-test-runner@v2.0.0-alpha-7
 
 on: [push, pull_request]
 
