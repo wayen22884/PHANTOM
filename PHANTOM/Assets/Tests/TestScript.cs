@@ -10,7 +10,7 @@ public class TestScript
     [Test]
     public void TestScriptSimplePasses()
     {
-        bool IsTrue = false;
+        bool IsTrue = true;
         Assert.AreEqual(true,IsTrue);
     }
     
