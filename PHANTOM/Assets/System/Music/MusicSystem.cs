@@ -1,15 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class MusicSystem : MonoBehaviour
 {
-    [FormerlySerializedAs("Current")] [InlineButton("TestPlayMusic")] [SerializeField]
     private AudioClip CurrentBGM;
 
     public static MusicSystem Instance;

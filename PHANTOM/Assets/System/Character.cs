@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UniRx;
 using Unity.Mathematics;
 using UnityEngine;
@@ -97,7 +96,6 @@ public class Character : MonoBehaviour
         AddForce(force);
     }
 
-    [ButtonGroup()]
     public void AddBoundaryForce()
     {
         velocity.y += (-velocity.y + -velocity.y * boundaryFactor);
