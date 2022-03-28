@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MusicSystem : MonoBehaviour
 {
-    private AudioClip CurrentBGM;
+    [SerializeField]private AudioClip CurrentBGM;
 
     public static MusicSystem Instance;
 
