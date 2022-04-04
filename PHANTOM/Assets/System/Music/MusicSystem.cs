@@ -30,10 +30,8 @@ public class MusicSystem : MonoBehaviour
     private AudioSource bgmSource;
 
     private Queue<AudioSourceContainer> bgvSources;
-
     
-    
-    private void PlayMusic()
+    public void PlayMusic()
     {
         BGMSource.clip = CurrentBGM;
         BGMSource.Play();

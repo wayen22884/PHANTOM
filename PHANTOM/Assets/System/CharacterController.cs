@@ -1,21 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UniRx;
+using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.SocialPlatforms.GameCenter;
 
-public class Character : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     private float moveForceFactor = 0.001f;
+    [Range(0, 20f)] [SerializeField] private int moveForce;
+    [Range(0, 20f)] [SerializeField] private int jumpForce;
 
-    [SerializeField] private int moveForce;
-    [SerializeField] private int jumpForce;
-
-    [SerializeField] private float airForce;
-    [SerializeField] private float gravity;
+    [Range(0, 20f)] [SerializeField] private float airForce;
+    [Range(0, 20f)] [SerializeField] private float gravity;
 
 
     [SerializeField] private bool isGround;
@@ -23,7 +19,8 @@ public class Character : MonoBehaviour
     private bool istouchRight;
     private float mass = 1;
     [SerializeField] private Vector3 velocity;
-    [SerializeField] private float boundaryFactor;
+    [Range(0, 20f)][SerializeField] private float boundaryFactor;
+    [Range(0, 20f)][SerializeField] private float stachDistance = 3;
     private int groundLayer = 6;
 
     public Vector3 collider;
@@ -31,23 +28,29 @@ public class Character : MonoBehaviour
     void Awake()
     {
         Observable.EveryUpdate().Subscribe(_ => MoveInput());
-        Observable.EveryUpdate().Subscribe(_ => Boundary());
         Observable.EveryUpdate().Subscribe(_ => Move());
         Observable.EveryUpdate().Subscribe(_ => CheckGround());
+        Observable.EveryUpdate().Subscribe(_ => Stash());
     }
 
-    private void Boundary()
+    private void Stash()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Tumbling"))
         {
-            AddBoundaryForce();
+            var isRight = Input.GetAxis("Horizontal") > 0;
+            velocity.x = 0;
+            var distance = isRight ? stachDistance : -stachDistance;
+            transform.DOMoveX(transform.position.x + distance, 0.1f);
         }
     }
+
 
     private void Move()
     {
         velocity.x = AddContraryForce(velocity.x, airForce * moveForceFactor);
 
+        
+        
         if (velocity.x > 0 && istouchRight)
         {
             velocity.x = 0;
@@ -91,7 +94,7 @@ public class Character : MonoBehaviour
     {
         var xAxis = Input.GetAxis("Horizontal");
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetButtonDown("Jump"))
         {
             force.y += jumpForce;
             isGround = false;
@@ -151,4 +154,12 @@ public class Character : MonoBehaviour
         Gizmos.color = new Color(1, 1, 1, 0.3f);
         Gizmos.DrawCube(transform.position, collider);
     }
+}
+
+public class CharacterAttr
+{
+    private ReactiveProperty<int> HP;
+    private ReactiveProperty<int> ATK;
+    private ReactiveProperty<int> Speed;
+    private ReactiveProperty<int> AtkSpeed;
 }
