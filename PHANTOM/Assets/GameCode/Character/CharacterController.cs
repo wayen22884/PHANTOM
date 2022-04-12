@@ -1,11 +1,11 @@
+using System;
 using DG.Tweening;
 using UniRx;
-using Unity.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public bool IsForceMove;
     private float moveForceFactor = 0.001f;
     [Range(0, 20f)] [SerializeField] private int moveForce;
     [Range(0, 20f)] [SerializeField] private int jumpForce;
@@ -25,12 +25,29 @@ public class CharacterController : MonoBehaviour
 
     public Vector3 collider;
 
-    void Awake()
+    private Action attackAction;
+    
+    
+    public void Initialize(Action attackAction)
+    {
+        this.attackAction = attackAction;
+    }
+    public void StartInput()
     {
         Observable.EveryUpdate().Subscribe(_ => MoveInput());
+        Observable.EveryUpdate().Subscribe(_ => AttackInput());
+        
         Observable.EveryUpdate().Subscribe(_ => Move());
         Observable.EveryUpdate().Subscribe(_ => CheckGround());
         Observable.EveryUpdate().Subscribe(_ => Stash());
+    }
+
+    private void AttackInput()
+    {
+        if (Input.GetButtonDown("NormalAttack"))
+        {
+            attackAction?.Invoke();
+        }
     }
 
     private void Stash()
@@ -47,46 +64,62 @@ public class CharacterController : MonoBehaviour
 
     private void Move()
     {
-        velocity.x = AddContraryForce(velocity.x, airForce * moveForceFactor);
+        velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
+        velocity.y=DealYDirectionVelocity(velocity.y);
 
         
         
-        if (velocity.x > 0 && istouchRight)
-        {
-            velocity.x = 0;
-        }
-
-        if (velocity.x < 0 && istouchLeft)
-        {
-            velocity.x = 0;
-        }
-
-        if (!isGround)
-        {
-            velocity.y += -(gravity * moveForceFactor);
-        }
-        else
-        {
-            velocity.y = 0;
-        }
-
         if (velocity.magnitude > 0.001f)
         {
-            transform.position += velocity * Time.deltaTime;
+            if (IsForceMove)
+            {
+                var move = new Vector3(velocity.x, velocity.y * Time.deltaTime, 0);
+                transform.position += move;
+                velocity.x = 0;
+            }
+            else
+            {
+                transform.position += velocity * Time.deltaTime;
+            }
         }
     }
 
-    private float AddContraryForce(float value, float force)
+    private float DealYDirectionVelocity(float velocityY)
     {
-        float tempValue = 0;
-        bool positive = value >= 0;
-        var absValue = math.abs(value);
-        if (absValue > 0.001)
+        var tempValue = velocityY;
+        if (!isGround)
         {
-            var tempX = math.clamp(absValue - force, 0, absValue);
-            tempValue = positive ? tempX : -tempX;
+            tempValue += -(gravity * moveForceFactor);
+        }
+        else
+        {
+            tempValue = 0;
         }
 
+        return tempValue;
+    }
+
+    private float DealXDirectionVelocity(float xValue, float force)
+    {
+        float tempValue = xValue;
+        bool rightDirection = xValue >= 0;
+        if (xValue > 0 && istouchRight)
+        {
+            tempValue = 0;
+        }
+
+        if (xValue < 0 && istouchLeft)
+        {
+            tempValue = 0;
+        }
+        var absValue = Math.Abs(tempValue);
+        if (absValue > 0.001)
+        {
+            
+            var tempX = Mathf.Clamp(absValue - force, 0, absValue);
+            tempValue = rightDirection ? tempX : -tempX;
+        }
+        
         return tempValue;
     }
 
@@ -94,7 +127,7 @@ public class CharacterController : MonoBehaviour
     {
         var xAxis = Input.GetAxis("Horizontal");
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump")&& isGround)
         {
             force.y += jumpForce;
             isGround = false;
@@ -118,6 +151,7 @@ public class CharacterController : MonoBehaviour
     {
         var layerMaskGround = 1 << 6;
         isGround = CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, layerMaskGround);
+        
         if (CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, 1 << 7))
         {
             AddBoundaryForce();
