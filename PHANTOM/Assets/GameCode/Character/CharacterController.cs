@@ -10,8 +10,8 @@ public class CharacterController : MonoBehaviour
     [Range(0, 20f)] [SerializeField] private int moveForce;
     [Range(0, 20f)] [SerializeField] private int jumpForce;
 
-    [Range(0, 20f)] [SerializeField] private float airForce;
-    [Range(0, 20f)] [SerializeField] private float gravity;
+    [Range(0, 100f)] [SerializeField] private float airForce;
+    [Range(0, 100f)] [SerializeField] private float gravity;
 
 
     [SerializeField] private bool isGround;
