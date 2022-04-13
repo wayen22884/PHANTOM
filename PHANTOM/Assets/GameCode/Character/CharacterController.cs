@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public bool IsForceMove;
+    public bool allowAirDash;
     private float moveForceFactor = 0.001f;
     [Range(0, 20f)] [SerializeField] private int moveForce;
     [Range(0, 20f)] [SerializeField] private int jumpForce;
@@ -54,7 +55,7 @@ public class CharacterController : MonoBehaviour
 
     private void Stash()
     {
-        if (Input.GetButtonDown("Tumbling"))
+        if (Input.GetButtonDown("Dash") && (isGround || allowAirDash))
         {
             var isRight = Input.GetAxis("Horizontal") > 0;
             velocity.x = 0;
