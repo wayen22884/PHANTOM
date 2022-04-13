@@ -131,16 +131,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db707384db9d9994ca4aeecacf7ed910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsForceMove: 0
-  moveForce: 2
-  jumpForce: 7
+  IsForceMove: 1
+  allowAirDash: 0
+  moveForce: 35
+  jumpForce: 5
   airForce: 0.7
-  gravity: 14.5
+  gravity: 45
   isGround: 1
-  velocity: {x: 0.00073401415, y: 0, z: 0}
+  velocity: {x: 0.0008255863, y: 0, z: 0}
   boundaryFactor: 1
   stachDistance: 3
-  maxXDirctionSpeed: 1
+  stachUseTime: 0.6
+  maxXDirctionSpeed: 20
   collider: {x: 1, y: 1.39, z: 0.2}
 --- !u!1 &2873596988186473051
 GameObject:
