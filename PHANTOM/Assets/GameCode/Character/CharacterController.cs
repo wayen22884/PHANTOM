@@ -22,6 +22,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Vector3 velocity;
     [Range(0, 20f)] [SerializeField] private float boundaryFactor;
     [Range(0, 20f)] [SerializeField] private float stachDistance = 3;
+    [Range(0, 5f)] [SerializeField] private float stachUseTime = 1;
     [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 3;
     private int groundLayer = 6;
 
@@ -60,7 +61,7 @@ public class CharacterController : MonoBehaviour
             var isRight = Input.GetAxis("Horizontal") > 0;
             velocity.x = 0;
             var distance = isRight ? stachDistance : -stachDistance;
-            transform.DOMoveX(transform.position.x + distance, 0.1f);
+            transform.DOMoveX(transform.position.x + distance, stachUseTime);
         }
     }
 
