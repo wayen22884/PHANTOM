@@ -8,7 +8,7 @@ public class CharacterController : MonoBehaviour
     public bool IsForceMove;
     public bool allowAirDash;
     private float moveForceFactor = 0.001f;
-    [Range(0, 20f)] [SerializeField] private int moveForce;
+    [Range(0, 100f)] [SerializeField] private int moveForce;
     [Range(0, 20f)] [SerializeField] private int jumpForce;
 
     [Range(0, 100f)] [SerializeField] private float airForce;
