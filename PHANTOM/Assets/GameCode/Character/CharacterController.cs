@@ -19,24 +19,26 @@ public class CharacterController : MonoBehaviour
     private bool istouchRight;
     private float mass = 1;
     [SerializeField] private Vector3 velocity;
-    [Range(0, 20f)][SerializeField] private float boundaryFactor;
-    [Range(0, 20f)][SerializeField] private float stachDistance = 3;
+    [Range(0, 20f)] [SerializeField] private float boundaryFactor;
+    [Range(0, 20f)] [SerializeField] private float stachDistance = 3;
+    [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 3;
     private int groundLayer = 6;
 
     public Vector3 collider;
 
     private Action attackAction;
-    
-    
+
+
     public void Initialize(Action attackAction)
     {
         this.attackAction = attackAction;
     }
+
     public void StartInput()
     {
         Observable.EveryUpdate().Subscribe(_ => MoveInput());
         Observable.EveryUpdate().Subscribe(_ => AttackInput());
-        
+
         Observable.EveryUpdate().Subscribe(_ => Move());
         Observable.EveryUpdate().Subscribe(_ => CheckGround());
         Observable.EveryUpdate().Subscribe(_ => Stash());
@@ -65,10 +67,9 @@ public class CharacterController : MonoBehaviour
     private void Move()
     {
         velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
-        velocity.y=DealYDirectionVelocity(velocity.y);
+        velocity.y = DealYDirectionVelocity(velocity.y);
 
-        
-        
+
         if (velocity.magnitude > 0.001f)
         {
             if (IsForceMove)
@@ -112,14 +113,15 @@ public class CharacterController : MonoBehaviour
         {
             tempValue = 0;
         }
+
         var absValue = Math.Abs(tempValue);
+        absValue = absValue > maxXDirctionSpeed ? maxXDirctionSpeed : absValue;
         if (absValue > 0.001)
         {
-            
             var tempX = Mathf.Clamp(absValue - force, 0, absValue);
             tempValue = rightDirection ? tempX : -tempX;
         }
-        
+
         return tempValue;
     }
 
@@ -127,7 +129,7 @@ public class CharacterController : MonoBehaviour
     {
         var xAxis = Input.GetAxis("Horizontal");
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
-        if (Input.GetButtonDown("Jump")&& isGround)
+        if (Input.GetButtonDown("Jump") && isGround)
         {
             force.y += jumpForce;
             isGround = false;
@@ -151,7 +153,7 @@ public class CharacterController : MonoBehaviour
     {
         var layerMaskGround = 1 << 6;
         isGround = CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, layerMaskGround);
-        
+
         if (CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, 1 << 7))
         {
             AddBoundaryForce();

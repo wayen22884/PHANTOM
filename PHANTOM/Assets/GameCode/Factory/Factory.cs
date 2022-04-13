@@ -83,7 +83,7 @@ public static class Factory
     {
         GameObject GO = GameObject.Instantiate(GameResource.AttackTrigger);
         GO.SetActive(false);
-        var attackTrigger = new RectangleAttackTrigger(GO);
+        var attackTrigger = new CircleAttackeTrigger(GO);
         AllSourcePool.AddAttackTriggerPool(attackTrigger);
         return attackTrigger;
     }
