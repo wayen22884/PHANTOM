@@ -71,7 +71,10 @@ public class CharacterController : MonoBehaviour
         velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
         velocity.y = DealYDirectionVelocity(velocity.y);
 
-        OnChangeState("Velocity",velocity.magnitude>0.001?0:1);
+        var velocityMagnitude = velocity.magnitude;
+        Debug.Log(velocityMagnitude);
+        OnChangeState("Velocity",velocityMagnitude>0.001?1:0);
+        
         if (velocity.magnitude > 0.001f)
         {
             if (IsForceMove)

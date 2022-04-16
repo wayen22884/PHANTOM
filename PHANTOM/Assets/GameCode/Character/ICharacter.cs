@@ -46,7 +46,7 @@ public abstract class ICharacter:ISourcePoolObj
     }
     public void ChangeAnimationState(string state,float value)
     {
-        if (_nowState == state) return;
+        //if (_nowState == state) return;
         _animator.SetFloat(state,value);
         _nowState = state;
         Debug.Log($"_nowState{_nowState}: Value{value}");
