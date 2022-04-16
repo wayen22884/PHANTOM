@@ -17,10 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: a71b14b4aa7bb8347b0a916b06e81a0e
   m_SerializeEntries:
-  - m_GUID: ef57d6be055054d449360f6466af46cf
-    m_Address: Prefabs/Player.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 66459f904ae637242ae032458b399c2b
     m_Address: Prefabs/bloodBar.prefab
     m_ReadOnly: 0
@@ -35,6 +31,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 864571e12cb168d4d85fdd0cb0fd2c7e
     m_Address: Prefabs/AttackTrigger.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0ac9a40166bfe940948239f0e5bde65
+    m_Address: Prefabs/Player.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
