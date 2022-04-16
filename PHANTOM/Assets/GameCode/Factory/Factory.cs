@@ -30,7 +30,7 @@ public static class Factory
         var playerBaseAttr = GameResource.PlayerBaseAttr;
         //PlayerAttr內塞入PlayerBaseAttr
         playerAttr.SetBaseAttr(playerBaseAttr);
-        Factory.SetBloodBar(player.gameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
+        //Factory.SetBloodBar(player.gameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         return player;
     }
 

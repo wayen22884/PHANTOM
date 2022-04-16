@@ -44,6 +44,13 @@ public abstract class ICharacter:ISourcePoolObj
         _animator.Play(state);
         _nowState = state;
     }
+    public void ChangeAnimationState(string state,float value)
+    {
+        if (_nowState == state) return;
+        _animator.SetFloat(state,value);
+        _nowState = state;
+        Debug.Log($"_nowState{_nowState}: Value{value}");
+    }
 
     protected bool pause;
     AnimatorUpdateMode forpause;

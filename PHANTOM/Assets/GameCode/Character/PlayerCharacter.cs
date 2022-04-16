@@ -22,6 +22,7 @@ public class PlayerCharacter : ICharacter
     public override void StartInput()
     {
         controller=gameObject.GetComponent<CharacterController>();
+        controller.OnChangeState += ChangeAnimationState;
         controller.Initialize(Attack);
         controller.StartInput();
     }
@@ -29,7 +30,7 @@ public class PlayerCharacter : ICharacter
     public override void Attack()
     {
         Debug.Log("Attack");
-        AttackAction();
+        //AttackAction();
     }
 
     private void AttackAction()

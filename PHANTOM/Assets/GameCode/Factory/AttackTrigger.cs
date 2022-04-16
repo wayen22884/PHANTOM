@@ -86,7 +86,7 @@ public class CircleAttackeTrigger : AttackTrigger
     protected override bool IsInAttackTrigger(ICharacter character)
     {
         var distance= Vector3.Distance(_transform.position, character.Transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         return radius >= distance;
     }
 

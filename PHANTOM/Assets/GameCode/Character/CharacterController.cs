@@ -71,7 +71,7 @@ public class CharacterController : MonoBehaviour
         velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
         velocity.y = DealYDirectionVelocity(velocity.y);
 
-
+        OnChangeState("Velocity",velocity.magnitude>0.001?0:1);
         if (velocity.magnitude > 0.001f)
         {
             if (IsForceMove)
@@ -192,6 +192,8 @@ public class CharacterController : MonoBehaviour
         Gizmos.color = new Color(1, 1, 1, 0.3f);
         Gizmos.DrawCube(transform.position, collider);
     }
+
+    public event Action<string,float> OnChangeState;
 }
 
 public class CharacterAttr
