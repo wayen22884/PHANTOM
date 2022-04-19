@@ -30,7 +30,7 @@ public class PlayerCharacter : ICharacter
     public override void Attack()
     {
         Debug.Log("Attack");
-        //AttackAction();
+        AttackAction();
     }
 
     private void AttackAction()

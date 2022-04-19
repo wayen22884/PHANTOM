@@ -665,7 +665,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1979151027}
   m_Bounds:
-    m_Center: {x: 0.0018849969, y: 0.00000011920929, z: 0}
+    m_Center: {x: 0.0018849969, y: 0, z: 0}
     m_Extent: {x: 0.5681151, y: 0.43500012, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1765822823}
   m_Bounds:
-    m_Center: {x: 0.00000017881393, y: -0.00063481927, z: 0}
+    m_Center: {x: 0.00000011920929, y: -0.00063458085, z: 0}
     m_Extent: {x: 0.37500012, y: 0.19936499, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2088472990}
   m_Bounds:
-    m_Center: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0.00000011920929, y: -0.00000023841858, z: 0}
     m_Extent: {x: 0.20500004, y: 0.19000001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -978,8 +978,8 @@ MonoBehaviour:
   - {fileID: 1213315853}
   - {fileID: 1293860915}
   m_Bounds:
-    m_Center: {x: 0.000011011958, y: -0.008621514, z: 0}
-    m_Extent: {x: 0.14353898, y: 0.41712862, z: 0}
+    m_Center: {x: 0.000011026859, y: -0.008621633, z: 0}
+    m_Extent: {x: 0.14353898, y: 0.4171286, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1442484249976795996
@@ -1084,8 +1084,8 @@ MonoBehaviour:
   - {fileID: 1213017714}
   - {fileID: 1369949341}
   m_Bounds:
-    m_Center: {x: 0.00038838387, y: -0.00007802248, z: 0}
-    m_Extent: {x: 0.14363286, y: 0.40584084, z: 0}
+    m_Center: {x: 0.00038838387, y: -0.000078082085, z: 0}
+    m_Extent: {x: 0.14363286, y: 0.4058408, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1442484250435539219
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 729360334}
   m_Bounds:
-    m_Center: {x: 0.000000059604645, y: 0.00000011920929, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.1250001, y: 0.09500009, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1202,7 +1202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1442484250464811818}
   - component: {fileID: 3964569796440860346}
-  - component: {fileID: 5878107669456771762}
   - component: {fileID: 4484488824545894142}
   m_Layer: 0
   m_Name: Duck
@@ -1245,31 +1244,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5878107669456771762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442484250464811817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db707384db9d9994ca4aeecacf7ed910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsForceMove: 1
-  allowAirDash: 0
-  moveForce: 35
-  jumpForce: 5
-  airForce: 0.7
-  gravity: 45
-  isGround: 1
-  velocity: {x: 0.0008255863, y: 0, z: 0}
-  boundaryFactor: 1
-  stachDistance: 3
-  stachUseTime: 0.6
-  maxXDirctionSpeed: 20
-  collider: {x: 1, y: 1.39, z: 0.2}
 --- !u!65 &4484488824545894142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1281,8 +1255,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.25, y: 6.88, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.04, y: 2.82, z: 0.2}
+  m_Center: {x: 0.56, y: 1.17, z: 0}
 --- !u!1 &2978094899855391077
 GameObject:
   m_ObjectHideFlags: 0

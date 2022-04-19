@@ -74,9 +74,10 @@ public class CharacterController : MonoBehaviour
         var velocityMagnitude = velocity.magnitude;
         Debug.Log(velocityMagnitude);
         OnChangeState("Velocity",velocityMagnitude>0.001?1:0);
-        
+        //transform.rotation. = new Vector3(0, velocity.x > 0 ? 0 : 90, 0);
         if (velocity.magnitude > 0.001f)
         {
+            
             if (IsForceMove)
             {
                 var move = new Vector3(velocity.x, velocity.y * Time.deltaTime, 0);

@@ -34,6 +34,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a0ac9a40166bfe940948239f0e5bde65
+    m_Address: Prefabs/PlayerModel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef57d6be055054d449360f6466af46cf
     m_Address: Prefabs/Player.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []

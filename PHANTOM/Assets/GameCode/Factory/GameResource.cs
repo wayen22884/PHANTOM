@@ -8,6 +8,7 @@ public static class GameResource
     public static void Initialize()
     {
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Player.prefab").Completed += (i) => {  PlayerObj= i.Result; };
+        Addressables.LoadAssetAsync<GameObject>("Prefabs/PlayerModel.prefab").Completed += (i) => {  PlayerModel= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/AttackTrigger.prefab").Completed += (i) => {  AttackTrigger= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { _pistol = i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/Rifle.prefab").Completed += (i) => {  _rifle= i.Result; };
@@ -53,6 +54,7 @@ public static class GameResource
     public static GameObject Canvas { get; private set; }
     private static GameObject _wall;
     public static GameObject PlayerObj { get; private set; }
+    public static GameObject PlayerModel { get; private set; }
 
     public static GameObject BloodBar{ get; private set; }
     public static GameObject FloatingBars{ get; private set; }

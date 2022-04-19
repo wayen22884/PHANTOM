@@ -24,13 +24,13 @@ public abstract class ICharacter:ISourcePoolObj
         return _valueHandle.Subscribe(_ => handler(_));
     }
     //設定使用模型
-    public void SetGameObject(GameObject model)
+    public void SetGameObject(GameObject player,GameObject model)
     {
-        _transform = model.transform;
-        _animator = _transform.GetComponent<Animator>();
+        _transform = player.transform;
+        _animator = model.transform.GetComponent<Animator>();
         if (_animator == null) Debug.LogError("NoAnimator");
-        spriteRenderer = _transform.GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null) Debug.LogError("spriteRenderer");
+        //spriteRenderer = model.transform.GetComponent<SpriteRenderer>();
+        //if (spriteRenderer == null) Debug.LogError("spriteRenderer");
     }
     public GameObject gameObject => _transform.gameObject;
     public Transform Transform => _transform;
@@ -46,10 +46,12 @@ public abstract class ICharacter:ISourcePoolObj
     }
     public void ChangeAnimationState(string state,float value)
     {
-        //if (_nowState == state) return;
+        if (value>0.001)
+        {
+            Debug.Log($"_nowState{_nowState}: Value{value}");
+        }
         _animator.SetFloat(state,value);
         _nowState = state;
-        Debug.Log($"_nowState{_nowState}: Value{value}");
     }
 
     protected bool pause;

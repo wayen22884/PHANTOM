@@ -17,10 +17,11 @@ public static class Factory
     public static PlayerCharacter CreatePlayer()
     {
         var GO = GameObject.Instantiate(GameResource.PlayerObj, new Vector3(0, -0.25f, 0f), new Quaternion(0f, 0f, 0f, 0f));
+        var model = GameObject.Instantiate(GameResource.PlayerModel, Tool.FindChildGameObject(GO,"ModelPoint").transform);
         //PlayCharacter內塞入物體
         var player = new PlayerCharacter();
         AllSourcePool.SetPlayer(player);
-        player.SetGameObject(GO);
+        player.SetGameObject(GO,model);
         var playerAttr = new PlayerAttr();
         playerAttr.SetCharacter(player);
         //PlayCharacter內塞入PlayerAttr
@@ -45,7 +46,7 @@ public static class Factory
         //將物件加入sourcepool
         GO.SetActive(false);
         AllSourcePool.AddToDeadList(character, EnemyType);
-        character.SetGameObject(GO);
+        character.SetGameObject(GO,GO);
         character.SetAI();
 
         var enemyAttr = new EnemyAttr();

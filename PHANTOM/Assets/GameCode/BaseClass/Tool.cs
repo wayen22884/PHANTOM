@@ -95,11 +95,7 @@ public static class Tool
             line2 - line3;
 
         var isOnLine = distance < 0.001;
-        if (isOnLine)
-        {
-            Debug.Log($"isOnLine:{isOnLine}//point1:{lineFirstStar}//point2:{lineFirstEnd}//IntersectionVector2:{IntersectionVector2}");
-            Debug.Log($"line1:{line1}//line2:{line2}line3:{line3}");
-        }
+
         return isOnLine;
     }
 
