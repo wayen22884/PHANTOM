@@ -50,7 +50,7 @@ public abstract class ICharacterBaseAttr :ScriptableObject,  IBaseAttr
     [SerializeField]
     protected float _MoveSpeed;
     public float MoveSpeed => _MoveSpeed;
-    protected bool _FaceRight;
+    protected bool _FaceRight=true;
     public bool FaceRight => _FaceRight;
     /// <summary>
     /// 有改變方向為true，沒改變方向為false

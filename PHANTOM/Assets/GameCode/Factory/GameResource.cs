@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 public static class GameResource 
 {
@@ -15,21 +15,9 @@ public static class GameResource
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
          Addressables.LoadAssetAsync<GameObject>("Prefabs/bloodBar.prefab").Completed += (i) => {  BloodBar= i.Result; };
         // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/Player.controller").Completed += (i) => {  _playerAnimatorController= i.Result; };
-        // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/EnemyPistol.controller").Completed += (i) => {  _pistolAnimatorController= i.Result; };
-        // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/EnemyRifle.controller").Completed += (i) => {  _rifleAnimatorController= i.Result; };
-        // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/EnemyShootGun.controller").Completed += (i) => {  _shootGunAnimatorController= i.Result; };
         // Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) => { audioMixer = i.Result; _BGMGroup = FindMusicGroup("BGM"); _EffectGroup = FindMusicGroup("Effect"); };
         Addressables.LoadAssetAsync<PlayerBaseAttr>("DataForTest/PlayerBaseData.asset").Completed += (i) => {  PlayerBaseAttr= i.Result; };
-        //
-        //
         // Addressables.LoadAssetAsync<AudioClip>("Music/Zapper.wav").Completed+= (i)=> { bulletaudio = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/B2.wav").Completed+= (i)=> { _mainMenuBGM = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/First-fight.wav").Completed+= (i)=> { _FirBattleBGM = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/Fight.wav").Completed += (i)=> { _SecBattleBGM = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/Transform.wav").Completed+= (i)=> { _transformBGM = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/CQC_1.wav").Completed+= (i)=> { _CQCPistolEffect = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/CQC_2.wav").Completed+= (i)=> { _CQCRifleEffect = i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/CQC_3.wav").Completed += (i)=> { _CQCShootGunEffect = i.Result; };
     }
     public static void MainMenuSceneInitialize()
     {
@@ -39,7 +27,18 @@ public static class GameResource
     {
         CanvasSetting();
         FloatingBars = Tool.FindChildGameObject(Canvas, "FloatingBars");
+        
+        CreatePlayerAndEnemy();
     }
+
+    private static void CreatePlayerAndEnemy()
+    {
+        AllSourcePool.Initialize();
+        var player = Factory.CreatePlayer();
+        player.StartInput();
+        AllSourcePool.UseNewEnemy(CharacterID.Enemy);
+    }
+
     static void CanvasSetting()
     {
         Canvas = GameObject.Find("Canvas");

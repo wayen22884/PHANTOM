@@ -31,7 +31,7 @@ public static class Factory
         var playerBaseAttr = GameResource.PlayerBaseAttr;
         //PlayerAttr內塞入PlayerBaseAttr
         playerAttr.SetBaseAttr(playerBaseAttr);
-        //Factory.SetBloodBar(player.gameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
+        SetBloodBar(player.gameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         return player;
     }
 
@@ -57,6 +57,7 @@ public static class Factory
         enemyAttr.SetAttrStrategy(new AttrStrategy());
         var EnemyBaseAttr = new EnemyBaseAttr();
         EnemyBaseAttr.SetMaxHP(100);
+        EnemyBaseAttr.SetHP(100);
         //EnemyAttr內塞入EnemyBaseAttr
         enemyAttr.SetBaseAttr(EnemyBaseAttr);
 

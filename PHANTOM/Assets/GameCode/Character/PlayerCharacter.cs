@@ -55,7 +55,6 @@ public class PlayerCharacter : ICharacter
         if (pause) return;
         //進行動畫中不可輸入
         if (playAnimation) return;
-        CheckFace();
         if (CheckDash()) return;
         CheckWalk();
         //CheckAttack();
@@ -63,10 +62,6 @@ public class PlayerCharacter : ICharacter
 
     bool playAnimation;
 
-    void CheckFace()
-    {
-        if (playerAttr.SetFace(Input.GetAxis("Horizontal"))) _transform.DOScaleX(-_transform.localScale.x, 0f);
-    }
 
     bool CheckDash()
     {

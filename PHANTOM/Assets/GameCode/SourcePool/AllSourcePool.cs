@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UniRx;
 using UnityEngine;
 public static class AllSourcePool 
 {
@@ -8,6 +11,8 @@ public static class AllSourcePool
         PlayerCharacter = playerCharacter;
     }
 
+    private static IDisposable updateDisposable;
+    
     static EnemySourcePool enemy1;
     static EnemySourcePool rifles;
     static EnemySourcePool shootGuns;
@@ -94,8 +99,17 @@ public static class AllSourcePool
          floatingbar.Initialize();
          triggerPool = new AttackTriggerPool();
          triggerPool.Initialize();
+
+
+         StartUpdtate();
     }
-    public static void Update()
+
+    private static void StartUpdtate()
+    {
+        updateDisposable = Observable.EveryUpdate().Subscribe(_ => Update());
+    }
+
+    private static void Update()
     {
         enemy1?.Update();
         rifles?.Update();

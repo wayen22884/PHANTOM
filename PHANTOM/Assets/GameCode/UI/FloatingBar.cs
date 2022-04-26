@@ -10,6 +10,7 @@ public class FloatingBar:ISourcePoolObj
     private Image image;
     Camera UICamera;
     Transform FollowTarget;
+    
     public void Awake(GameObject gameObject)
     {
         GO = gameObject;

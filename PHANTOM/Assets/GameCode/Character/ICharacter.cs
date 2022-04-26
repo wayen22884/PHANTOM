@@ -13,8 +13,8 @@ public abstract class ICharacter:ISourcePoolObj
     protected CharacterID _ID;
     public CharacterID ID => _ID;
     protected Transform _transform;
+    protected Transform model;
     protected Animator _animator;
-    protected SpriteRenderer spriteRenderer;
     protected string _nowState;
     protected bool _dead;
     public bool Death => _dead;
@@ -27,7 +27,8 @@ public abstract class ICharacter:ISourcePoolObj
     public void SetGameObject(GameObject player,GameObject model)
     {
         _transform = player.transform;
-        _animator = model.transform.GetComponent<Animator>();
+        this.model = model.transform;
+        _animator = this.model.GetComponent<Animator>();
         if (_animator == null) Debug.LogError("NoAnimator");
         //spriteRenderer = model.transform.GetComponent<SpriteRenderer>();
         //if (spriteRenderer == null) Debug.LogError("spriteRenderer");
@@ -46,9 +47,9 @@ public abstract class ICharacter:ISourcePoolObj
     }
     public void ChangeAnimationState(string state,float value)
     {
-        if (value>0.001)
+        if (Attr.SetFace(Input.GetAxis("Horizontal")))
         {
-            Debug.Log($"_nowState{_nowState}: Value{value}");
+            model.DOScaleX(-model.localScale.x, 0f);
         }
         _animator.SetFloat(state,value);
         _nowState = state;

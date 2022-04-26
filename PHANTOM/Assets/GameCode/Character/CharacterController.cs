@@ -71,9 +71,7 @@ public class CharacterController : MonoBehaviour
         velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
         velocity.y = DealYDirectionVelocity(velocity.y);
 
-        var velocityMagnitude = velocity.magnitude;
-        Debug.Log(velocityMagnitude);
-        OnChangeState("Velocity",velocityMagnitude>0.001?1:0);
+        OnChangeState("Velocity",velocity.x);
         //transform.rotation. = new Vector3(0, velocity.x > 0 ? 0 : 90, 0);
         if (velocity.magnitude > 0.001f)
         {
