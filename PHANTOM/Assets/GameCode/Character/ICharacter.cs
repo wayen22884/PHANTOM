@@ -55,6 +55,8 @@ public abstract class ICharacter:ISourcePoolObj
         _nowState = state;
     }
 
+    public bool ReturnIsRight => Attr.FaceRight;
+
     protected bool pause;
     AnimatorUpdateMode forpause;
     public void Pause()

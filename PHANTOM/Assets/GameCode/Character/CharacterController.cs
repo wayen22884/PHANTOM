@@ -29,11 +29,12 @@ public class CharacterController : MonoBehaviour
     public Vector3 collider;
 
     private Action attackAction;
+    public Func<bool> ReturnIsRight;
 
-
-    public void Initialize(Action attackAction)
+    public void Initialize(Action attackAction,Func<bool> returnRight)
     {
         this.attackAction = attackAction;
+        this.ReturnIsRight = returnRight;
     }
 
     public void StartInput()
@@ -58,7 +59,7 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetButtonDown("Dash") && (isGround || allowAirDash))
         {
-            var isRight = Input.GetAxis("Horizontal") > 0;
+            var isRight = ReturnIsRight?.Invoke() ?? false;
             velocity.x = 0;
             var distance = isRight ? stachDistance : -stachDistance;
             transform.DOMoveX(transform.position.x + distance, stachUseTime);

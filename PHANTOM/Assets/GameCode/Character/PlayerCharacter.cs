@@ -23,7 +23,7 @@ public class PlayerCharacter : ICharacter
     {
         controller=gameObject.GetComponent<CharacterController>();
         controller.OnChangeState += ChangeAnimationState;
-        controller.Initialize(Attack);
+        controller.Initialize(Attack,()=>ReturnIsRight);
         controller.StartInput();
     }
 

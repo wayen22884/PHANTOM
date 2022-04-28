@@ -42,6 +42,10 @@ public class MusicSystem : MonoBehaviour
         CurrentBGM = audioClip;
         PlayMusic();
     }
+    public void StopMusic()
+    {
+        BGMSource.Stop();
+    }
 
     public void PlayBGV(AudioClip audioClip)
     {
@@ -61,12 +65,7 @@ public class MusicSystem : MonoBehaviour
             return new AudioSourceContainer(source, bgvSources);
         }
     }
-
-
-    public void TestPlayMusic()
-    {
-        PlayMusic();
-    }
+    
     private class AudioSourceContainer
     {
         private AudioSource audioSource;
