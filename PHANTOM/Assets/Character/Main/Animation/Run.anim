@@ -268,7 +268,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/bone_1/Left Resolver/Left Resolver_Target
+    path: Left Resolver/Left Resolver_Target
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -311,7 +311,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Body/bone_1/Right Resolver/Right Resolver_Target
+    path: Right Resolver/Right Resolver_Target
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -330,14 +330,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 393994040
+      path: 2548002282
       attribute: 1
       script: {fileID: 0}
       typeID: 4
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1811154305
+      path: 4254461976
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -1092,7 +1092,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Body/bone_1/Left Resolver/Left Resolver_Target
+    path: Left Resolver/Left Resolver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1165,7 +1165,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Body/bone_1/Left Resolver/Left Resolver_Target
+    path: Left Resolver/Left Resolver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1238,7 +1238,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Body/bone_1/Left Resolver/Left Resolver_Target
+    path: Left Resolver/Left Resolver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1284,7 +1284,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Body/bone_1/Right Resolver/Right Resolver_Target
+    path: Right Resolver/Right Resolver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1330,7 +1330,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Body/bone_1/Right Resolver/Right Resolver_Target
+    path: Right Resolver/Right Resolver_Target
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1376,7 +1376,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Body/bone_1/Right Resolver/Right Resolver_Target
+    path: Right Resolver/Right Resolver_Target
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
