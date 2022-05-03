@@ -56,11 +56,11 @@ public static class Factory
         //EnemyAttr內塞入AttrStrategy
         enemyAttr.SetAttrStrategy(new AttrStrategy());
         var EnemyBaseAttr = new EnemyBaseAttr();
-        EnemyBaseAttr.SetMaxHP(100);
-        EnemyBaseAttr.SetHP(100);
-        //EnemyAttr內塞入EnemyBaseAttr
+        
         enemyAttr.SetBaseAttr(EnemyBaseAttr);
-
+        
+        SaveData EnemySaveData = GameResource.SaveData(EnemyType);
+        EnemyBaseAttr.SetAllValue(EnemySaveData);
         return character;
     }
 

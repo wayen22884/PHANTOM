@@ -11,6 +11,7 @@ public static class GameResource
         Addressables.LoadAssetAsync<GameObject>("Prefabs/PlayerModel.prefab").Completed += (i) => {  PlayerModel= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/AttackTrigger.prefab").Completed += (i) => {  AttackTrigger= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { _pistol = i.Result; };
+        Addressables.LoadAssetAsync<SaveData>("EnemyData.asset").Completed += (i) => {  enemyData= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/Rifle.prefab").Completed += (i) => {  _rifle= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
          Addressables.LoadAssetAsync<GameObject>("Prefabs/bloodBar.prefab").Completed += (i) => {  BloodBar= i.Result; };
@@ -18,6 +19,7 @@ public static class GameResource
         // Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) => { audioMixer = i.Result; _BGMGroup = FindMusicGroup("BGM"); _EffectGroup = FindMusicGroup("Effect"); };
         Addressables.LoadAssetAsync<PlayerBaseAttr>("DataForTest/PlayerBaseData.asset").Completed += (i) => {  PlayerBaseAttr= i.Result; };
         // Addressables.LoadAssetAsync<AudioClip>("Music/Zapper.wav").Completed+= (i)=> { bulletaudio = i.Result; };
+        
     }
     public static void MainMenuSceneInitialize()
     {
@@ -125,5 +127,11 @@ public static class GameResource
         else if(ID == CharacterID.Rifle) return _CQCRifleEffect;
         else if(ID == CharacterID.ShootGun) return _CQCShootGunEffect;
         else { Debug.LogError("The sound is not exist"); return null; }
+    }
+    private static SaveData enemyData;
+    public static SaveData SaveData(CharacterID ID)
+    {
+        if (ID == CharacterID.Enemy) return enemyData;
+        else { Debug.LogError("The saveData is not exist"); return null; }
     }
 }

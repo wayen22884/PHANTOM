@@ -17,5 +17,13 @@ public class MusicSystemEditor : Editor
         {
             system.StopMusic();
         }
+        if (GUILayout.Button("StopMusic"))
+        {
+            system.StopMusic();
+        }
+        if (GUILayout.Button("PlayMusicAndLoop"))
+        {
+            system.PlayMusicAndLoop();
+        }
     }
 }

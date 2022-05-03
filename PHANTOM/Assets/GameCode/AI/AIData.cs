@@ -29,8 +29,6 @@ public class AIData
         get
         {
             if (_character.ID == CharacterID.Enemy) return 6f;
-            if (_character.ID == CharacterID.Rifle) return 7f;
-            if (_character.ID == CharacterID.ShootGun) return 6f;
             else { Debug.LogError("there is no right characterID."); return 0; }
         }
     }
@@ -38,9 +36,7 @@ public class AIData
     {
         get
         {
-            if (_character.ID == CharacterID.Enemy) return 4f;
-            if (_character.ID == CharacterID.Rifle) return 5.5f;
-            if (_character.ID == CharacterID.ShootGun) return 4f;
+            if (_character.ID == CharacterID.Enemy) return 1f;
             else { Debug.LogError("there is no right characterID."); return 0; }
         }
     }

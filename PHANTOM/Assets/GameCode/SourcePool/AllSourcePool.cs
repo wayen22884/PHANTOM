@@ -28,8 +28,6 @@ public static class AllSourcePool
     public static ICharacter UseNewEnemy(CharacterID enemy)
     {
         if (enemy == CharacterID.Enemy) return enemy1.Use();
-        else if (enemy == CharacterID.Rifle) return rifles.Use();
-        else if (enemy == CharacterID.ShootGun) return shootGuns.Use();
         else { Debug.LogError("not exist Enemy");return null; }
     }
     public static void AddToDeadList(ICharacter enemyCharacter,CharacterID enemy)

@@ -22,7 +22,7 @@ public class FSMSystem
         m_currentState = idleState;
         m_currentID = FSMStateID.IdleState;
 
-        FSMAttackState attackState=m_AIData.Character.ID==CharacterID.Rifle?new FSMRifleAttackState(this): new FSMAttackState(this);
+        FSMAttackState attackState= new FSMAttackState(this);
         FSMChaseState chaseState = new FSMChaseState(this);
 
         idleState.AddFSMTransition(FSMTransition.Go_Attack,attackState);
@@ -59,6 +59,7 @@ public class FSMSystem
     }
     public void Translate(FSMTransition transition)
     {
+        Debug.Log(transition.ToString());
         FSMState nextState= m_currentState.TranslateCheck(transition);
         if (nextState == null) return;
         ChangeState(nextState);

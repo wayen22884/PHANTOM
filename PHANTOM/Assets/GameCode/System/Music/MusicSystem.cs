@@ -6,6 +6,9 @@ using UnityEngine;
 public class MusicSystem : MonoBehaviour
 {
     [SerializeField]private AudioClip CurrentBGM;
+    
+    [SerializeField]private AudioClip StartBGM;
+    [SerializeField]private List<AudioClip> LoopBGMs;
 
     public static MusicSystem Instance;
 
@@ -105,5 +108,15 @@ public class MusicSystem : MonoBehaviour
                 recycleList.Enqueue(this);
             }
         }
+    }
+
+    public void PlayMusicAndLoop()
+    {
+        BGMSource.clip = CurrentBGM;
+        BGMSource.Play();
+        Observable.EveryUpdate().Subscribe(_ =>
+        {
+            //BGMSource
+        });
     }
 }

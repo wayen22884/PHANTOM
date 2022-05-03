@@ -9,18 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0178a3fc6d2edfe45afbfc352d6392b0, type: 3}
-  m_Name: PlayerBaseData
+  m_Script: {fileID: 11500000, guid: b87dd197e63559946b098bf6d5eb99ef, type: 3}
+  m_Name: EnemyData
   m_EditorClassIdentifier: 
-  _attrName: 
-  _attrType: 
-  _maxHP: 100
-  _HP: 100
-  _maxSP: 0
-  _SP: 0
-  _EP: 0
-  _MaxEP: 0
-  _STR: 0
-  _DEF: 0
-  _MoveSpeed: 10
-  _dashMultiplicator: 0
+  AttrName: 
+  AttrType: 
+  MaxHP: 100
+  MaxSP: 0
+  STR: 0
+  DEF: 0
+  MoveSpeed: 10

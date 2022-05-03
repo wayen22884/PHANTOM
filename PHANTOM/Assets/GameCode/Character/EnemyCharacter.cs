@@ -23,7 +23,7 @@ public class EnemyCharacter : ICharacter
 
     public override void Attack()
     {
-        throw new NotImplementedException();
+        Debug.Log("EnemyAttack");
     }
 
     public override void Attack(ICharacterAttr Target)
@@ -31,7 +31,7 @@ public class EnemyCharacter : ICharacter
         int damage = _enemyAttr.DamageCount(Target);
         Target.GetInjuryed(damage);
     }
-    public void Update()
+    public override void Update()
     {
         if (pause) return;
         _FSM.Update();
