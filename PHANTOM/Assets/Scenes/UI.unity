@@ -443,10 +443,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.9302213
       objectReference: {fileID: 0}
-    - target: {fileID: 3964569796440860346, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7760550830304599078, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.014
@@ -462,18 +458,6 @@ PrefabInstance:
     - target: {fileID: 7760550830304599078, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.417
-      objectReference: {fileID: 0}
-    - target: {fileID: 7877883080300708432, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
-      propertyPath: m_SolverEditorData.Array.data[1].color.b
-      value: 0.22865385
-      objectReference: {fileID: 0}
-    - target: {fileID: 7877883080300708432, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
-      propertyPath: m_SolverEditorData.Array.data[1].color.g
-      value: 0.19337837
-      objectReference: {fileID: 0}
-    - target: {fileID: 7877883080300708432, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
-      propertyPath: m_SolverEditorData.Array.data[1].color.r
-      value: 0.9150943
       objectReference: {fileID: 0}
     - target: {fileID: 8135103483261723767, guid: a0ac9a40166bfe940948239f0e5bde65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -510,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2538420874708714486, guid: d2951cb32846bc34d9232e1bff4c9c20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2538420874708714486, guid: d2951cb32846bc34d9232e1bff4c9c20, type: 3}
       propertyPath: m_SizeDelta.y
