@@ -6,21 +6,18 @@ public class FSMSystem
 {
     public FSMSystem(AIData AIData) 
     {
-        m_currentID = 0;
-        m_currentState = null;
-        m_AIData = AIData;
-        _FSMSystemMap = new Dictionary<FSMTransition, FSMState>();
+        this.AIData = AIData;
     }
-    private FSMStateID m_currentID;
-    private FSMState m_currentState;
-    private Dictionary<FSMTransition, FSMState> _FSMSystemMap;
-    private AIData m_AIData;
+    private FSMStateID stateID=FSMStateID.Null;
+    private FSMState currentState;
+    private Dictionary<FSMTransition, FSMState> FSMSystemMap= new Dictionary<FSMTransition, FSMState>();
+    private AIData AIData;
 
     public virtual void Initialize()
     {
         FSMIdleState idleState = new FSMIdleState(this);
-        m_currentState = idleState;
-        m_currentID = FSMStateID.IdleState;
+        currentState = idleState;
+        stateID = FSMStateID.IdleState;
 
         FSMAttackState attackState= new FSMAttackState(this);
         FSMChaseState chaseState = new FSMChaseState(this);
@@ -30,8 +27,6 @@ public class FSMSystem
 
         attackState.AddFSMTransition(FSMTransition.Go_Chase,chaseState);
         attackState.AddFSMTransition(FSMTransition.Go_Idle,idleState);
-        if(m_AIData.Character.ID==CharacterID.Rifle) attackState.SetAttackInterval(1.5f);
-        if(m_AIData.Character.ID==CharacterID.ShootGun) attackState.SetAttackInterval(2f);
 
         chaseState.AddFSMTransition(FSMTransition.Go_Attack,attackState);
         chaseState.AddFSMTransition(FSMTransition.Go_Idle,idleState);
@@ -42,38 +37,38 @@ public class FSMSystem
 
     public void AddFSMTransition(FSMTransition transition, FSMState FSMState)
     {
-        _FSMSystemMap.Add(transition, FSMState);
+        FSMSystemMap.Add(transition, FSMState);
     }
     public void DeleteFSMTransition(FSMTransition transition)
     {
-        if (_FSMSystemMap.ContainsKey(transition) == false)
+        if (FSMSystemMap.ContainsKey(transition) == false)
             Debug.LogError($"there is no {transition} in FSMMap");
-        else _FSMSystemMap.Remove(transition);
+        else FSMSystemMap.Remove(transition);
     }
 
 
     public void GlobalTranslate(FSMTransition transition)
     {
-        if (_FSMSystemMap.ContainsKey(transition)) ChangeState(_FSMSystemMap[transition]);
+        if (FSMSystemMap.ContainsKey(transition)) ChangeState(FSMSystemMap[transition]);
         else Debug.LogError($"there is no {transition} in FSMGolbalMap");
     }
     public void Translate(FSMTransition transition)
     {
         Debug.Log(transition.ToString());
-        FSMState nextState= m_currentState.TranslateCheck(transition);
+        FSMState nextState= currentState.TranslateCheck(transition);
         if (nextState == null) return;
         ChangeState(nextState);
     }
     void ChangeState(FSMState NextState)
     {
-        m_currentState.DoBeforeLeave();
-        m_currentState = NextState;
-        m_currentID = NextState.ID;
-        m_currentState.DoBeforeEnter(m_AIData);
+        currentState.DoBeforeLeave();
+        currentState = NextState;
+        stateID = NextState.ID;
+        currentState.DoBeforeEnter(AIData);
     }
     public void Update()
     {
-        m_currentState.CheckCondition(m_AIData);
-        m_currentState.Do(m_AIData);
+        currentState.CheckCondition(AIData);
+        currentState.Do(AIData);
     }
 }

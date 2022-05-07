@@ -10,7 +10,7 @@ public static class GameResource
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Player.prefab").Completed += (i) => {  PlayerObj= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/PlayerModel.prefab").Completed += (i) => {  PlayerModel= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/AttackTrigger.prefab").Completed += (i) => {  AttackTrigger= i.Result; };
-        Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { _pistol = i.Result; };
+        Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { enemy1 = i.Result; };
         Addressables.LoadAssetAsync<SaveData>("EnemyData.asset").Completed += (i) => {  enemyData= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/Rifle.prefab").Completed += (i) => {  _rifle= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
@@ -49,7 +49,7 @@ public static class GameResource
 
 
     
-    private static GameObject _pistol;
+    private static GameObject enemy1;
     private static GameObject _rifle;
     private static GameObject _shootGun;
     public static GameObject Canvas { get; private set; }
@@ -63,7 +63,7 @@ public static class GameResource
     
     public static GameObject EnemyObj(CharacterID EnemyType)
     {
-        if (EnemyType == CharacterID.Enemy) return _pistol;
+        if (EnemyType == CharacterID.Enemy) return enemy1;
         else if (EnemyType == CharacterID.Rifle) return _rifle;
         else if (EnemyType == CharacterID.ShootGun) return _shootGun;
         else {Debug.LogError("not exist Enemy"); return null; }

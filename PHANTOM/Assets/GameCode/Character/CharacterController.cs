@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public bool IsForceMove;
-    public bool allowAirDash;
+    public bool IsForceMove=true;
+    public bool allowAirDash=true;
     private float moveForceFactor = 0.001f;
-    [Range(0, 100f)] [SerializeField] private int moveForce;
-    [Range(0, 20f)] [SerializeField] private int jumpForce;
+    [Range(0, 100f)] [SerializeField] private int moveForce=35;
+    [Range(0, 20f)] [SerializeField] private int jumpForce=5;
 
-    [Range(0, 100f)] [SerializeField] private float airForce;
-    [Range(0, 100f)] [SerializeField] private float gravity;
+    [Range(0, 100f)] [SerializeField] private float airForce=0.7F;
+    [Range(0, 100f)] [SerializeField] private float gravity=45;
 
 
     [SerializeField] private bool isGround;
@@ -20,10 +20,10 @@ public class CharacterController : MonoBehaviour
     private bool istouchRight;
     private float mass = 1;
     [SerializeField] private Vector3 velocity;
-    [Range(0, 20f)] [SerializeField] private float boundaryFactor;
+    [Range(0, 20f)] [SerializeField] private float boundaryFactor=1;
     [Range(0, 20f)] [SerializeField] private float stachDistance = 3;
-    [Range(0, 5f)] [SerializeField] private float stachUseTime = 1;
-    [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 3;
+    [Range(0, 5f)] [SerializeField] private float stachUseTime = 0.6F;
+    [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 20;
     private int groundLayer = 6;
 
     public Vector3 collider;
@@ -39,12 +39,16 @@ public class CharacterController : MonoBehaviour
 
     public void StartInput()
     {
-        Observable.EveryUpdate().Subscribe(_ => MoveInput());
-        Observable.EveryUpdate().Subscribe(_ => AttackInput());
+        Observable.EveryUpdate().Subscribe(_ => Controll());
+    }
 
-        Observable.EveryUpdate().Subscribe(_ => Move());
-        Observable.EveryUpdate().Subscribe(_ => CheckGround());
-        Observable.EveryUpdate().Subscribe(_ => Stash());
+    private void Controll()
+    {
+        MoveInput();
+        AttackInput();
+        Move();
+        CheckGround();
+        Stash();
     }
 
     private void AttackInput()
@@ -72,8 +76,6 @@ public class CharacterController : MonoBehaviour
         velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
         velocity.y = DealYDirectionVelocity(velocity.y);
 
-        OnChangeState("Velocity",velocity.x);
-        //transform.rotation. = new Vector3(0, velocity.x > 0 ? 0 : 90, 0);
         if (velocity.magnitude > 0.001f)
         {
             
@@ -166,7 +168,6 @@ public class CharacterController : MonoBehaviour
 
         istouchLeft = CheckHit(transform.position, collider.y, Vector3.left, collider.x / 2, layerMaskGround);
         istouchRight = CheckHit(transform.position, collider.y, Vector3.right, collider.x / 2, layerMaskGround);
-        //Debug.Log($"right:{istouchRight}     left:{istouchLeft}");
     }
 
     private bool CheckHit(Vector3 center, float lineDistance, Vector3 direction, float maxDistance, int layerMask = 0)
@@ -196,13 +197,5 @@ public class CharacterController : MonoBehaviour
         Gizmos.DrawCube(transform.position, collider);
     }
 
-    public event Action<string,float> OnChangeState;
-}
-
-public class CharacterAttr
-{
-    private ReactiveProperty<int> HP;
-    private ReactiveProperty<int> ATK;
-    private ReactiveProperty<int> Speed;
-    private ReactiveProperty<int> AtkSpeed;
+    public event Action<string> OnChangeState;
 }

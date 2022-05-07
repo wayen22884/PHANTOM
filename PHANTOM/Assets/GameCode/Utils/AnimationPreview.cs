@@ -5,12 +5,9 @@ using UnityEditor.Animations;
 
 public class AnimationPreview : MonoBehaviour
 {
-    [SerializeField]
-    private Animator animator;
-    [SerializeField]
-    private GameObject triggerAnimationButton;
-    [SerializeField]
-    private Transform scrollViewContent;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject triggerAnimationButton;
+    [SerializeField] private Transform scrollViewContent;
 
     void Start()
     {
@@ -49,6 +46,7 @@ public class AnimationPreview : MonoBehaviour
                 allStates.Add(chState.state);
             }
         }
+
         return allStates;
     }
 }

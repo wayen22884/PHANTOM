@@ -68,11 +68,11 @@ public class EnemyCharacter : ICharacter
     void Recycle()
     {
         AllSourcePool.AddToDeadList(this, ID);
-        _transform.gameObject.SetActive(false);
+        Transform.gameObject.SetActive(false);
     }
     public void SetAI()
     {
-        AIData AIData = new AIData(this, this._transform, AllSourcePool.PlayerCharacter);
+        AIData AIData = new AIData(this, this.Transform, AllSourcePool.PlayerCharacter);
         _FSM = new FSMSystem(AIData);
         AIData.SetFSMSystem(_FSM);
         _FSM.Initialize();

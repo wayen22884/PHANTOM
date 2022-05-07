@@ -24,20 +24,16 @@ public enum FSMStateID
 
 public abstract class FSMState 
 {
-    protected FSMStateID _ID;
     protected Dictionary<FSMTransition, FSMState> _FSMMap;
     protected FSMSystem _FSMSystem;
     protected float TimeCheckInterval;
-    //protected 
     public FSMState(FSMSystem system) 
     {
         _FSMSystem = system;
-        _ID = FSMStateID.Null;
         _FSMMap = new Dictionary<FSMTransition, FSMState>();
-        
     }
 
-    public FSMStateID ID => _ID;
+    public FSMStateID ID { get; protected set; }
     public void AddFSMTransition(FSMTransition transition,FSMState FSMState)
     {
         _FSMMap.Add(transition,FSMState);
@@ -86,7 +82,7 @@ public class FSMIdleState : FSMState
 {
     public FSMIdleState(FSMSystem system):base(system)
     {
-        _ID = FSMStateID.IdleState;
+        ID = FSMStateID.IdleState;
         TimeCheckInterval = 0.17f;
     }
     public override void CheckCondition(AIData AIData)
@@ -107,7 +103,7 @@ public class FSMChaseState : FSMState
 {
     public FSMChaseState(FSMSystem system) : base(system)
     {
-        _ID = FSMStateID.ChaseState;
+        ID = FSMStateID.ChaseState;
         TimeCheckInterval = 0.17f;
 
     }
@@ -130,14 +126,13 @@ public class FSMAttackState : FSMState
 {
     public FSMAttackState(FSMSystem system) : base(system)
     {
-        _ID = FSMStateID.AttackState;
+        ID = FSMStateID.AttackState;
         TimeCheckInterval = 0.17f;
 
     }
     public override void DoBeforeEnter(AIData AIData)
     {
         AIData.Character.ChangeAnimationState("idle");
-
     }
 
     public override void CheckCondition(AIData AIData)
@@ -163,26 +158,11 @@ public class FSMAttackState : FSMState
         AIData.Character.Attack();
     }
 }
-public class FSMRifleAttackState : FSMAttackState
-{
-    public FSMRifleAttackState(FSMSystem system) : base(system) { }
-    public override void Do(AIData AIData)
-    {
-        float vector = AIData.VectorDistance;
-        if (AIData.Attr.SetFace(vector)) AIData.Transform.DOScaleX(-AIData.Transform.localScale.x, 0f);
-        if (AttackClock < AttackInterval) { AttackClock += Time.deltaTime; return; }
-        else AttackClock = 0f;
-
-        AIData.Character.Attack();
-        TimeEventCheck.AddTimeEvent(AIData.Character.Attack,0.1f,TimeEventCheck.TimeScale.ScaleTime);
-        TimeEventCheck.AddTimeEvent(AIData.Character.Attack,0.2f,TimeEventCheck.TimeScale.ScaleTime);
-    }
-}
 public class FSMDeadState : FSMState
 {
     public FSMDeadState(FSMSystem system) : base(system)
     {
-        _ID = FSMStateID.DeadState;
+        ID = FSMStateID.DeadState;
         TimeCheckInterval = 1f;
     }
 }

@@ -12,18 +12,18 @@ public class PlayerCharacter : ICharacter
     PlayerAttr playerAttr;
     private CharacterController controller;
 
+    public override ICharacterAttr Attr => playerAttr;
     public void SetCharacterAttr(PlayerAttr characterAttr)
     {
         playerAttr = characterAttr;
     }
 
-    public override ICharacterAttr Attr => playerAttr;
 
     public override void StartInput()
     {
-        controller=gameObject.GetComponent<CharacterController>();
+        controller = gameObject.GetComponent<CharacterController>();
         controller.OnChangeState += ChangeAnimationState;
-        controller.Initialize(Attack,()=>ReturnIsRight);
+        controller.Initialize(Attack, () => ReturnIsRight);
         controller.StartInput();
     }
 
@@ -35,7 +35,7 @@ public class PlayerCharacter : ICharacter
 
     private void AttackAction()
     {
-        DamageData damageData = new DamageData(Target.enemy,this, _transform.position);
+        DamageData damageData = new DamageData(Target.enemy, this, Transform.position);
 
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);
@@ -49,86 +49,6 @@ public class PlayerCharacter : ICharacter
 
 
     #region Update
-
-    private void InputCheck()
-    {
-        if (pause) return;
-        //進行動畫中不可輸入
-        if (playAnimation) return;
-        if (CheckDash()) return;
-        CheckWalk();
-        //CheckAttack();
-    }
-
-    bool playAnimation;
-
-
-    bool CheckDash()
-    {
-        ColdDash();
-        if (Input.GetButtonDown("Tumbling") && Dash < 2)
-        {
-            Dash++;
-            ChangeAnimationState("dash");
-            playAnimation = true;
-            Attr.SetNoDamage(true);
-            float PostionNext = _transform.position.x + playerAttr.DashMove;
-            if (Mathf.Abs(PostionNext) <= 8.7f)
-            {
-                _transform.DOMoveX(PostionNext, 0.4f).OnComplete(StopAttack)
-                    .SetEase(Ease.InOutExpo);
-            }
-            else
-            {
-                PostionNext = (playerAttr.DashMove / Mathf.Abs(playerAttr.DashMove)) * 8.7f;
-                float _time = Mathf.Abs((PostionNext - _transform.position.x) / playerAttr.DashMove) * 0.4f;
-                _transform.DOMoveX(PostionNext, _time).OnComplete(StopAttack)
-                    .SetEase(Ease.InOutExpo);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    readonly float DashColdDownInterval = 1f;
-    float DashColdDownClock = 0f;
-    int Dash = 0;
-
-    void ColdDash()
-    {
-        if (Dash > 0)
-        {
-            if (Tool.IsUpdateTime(ref DashColdDownClock, DashColdDownInterval))
-            {
-                Dash--;
-            }
-        }
-    }
-
-    void CheckWalk()
-    {
-        float AbsMove = Mathf.Abs(Input.GetAxis("Horizontal"));
-        ChangeAnimationState(AbsMove != 0 ? "walk" : "idle");
-        if (AbsMove != 0f)
-        {
-            float PositionNext = _transform.position.x + AbsMove * playerAttr.MoveVelocity * Time.unscaledDeltaTime;
-
-            if (Mathf.Abs(PositionNext) <= 8.5f)
-            {
-                _transform.DOMoveX(PositionNext, 0f);
-            }
-            else
-            {
-                if (Mathf.Abs(PositionNext) < Mathf.Abs(_transform.position.x)) _transform.DOMoveX(PositionNext, 0f);
-            }
-        }
-    }
-
-    bool _inAttackInterval = false;
-    float attackClock = 0;
-    readonly float attackInterval = 0.33f;
 
     bool _transformation;
     public bool Transformation => _transformation;
@@ -163,27 +83,16 @@ public class PlayerCharacter : ICharacter
         }
     }
 
-    IDisposable BunkerRecoverHp = null;
-    float RecoverInterval = 1f / 10f;
-
-    void StopAttack()
-    {
-        playAnimation = false;
-        Attr.SetNoDamage(false);
-    }
-
     #endregion
 
     public override void ReSet()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Dead()
     {
-        if (_dead) return;
-        base.Dead();
-        _dead = true;
+        if (Death) return;
+        Death = true;
         ChangeAnimationState("die");
     }
 }
