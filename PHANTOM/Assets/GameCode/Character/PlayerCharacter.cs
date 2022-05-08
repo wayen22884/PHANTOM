@@ -24,7 +24,17 @@ public class PlayerCharacter : ICharacter
         controller = gameObject.GetComponent<CharacterController>();
         controller.OnChangeState = ChangeAnimationState;
         controller.ReturnIsRight = () =>ReturnIsRight;
-        controller.SetFace = Attr.SetFace;
+        controller.SetFace = move =>
+        {
+            var changeFace = Attr.SetFace(move);
+
+            if (changeFace)
+            {
+                Transform.DOScaleX(-Transform.localScale.x, 0f);
+            }
+
+            return changeFace;
+        };
         controller.attackAction = Attack;
 
         controller.AttackInput = () => Input.GetButtonDown("NormalAttack");
@@ -35,15 +45,21 @@ public class PlayerCharacter : ICharacter
         controller.StartInput();
     }
 
+    private IDisposable detectAttack;
+    private int attackTime;
     public override void Attack()
     {
-        Debug.Log("Attack");
+        attackTime = attackTime % 3;
+        attackTime++;
+        detectAttack?.Dispose();
+        detectAttack = Observable.Timer(TimeSpan.FromSeconds(1f)).Subscribe(_ => attackTime = 0);
+        ChangeAnimationState($"Smash_{attackTime}");
         AttackAction();
     }
 
     private void AttackAction()
     {
-        DamageData damageData = new DamageData(Target.enemy, this, Transform.position);
+        DamageData damageData = new DamageData(Target.enemy, this,AttackPoint.position );
 
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);

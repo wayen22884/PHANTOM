@@ -20,7 +20,7 @@ public class EnemyCharacter : ICharacter
     public override void StartInput()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        controller.OnChangeState = ChangeAnimationState;
+        controller.OnChangeState = null;
         controller.ReturnIsRight = () =>ReturnIsRight;
         controller.SetFace = Attr.SetFace;
         controller.attackAction = Attack;
@@ -35,9 +35,15 @@ public class EnemyCharacter : ICharacter
 
     public override void Attack()
     {
-        Debug.Log("EnemyAttack");
+        AttackAction();
     }
+    private void AttackAction()
+    {
+        DamageData damageData = new DamageData(Target.player, this,AttackPoint.position );
 
+        var attackTrigger = AllSourcePool.UseAttackTrigger();
+        attackTrigger.Set(damageData);
+    }
     public override void Attack(ICharacterAttr Target)
     {
         int damage = _enemyAttr.DamageCount(Target);

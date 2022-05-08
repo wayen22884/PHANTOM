@@ -132,14 +132,13 @@ public class FSMAttackState : FSMState
     }
     public override void DoBeforeEnter(AIData AIData)
     {
-        AIData.Character.ChangeAnimationState("Smash");
+        AIData.Character.ChangeAnimationState("Smash_1");
     }
 
     public override void CheckCondition(AIData AIData)
     {
         if (!IsUpdateTime) return;
         if (AIData.player.Death) { _FSMSystem.Translate(FSMTransition.Go_Idle);return; }
-        if (AIData.EnemyPositionX > 1f) { _FSMSystem.Translate(FSMTransition.Go_Chase); return; }
         if (AIData.Distance > AIData.ChaseDistance) _FSMSystem.Translate(FSMTransition.Go_Chase);
     }
     public void SetAttackInterval(float value)

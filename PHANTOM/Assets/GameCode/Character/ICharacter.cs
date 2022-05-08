@@ -14,6 +14,7 @@ public abstract class ICharacter : ISourcePoolObj
     public CharacterID ID { get; }
     public GameObject gameObject => Transform.gameObject;
     public Transform Transform { get; private set; }
+    public Transform AttackPoint{ get; private set; }
     public Animator Animator { get; private set; }
     public bool Death { get; protected set; }
 
@@ -29,6 +30,7 @@ public abstract class ICharacter : ISourcePoolObj
     public void SetGameObject(GameObject player, GameObject model)
     {
         Transform = player.transform;
+        AttackPoint = Tool.FindChildGameObject(player, "AttackPoint").transform;
         this.model = model.transform;
         Animator = this.model.GetComponent<Animator>();
         if (Animator == null) Debug.LogError("NoAnimator");

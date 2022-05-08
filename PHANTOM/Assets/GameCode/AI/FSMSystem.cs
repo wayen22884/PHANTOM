@@ -54,13 +54,13 @@ public class FSMSystem
     }
     public void Translate(FSMTransition transition)
     {
-        Debug.Log(transition.ToString());
         FSMState nextState= currentState.TranslateCheck(transition);
         if (nextState == null) return;
         ChangeState(nextState);
     }
     void ChangeState(FSMState NextState)
     {
+        Debug.Log(NextState.ID);
         currentState.DoBeforeLeave();
         currentState = NextState;
         stateID = NextState.ID;

@@ -28,7 +28,7 @@ public class AIData
     {
         get
         {
-            if (_character.ID == CharacterID.Enemy) return 6f;
+            if (_character.ID == CharacterID.Enemy) return 1.5f;
             else { Debug.LogError("there is no right characterID."); return 0; }
         }
     }

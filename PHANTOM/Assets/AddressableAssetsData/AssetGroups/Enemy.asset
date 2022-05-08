@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Enemy
   m_Data:
     m_SerializedData: []
   m_GUID: ba2c2c13e374dca4293798501725ad08
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e5fc988b1646ecc41bbf80991eeb4eb7
+    m_Address: Prefabs/Enemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:

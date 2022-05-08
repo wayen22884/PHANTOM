@@ -117,10 +117,10 @@ public static class AllSourcePool
     }
     public static void Clear()
     {
-        enemy1.Clear();
-        rifles.Clear();
-        shootGuns.Clear();
-        floatingbar.Clear();
+        enemy1?.Clear();
+        rifles?.Clear();
+        shootGuns?.Clear();
+        floatingbar?.Clear();
     }
 }
 

@@ -40,12 +40,14 @@ public class CharacterController : MonoBehaviour
     public Func<bool> DashInput;
     public Func<float> MoveInput;
     public Func<bool> JumpInput;
+    private bool IsOnAnimation;
     public void StartInput()
     {
+        checkList.Add(() => CheckAction(()=>IsOnAnimation, ()=>{}));
         checkList.Add(() => CheckAction(AttackInput, AttackAction));
         checkList.Add(() => CheckAction(() => DashInput() && (isGround || allowAirDash), DashAction));
         checkList.Add(() => CheckAction(() => true, MoveAction));
-        Observable.EveryUpdate().Subscribe(_ => Controll());
+         Observable.EveryUpdate().Subscribe(_ => Controll()).AddTo(gameObject);
     }
 
     private void Controll()
@@ -69,6 +71,8 @@ public class CharacterController : MonoBehaviour
     {
         var xAxis = MoveInput();
         SetFace?.Invoke(xAxis);
+        var state = Mathf.Abs(xAxis)>0.001?"Run":"Idle";
+        OnChangeState?.Invoke(state);
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
         if (JumpInput() && isGround)
         {
@@ -140,7 +144,8 @@ public class CharacterController : MonoBehaviour
     private void AttackAction()
     {
         attackAction?.Invoke();
-        OnChangeState?.Invoke("Smash");
+        IsOnAnimation = true;
+        Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => IsOnAnimation = false);
     }
 
 
