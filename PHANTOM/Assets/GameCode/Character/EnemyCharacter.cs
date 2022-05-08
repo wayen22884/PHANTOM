@@ -15,10 +15,22 @@ public class EnemyCharacter : ICharacter
         _enemyAttr = characterAttr;
     }
     public override ICharacterAttr Attr => _enemyAttr;
+    private CharacterController controller;
 
     public override void StartInput()
     {
-        throw new NotImplementedException();
+        controller = gameObject.GetComponent<CharacterController>();
+        controller.OnChangeState = ChangeAnimationState;
+        controller.ReturnIsRight = () =>ReturnIsRight;
+        controller.SetFace = Attr.SetFace;
+        controller.attackAction = Attack;
+
+        controller.AttackInput = () => false;
+        controller.DashInput = () => false;
+        controller.MoveInput = () => 0f;
+        controller.JumpInput = () => false;
+        
+        controller.StartInput();
     }
 
     public override void Attack()

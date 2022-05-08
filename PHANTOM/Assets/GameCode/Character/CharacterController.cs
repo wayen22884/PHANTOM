@@ -36,11 +36,15 @@ public class CharacterController : MonoBehaviour
 
     private List<Func<bool>> checkList = new List<Func<bool>>();
 
+    public Func<bool> AttackInput;
+    public Func<bool> DashInput;
+    public Func<float> MoveInput;
+    public Func<bool> JumpInput;
     public void StartInput()
     {
-        checkList.Add(() => CheckAction(() => Input.GetButtonDown("NormalAttack"), AttackAction));
-        checkList.Add(() => CheckAction(() => Input.GetButtonDown("Dash") && (isGround || allowAirDash), DashAction));
-        checkList.Add(() => CheckAction(() => true, MoveInput));
+        checkList.Add(() => CheckAction(AttackInput, AttackAction));
+        checkList.Add(() => CheckAction(() => DashInput() && (isGround || allowAirDash), DashAction));
+        checkList.Add(() => CheckAction(() => true, MoveAction));
         Observable.EveryUpdate().Subscribe(_ => Controll());
     }
 
@@ -61,12 +65,12 @@ public class CharacterController : MonoBehaviour
         velocity = CheckPhysics(velocity);
     }
 
-    private void MoveInput()
+    private void MoveAction()
     {
-        var xAxis = Input.GetAxis("Horizontal");
+        var xAxis = MoveInput();
         SetFace?.Invoke(xAxis);
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (JumpInput() && isGround)
         {
             force.y += jumpForce;
             isGround = false;

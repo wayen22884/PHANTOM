@@ -96,7 +96,7 @@ public class FSMIdleState : FSMState
     }
     public override void Do(AIData AIData)
     {
-        AIData.Character.ChangeAnimationState("idle");
+        AIData.Character.ChangeAnimationState("Idle");
     }
 }
 public class FSMChaseState : FSMState
@@ -118,7 +118,7 @@ public class FSMChaseState : FSMState
     {
         float vector = AIData.VectorDistance;
         if (AIData.Attr.SetFace(vector)) AIData.Transform.DOScaleX(-AIData.Transform.localScale.x, 0f);
-        AIData.Character.ChangeAnimationState("walk");
+        AIData.Character.ChangeAnimationState("Run");
         AIData.Transform.DOMoveX(AIData.Transform.position.x + 0.1f * AIData.Attr.MoveVelocity * Time.unscaledDeltaTime, 0f);
     }
 }
@@ -132,14 +132,14 @@ public class FSMAttackState : FSMState
     }
     public override void DoBeforeEnter(AIData AIData)
     {
-        AIData.Character.ChangeAnimationState("idle");
+        AIData.Character.ChangeAnimationState("Smash");
     }
 
     public override void CheckCondition(AIData AIData)
     {
         if (!IsUpdateTime) return;
         if (AIData.player.Death) { _FSMSystem.Translate(FSMTransition.Go_Idle);return; }
-        if (AIData.EnemyPositionX > 8.5f) { _FSMSystem.Translate(FSMTransition.Go_Chase); return; }
+        if (AIData.EnemyPositionX > 1f) { _FSMSystem.Translate(FSMTransition.Go_Chase); return; }
         if (AIData.Distance > AIData.ChaseDistance) _FSMSystem.Translate(FSMTransition.Go_Chase);
     }
     public void SetAttackInterval(float value)
@@ -156,6 +156,7 @@ public class FSMAttackState : FSMState
         else AttackClock = 0f;
 
         AIData.Character.Attack();
+        _FSMSystem.Translate(FSMTransition.Go_Idle);
     }
 }
 public class FSMDeadState : FSMState

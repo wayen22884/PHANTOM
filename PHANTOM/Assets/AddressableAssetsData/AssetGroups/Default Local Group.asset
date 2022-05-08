@@ -25,8 +25,8 @@ MonoBehaviour:
     m_Address: DataForTest/PlayerBaseData.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 2288b0d4a2160bf4e8974f6e260f9349
-    m_Address: Prefabs/Enemy.prefab
+  - m_GUID: e5fc988b1646ecc41bbf80991eeb4eb7
+    m_Address: Assets/GamePrefabs/Enemy.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 864571e12cb168d4d85fdd0cb0fd2c7e

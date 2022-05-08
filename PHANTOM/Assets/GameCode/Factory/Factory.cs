@@ -39,6 +39,7 @@ public static class Factory
     {
         var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType), new Vector3(0f, -1.61f, 0f),
             new Quaternion(0f, 0f, 0f, 0f));
+        var model = GameObject.Instantiate(GameResource.PlayerModel, Tool.FindChildGameObject(GO,"ModelPoint").transform);
         //EnemyCharacter內塞入物體
         EnemyCharacter character = new EnemyCharacter("Enemy", EnemyType);
         character.AddValueEventHandler(AllSourcePool.PlayerCharacter.ChangeValue);
@@ -46,7 +47,7 @@ public static class Factory
         //將物件加入sourcepool
         GO.SetActive(false);
         AllSourcePool.AddToDeadList(character, EnemyType);
-        character.SetGameObject(GO,GO);
+        character.SetGameObject(GO,model);
         character.SetAI();
 
         var enemyAttr = new EnemyAttr();

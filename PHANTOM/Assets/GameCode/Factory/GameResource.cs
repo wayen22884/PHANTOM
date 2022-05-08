@@ -11,6 +11,7 @@ public static class GameResource
         Addressables.LoadAssetAsync<GameObject>("Prefabs/PlayerModel.prefab").Completed += (i) => {  PlayerModel= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/AttackTrigger.prefab").Completed += (i) => {  AttackTrigger= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { enemy1 = i.Result; };
+        //Addressables.LoadAssetAsync<GameObject>("Prefabs/EnemyModel.prefab").Completed += (i) => { enemy1Model = i.Result; };
         Addressables.LoadAssetAsync<SaveData>("EnemyData.asset").Completed += (i) => {  enemyData= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/Rifle.prefab").Completed += (i) => {  _rifle= i.Result; };
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
@@ -38,7 +39,8 @@ public static class GameResource
         AllSourcePool.Initialize();
         var player = Factory.CreatePlayer();
         player.StartInput();
-        AllSourcePool.UseNewEnemy(CharacterID.Enemy);
+        var enemy= AllSourcePool.UseNewEnemy(CharacterID.Enemy);
+        enemy.StartInput();
     }
 
     static void CanvasSetting()
@@ -52,6 +54,8 @@ public static class GameResource
     private static GameObject enemy1;
     private static GameObject _rifle;
     private static GameObject _shootGun;
+    
+    private static GameObject enemy1Model;
     public static GameObject Canvas { get; private set; }
     private static GameObject _wall;
     public static GameObject PlayerObj { get; private set; }
@@ -68,7 +72,11 @@ public static class GameResource
         else if (EnemyType == CharacterID.ShootGun) return _shootGun;
         else {Debug.LogError("not exist Enemy"); return null; }
     }
-
+    public static GameObject EnemyModel(CharacterID enemyType)
+    {
+        if (enemyType == CharacterID.Enemy) return enemy1Model;
+        else {Debug.LogError("not exist EnemyModel"); return null; }
+    }
     public static GameObject Wall => _wall;
 
 
@@ -134,4 +142,6 @@ public static class GameResource
         if (ID == CharacterID.Enemy) return enemyData;
         else { Debug.LogError("The saveData is not exist"); return null; }
     }
+
+
 }

@@ -26,6 +26,12 @@ public class PlayerCharacter : ICharacter
         controller.ReturnIsRight = () =>ReturnIsRight;
         controller.SetFace = Attr.SetFace;
         controller.attackAction = Attack;
+
+        controller.AttackInput = () => Input.GetButtonDown("NormalAttack");
+        controller.DashInput = () => Input.GetButtonDown("Dash");
+        controller.MoveInput = () => Input.GetAxis("Horizontal");
+        controller.JumpInput = () => Input.GetButtonDown("Jump");
+        
         controller.StartInput();
     }
 
