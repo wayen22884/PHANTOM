@@ -1,18 +1,19 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UniRx;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public bool IsForceMove=true;
-    public bool allowAirDash=true;
+    public bool IsForceMove = true;
+    public bool allowAirDash = true;
     private float moveForceFactor = 0.001f;
-    [Range(0, 100f)] [SerializeField] private int moveForce=35;
-    [Range(0, 20f)] [SerializeField] private int jumpForce=5;
+    [Range(0, 100f)] [SerializeField] private int moveForce = 35;
+    [Range(0, 20f)] [SerializeField] private int jumpForce = 5;
 
-    [Range(0, 100f)] [SerializeField] private float airForce=0.7F;
-    [Range(0, 100f)] [SerializeField] private float gravity=45;
+    [Range(0, 100f)] [SerializeField] private float airForce = 0.7F;
+    [Range(0, 100f)] [SerializeField] private float gravity = 45;
 
 
     [SerializeField] private bool isGround;
@@ -20,7 +21,7 @@ public class CharacterController : MonoBehaviour
     private bool istouchRight;
     private float mass = 1;
     [SerializeField] private Vector3 velocity;
-    [Range(0, 20f)] [SerializeField] private float boundaryFactor=1;
+    [Range(0, 20f)] [SerializeField] private float boundaryFactor = 1;
     [Range(0, 20f)] [SerializeField] private float stachDistance = 3;
     [Range(0, 5f)] [SerializeField] private float stachUseTime = 0.6F;
     [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 20;
@@ -28,69 +29,116 @@ public class CharacterController : MonoBehaviour
 
     public Vector3 collider;
 
-    private Action attackAction;
+    public Action attackAction;
+    public Func<float,bool> SetFace;
     public Func<bool> ReturnIsRight;
+    public Action<string> OnChangeState;
 
-    public void Initialize(Action attackAction,Func<bool> returnRight)
-    {
-        this.attackAction = attackAction;
-        this.ReturnIsRight = returnRight;
-    }
+    private List<Func<bool>> checkList = new List<Func<bool>>();
 
     public void StartInput()
     {
+        checkList.Add(() => CheckAction(() => Input.GetButtonDown("NormalAttack"), AttackAction));
+        checkList.Add(() => CheckAction(() => Input.GetButtonDown("Dash") && (isGround || allowAirDash), DashAction));
+        checkList.Add(() => CheckAction(() => true, MoveInput));
         Observable.EveryUpdate().Subscribe(_ => Controll());
     }
 
     private void Controll()
     {
-        MoveInput();
-        AttackInput();
-        Move();
-        CheckGround();
-        Stash();
-    }
-
-    private void AttackInput()
-    {
-        if (Input.GetButtonDown("NormalAttack"))
+        foreach (var checkItem in checkList)
         {
-            attackAction?.Invoke();
+            if (checkItem == null)
+            {
+                continue;
+            }
+
+            if (checkItem())
+            {
+                break;
+            }
         }
+        velocity = CheckPhysics(velocity);
     }
 
-    private void Stash()
+    private void MoveInput()
     {
-        if (Input.GetButtonDown("Dash") && (isGround || allowAirDash))
+        var xAxis = Input.GetAxis("Horizontal");
+        SetFace?.Invoke(xAxis);
+        var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
+        if (Input.GetButtonDown("Jump") && isGround)
         {
-            var isRight = ReturnIsRight?.Invoke() ?? false;
-            velocity.x = 0;
-            var distance = isRight ? stachDistance : -stachDistance;
-            transform.DOMoveX(transform.position.x + distance, stachUseTime);
+            force.y += jumpForce;
+            isGround = false;
         }
+
+        var a = force / mass;
+        velocity += a;
     }
 
-
-    private void Move()
+    private void DashAction()
     {
-        velocity.x = DealXDirectionVelocity(velocity.x, airForce * moveForceFactor);
-        velocity.y = DealYDirectionVelocity(velocity.y);
+        var isRight = ReturnIsRight?.Invoke() ?? false;
+        velocity.x = 0;
+        var distance = isRight ? stachDistance : -stachDistance;
+        transform.DOMoveX(transform.position.x + distance, stachUseTime);
+    }
 
-        if (velocity.magnitude > 0.001f)
+    private Vector3 CheckPhysics(Vector3 tempVelocity)
+    {
+        tempVelocity.x = DealXDirectionVelocity(tempVelocity.x, airForce * moveForceFactor);
+        tempVelocity.y = DealYDirectionVelocity(tempVelocity.y);
+
+        if (tempVelocity.magnitude > 0.001f)
         {
-            
             if (IsForceMove)
             {
-                var move = new Vector3(velocity.x, velocity.y * Time.deltaTime, 0);
+                var move = new Vector3(tempVelocity.x, tempVelocity.y * Time.deltaTime, 0);
                 transform.position += move;
-                velocity.x = 0;
+                tempVelocity.x = 0;
             }
             else
             {
-                transform.position += velocity * Time.deltaTime;
+                transform.position += tempVelocity * Time.deltaTime;
             }
         }
+
+
+        var layerMaskGround = 1 << 6;
+        isGround = CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, layerMaskGround);
+
+        if (CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, 1 << 7))
+        {
+            tempVelocity = AddBoundaryForce(tempVelocity);
+        }
+
+        istouchLeft = CheckHit(transform.position, collider.y, Vector3.left, collider.x / 2, layerMaskGround);
+        istouchRight = CheckHit(transform.position, collider.y, Vector3.right, collider.x / 2, layerMaskGround);
+        return tempVelocity;
     }
+
+    private bool CheckAction(Func<bool> ifCondition, Action action)
+    {
+        if (ifCondition == null)
+        {
+            return false;
+        }
+
+        if (ifCondition())
+        {
+            action?.Invoke();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void AttackAction()
+    {
+        attackAction?.Invoke();
+        OnChangeState?.Invoke("Smash");
+    }
+
 
     private float DealYDirectionVelocity(float velocityY)
     {
@@ -132,42 +180,10 @@ public class CharacterController : MonoBehaviour
         return tempValue;
     }
 
-    private void MoveInput()
+    private Vector3 AddBoundaryForce(Vector3 tempVelocity)
     {
-        var xAxis = Input.GetAxis("Horizontal");
-        var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
-        if (Input.GetButtonDown("Jump") && isGround)
-        {
-            force.y += jumpForce;
-            isGround = false;
-        }
-
-        AddForce(force);
-    }
-
-    public void AddBoundaryForce()
-    {
-        velocity.y += (-velocity.y + -velocity.y * boundaryFactor);
-    }
-
-    private void AddForce(Vector3 vector3)
-    {
-        var a = vector3 / mass;
-        velocity += a;
-    }
-
-    private void CheckGround()
-    {
-        var layerMaskGround = 1 << 6;
-        isGround = CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, layerMaskGround);
-
-        if (CheckHit(transform.position, collider.x - 0.1f, Vector3.down, collider.y / 2, 1 << 7))
-        {
-            AddBoundaryForce();
-        }
-
-        istouchLeft = CheckHit(transform.position, collider.y, Vector3.left, collider.x / 2, layerMaskGround);
-        istouchRight = CheckHit(transform.position, collider.y, Vector3.right, collider.x / 2, layerMaskGround);
+        tempVelocity.y += (-tempVelocity.y + -tempVelocity.y * boundaryFactor);
+        return tempVelocity;
     }
 
     private bool CheckHit(Vector3 center, float lineDistance, Vector3 direction, float maxDistance, int layerMask = 0)
@@ -196,6 +212,4 @@ public class CharacterController : MonoBehaviour
         Gizmos.color = new Color(1, 1, 1, 0.3f);
         Gizmos.DrawCube(transform.position, collider);
     }
-
-    public event Action<string> OnChangeState;
 }

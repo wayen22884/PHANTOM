@@ -37,7 +37,7 @@ public static class Factory
 
     public static EnemyCharacter CreateEnemy(CharacterID EnemyType)
     {
-        var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType), new Vector3(0f, 0f, 0f),
+        var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType), new Vector3(0f, -1.61f, 0f),
             new Quaternion(0f, 0f, 0f, 0f));
         //EnemyCharacter內塞入物體
         EnemyCharacter character = new EnemyCharacter("Enemy", EnemyType);

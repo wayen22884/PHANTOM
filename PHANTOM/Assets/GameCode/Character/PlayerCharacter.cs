@@ -22,8 +22,10 @@ public class PlayerCharacter : ICharacter
     public override void StartInput()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        controller.OnChangeState += ChangeAnimationState;
-        controller.Initialize(Attack, () => ReturnIsRight);
+        controller.OnChangeState = ChangeAnimationState;
+        controller.ReturnIsRight = () =>ReturnIsRight;
+        controller.SetFace = Attr.SetFace;
+        controller.attackAction = Attack;
         controller.StartInput();
     }
 
