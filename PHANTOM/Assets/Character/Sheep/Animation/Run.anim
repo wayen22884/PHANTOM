@@ -117,7 +117,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -169,7 +169,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -221,7 +221,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -1272,7 +1272,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1327,7 +1327,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1382,7 +1382,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1437,7 +1437,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1492,7 +1492,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1547,7 +1547,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1602,7 +1602,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1657,7 +1657,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1712,7 +1712,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2029,7 +2029,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2039,7 +2039,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2049,7 +2049,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Rig root/Body/Body 0/Head/Head/Left ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Left ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2059,7 +2059,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2069,7 +2069,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2079,7 +2079,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Rig root/Body/Body 0/Head/Head
+    path: Rig root/Body/Body 0/Body 1/Head/Head
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2089,7 +2089,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2099,7 +2099,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -2109,7 +2109,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Rig root/Body/Body 0/Head/Head/Right ear
+    path: Rig root/Body/Body 0/Body 1/Head/Head/Right ear
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
