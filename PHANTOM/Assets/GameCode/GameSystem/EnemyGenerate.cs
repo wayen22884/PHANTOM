@@ -1,67 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGenerate
-{
-    float CheckInterval = 2;
-    Action _update;
+public class EnemyGenerate : MonoBehaviour
+{ 
+    [SerializeField] private GenerateEnemyData TEST;
 
-    public EnemyGenerate()
+    [SerializeField] private List<GenerateEnemyGroupData> enemyGenerateEnemyDatas=new List<GenerateEnemyGroupData>();
+
+
+    private Queue<GenerateEnemyGroupData> GenerateEnemyDatas;
+
+    private void Awake()
     {
-        CheckInterval = 1f;
-        _update = () => { };
+        GenerateEnemyDatas = new Queue<GenerateEnemyGroupData>();
+        enemyGenerateEnemyDatas.ForEach(data => { GenerateEnemyDatas.Enqueue(data);});
     }
-
-    float clock = 0;
-
-    public void Update()
+    
+    public void GenerateEnemy()
     {
-        _update();
-    }
-
-    #region Update
-
-    float pistol = -0.25f;
-    float rifle = -0.3f;
-    float shootGun = -0.16f;
-
-    void CheckAndGenerate()
-    {
-        if (clock < CheckInterval)
+        if (GenerateEnemyDatas.Count>0)
         {
-            clock += Time.deltaTime;
-            return;
+            var datas= GenerateEnemyDatas.Dequeue();
+            datas.groupData.ForEach(data=>Generate(data.ID,data.bornLocation));
         }
-        else clock = 0f;
-
-        Generate();
-    }
-
-    private void Generate()
-    {
-        CharacterID ID = EnemyProbility;
-        ICharacter enemy = AllSourcePool.UseNewEnemy(ID);
-        float posX = UnityEngine.Random.Range(0, 2) == 1 ? 10f : -10f;
-        float posY = ID == CharacterID.Enemy ? pistol : ID == CharacterID.Rifle ? rifle : shootGun;
-        enemy.Transform.position = new Vector3(posX, posY, 0f);
-    }
-
-    CharacterID EnemyProbility
-    {
-        get
-        {return CharacterID.ShootGun;
+        else
+        {
+            Debug.LogWarning("There is no enemyData");
         }
     }
-
-    #endregion
-
-    public void Start()
+    
+    [ContextMenu("TestGenerate")]
+    private void TestGenerate()
     {
-        _update = CheckAndGenerate;
+        Generate(TEST.ID, TEST.bornLocation);
     }
 
-    public void Stop()
+    private void Generate(CharacterID id, Vector3 bornLocation)
     {
-        _update = () => { };
+        ICharacter enemy = AllSourcePool.UseNewEnemy(id);
+        enemy.StartInput();
+        enemy.Transform.position = bornLocation;
     }
+}
+
+[Serializable]
+public struct GenerateEnemyData
+{
+    public CharacterID ID;
+    public Vector3 bornLocation;
+}
+[Serializable]
+class GenerateEnemyGroupData
+{
+    public string Name;
+    public List<GenerateEnemyData> groupData = new List<GenerateEnemyData>();
 }

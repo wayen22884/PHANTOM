@@ -41,13 +41,36 @@ public class CharacterController : MonoBehaviour
     public Func<float> MoveInput;
     public Func<bool> JumpInput;
     private bool IsOnAnimation;
+    private IDisposable controllDisposable;
     public void StartInput()
     {
         checkList.Add(() => CheckAction(()=>IsOnAnimation, ()=>{}));
         checkList.Add(() => CheckAction(AttackInput, AttackAction));
         checkList.Add(() => CheckAction(() => DashInput() && (isGround || allowAirDash), DashAction));
         checkList.Add(() => CheckAction(() => true, MoveAction));
-         Observable.EveryUpdate().Subscribe(_ => Controll()).AddTo(gameObject);
+        StartInputDetectAndPhysicsCaculation();
+    }
+
+    public void DoPause(bool pause)
+    {
+        if (pause)
+        {
+            StopInputDetectAndPhysicsCaculation();
+        }
+        else
+        {
+            StartInputDetectAndPhysicsCaculation();
+        }
+    }
+    private void StartInputDetectAndPhysicsCaculation()
+    {
+        controllDisposable?.Dispose();
+        controllDisposable = Observable.EveryUpdate().Subscribe(_ => Controll()).AddTo(gameObject);
+    }
+
+    private void StopInputDetectAndPhysicsCaculation()
+    {
+        controllDisposable?.Dispose();
     }
 
     private void Controll()

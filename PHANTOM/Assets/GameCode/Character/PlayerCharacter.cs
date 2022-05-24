@@ -21,7 +21,7 @@ public class PlayerCharacter : ICharacter
 
     public override void StartInput()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GameObject.GetComponent<CharacterController>();
         controller.OnChangeState = ChangeAnimationState;
         controller.ReturnIsRight = () =>ReturnIsRight;
         controller.SetFace = move =>
@@ -30,6 +30,7 @@ public class PlayerCharacter : ICharacter
 
             if (changeFace)
             {
+                Debug.Log(Transform.localScale.x);
                 Transform.DOScaleX(-Transform.localScale.x, 0f);
             }
 
@@ -52,7 +53,7 @@ public class PlayerCharacter : ICharacter
         attackTime = attackTime % 3;
         attackTime++;
         detectAttack?.Dispose();
-        detectAttack = Observable.Timer(TimeSpan.FromSeconds(1f)).Subscribe(_ => attackTime = 0);
+        detectAttack = Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => attackTime = 0);
         ChangeAnimationState($"Smash_{attackTime}");
         AttackAction();
     }
@@ -109,6 +110,10 @@ public class PlayerCharacter : ICharacter
 
     #endregion
 
+    public override void InJuryedAction()
+    {
+        ChangeAnimationState("BeAttack");
+    }
     public override void ReSet()
     {
     }
@@ -118,5 +123,10 @@ public class PlayerCharacter : ICharacter
         if (Death) return;
         Death = true;
         ChangeAnimationState("die");
+    }
+
+    protected override void DoPause(bool pause)
+    {
+        controller.DoPause(pause);
     }
 }

@@ -12,10 +12,12 @@ public abstract class ICharacter : ISourcePoolObj
 
     public abstract ICharacterAttr Attr { get; }
     public CharacterID ID { get; }
-    public GameObject gameObject => Transform.gameObject;
+    public GameObject GameObject => Transform.gameObject;
     public Transform Transform { get; private set; }
     public Transform AttackPoint{ get; private set; }
     public Animator Animator { get; private set; }
+
+    public Action<Transform, string, bool> DoAnimation { get; private set; }
     public bool Death { get; protected set; }
 
     protected Transform model;
@@ -25,7 +27,6 @@ public abstract class ICharacter : ISourcePoolObj
     {
         return _valueHandle.Subscribe(_ => handler(_));
     }
-
     //設定使用模型
     public void SetGameObject(GameObject player, GameObject model)
     {
@@ -43,31 +44,36 @@ public abstract class ICharacter : ISourcePoolObj
     {
         if (_nowState == state) return;
         Animator.Play(state);
+        DoAnimation?.Invoke(Transform,state,Attr.FaceRight);
         _nowState = state;
     }
 
     public bool ReturnIsRight => Attr.FaceRight;
-
-    protected bool pause;
-    AnimatorUpdateMode forpause;
-
-    public void Pause()
+    
+    AnimatorUpdateMode originUpdateMode;
+    
+    public void ClickPause(bool pause)
     {
-        if (!pause)
+        if (pause)
         {
+            
             Transform.DOPause();
-            forpause = Animator.updateMode;
+            originUpdateMode = Animator.updateMode;
             Animator.updateMode = AnimatorUpdateMode.Normal;
         }
         else
         {
             Transform.DOPlay();
-            Animator.updateMode = forpause;
+            Animator.updateMode = originUpdateMode;
         }
-
-        pause = !pause;
+        DoPause(pause);
     }
 
+    protected virtual void DoPause(bool pause)
+    {
+        
+    }
+    
     protected void SetNormalScaleTime()
     {
         Animator.updateMode = AnimatorUpdateMode.Normal;
@@ -81,6 +87,10 @@ public abstract class ICharacter : ISourcePoolObj
         Debug.Log("Dead is not override.");
     }
 
+    public virtual void InJuryedAction()
+    {
+        Debug.Log($"{nameof(InJuryedAction)} is not override.");
+    }
     public virtual void Update()
     {
     }

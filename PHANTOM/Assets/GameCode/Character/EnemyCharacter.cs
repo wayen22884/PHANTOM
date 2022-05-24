@@ -19,7 +19,7 @@ public class EnemyCharacter : ICharacter
 
     public override void StartInput()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GameObject.GetComponent<CharacterController>();
         controller.OnChangeState = null;
         controller.ReturnIsRight = () =>ReturnIsRight;
         controller.SetFace = Attr.SetFace;
@@ -51,7 +51,6 @@ public class EnemyCharacter : ICharacter
     }
     public override void Update()
     {
-        if (pause) return;
         _FSM.Update();
     }
     public override void ReSet()
@@ -94,5 +93,10 @@ public class EnemyCharacter : ICharacter
         _FSM = new FSMSystem(AIData);
         AIData.SetFSMSystem(_FSM);
         _FSM.Initialize();
+    }
+
+    public override void InJuryedAction()
+    {
+        _FSM.GlobalTranslate(FSMTransition.Go_BeAttack);
     }
 }

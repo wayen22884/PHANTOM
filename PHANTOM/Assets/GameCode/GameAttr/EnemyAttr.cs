@@ -14,6 +14,12 @@ public class EnemyAttr : ICharacterAttr
     {
         _enemyCharacter.Dead();
     }
+
+    protected override void InJuryedAction()
+    {
+        _enemyCharacter.InJuryedAction();
+    }
+
     public override void ReSet()
     {
         _baseAttr.ReSet();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UnityEditor;
 using UnityEngine;
 public static class AllSourcePool 
 {
@@ -89,11 +90,7 @@ public static class AllSourcePool
     {
         enemy1 = new EnemySourcePool(CharacterID.Enemy);
         enemy1.Initialize();
-        // rifles = new EnemySourcePool(CharacterID.Rifle);
-        // rifles.Initialize();
-        // shootGuns = new EnemySourcePool(CharacterID.ShootGun);
-        // shootGuns.Initialize();
-         floatingbar = new FloatingSourcePool();
+        floatingbar = new FloatingSourcePool();
          floatingbar.Initialize();
          triggerPool = new AttackTriggerPool();
          triggerPool.Initialize();
@@ -104,9 +101,21 @@ public static class AllSourcePool
 
     private static void StartUpdtate()
     {
+        updateDisposable?.Dispose();
         updateDisposable = Observable.EveryUpdate().Subscribe(_ => Update());
     }
 
+    public static void ClickPause(bool puase)
+    {
+        if (puase)
+        {
+            updateDisposable?.Dispose();
+        }
+        else
+        {
+            StartUpdtate();
+        }
+    }
     private static void Update()
     {
         enemy1?.Update();
@@ -200,8 +209,8 @@ class EnemySourcePool:ISourcePool<ICharacter>
     protected override void BrforeUse(ICharacter obj)
     {
         obj.ReSet();
-        obj.gameObject.SetActive(true);
-        Factory.SetBloodBar(obj.gameObject, obj.Attr.GetBaseAttr());
+        obj.GameObject.SetActive(true);
+        Factory.SetBloodBar(obj.GameObject, obj.Attr.GetBaseAttr());
     }
 
     protected override ICharacter Create() { return Factory.CreateEnemy(_type); }

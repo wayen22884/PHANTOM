@@ -15,12 +15,12 @@ public class FSMSystem
 
     public virtual void Initialize()
     {
-        FSMIdleState idleState = new FSMIdleState(this);
+        var idleState = new FSMIdleState(this);
         currentState = idleState;
         stateID = FSMStateID.IdleState;
 
-        FSMAttackState attackState= new FSMAttackState(this);
-        FSMChaseState chaseState = new FSMChaseState(this);
+        var attackState= new FSMAttackState(this);
+        var chaseState = new FSMChaseState(this);
 
         idleState.AddFSMTransition(FSMTransition.Go_Attack,attackState);
         idleState.AddFSMTransition(FSMTransition.Go_Chase,chaseState);
@@ -31,8 +31,11 @@ public class FSMSystem
         chaseState.AddFSMTransition(FSMTransition.Go_Attack,attackState);
         chaseState.AddFSMTransition(FSMTransition.Go_Idle,idleState);
 
-        FSMDeadState deadState = new FSMDeadState(this);
+        var deadState = new FSMDeadState(this);
+        var BeAttackState = new BeAttackState(this);
+        BeAttackState.AddFSMTransition(FSMTransition.Go_Idle,idleState);
         AddFSMTransition(FSMTransition.Go_Dead,deadState);
+        AddFSMTransition(FSMTransition.Go_BeAttack,BeAttackState);
     }
 
     public void AddFSMTransition(FSMTransition transition, FSMState FSMState)

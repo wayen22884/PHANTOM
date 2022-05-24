@@ -31,14 +31,13 @@ public static class Factory
         var playerBaseAttr = GameResource.PlayerBaseAttr;
         //PlayerAttr內塞入PlayerBaseAttr
         playerAttr.SetBaseAttr(playerBaseAttr);
-        SetBloodBar(player.gameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
+        SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         return player;
     }
 
     public static EnemyCharacter CreateEnemy(CharacterID EnemyType)
     {
-        var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType), new Vector3(0f, -1.61f, 0f),
-            new Quaternion(0f, 0f, 0f, 0f));
+        var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType));
         var model = GameObject.Instantiate(GameResource.PlayerModel, Tool.FindChildGameObject(GO,"ModelPoint").transform);
         //EnemyCharacter內塞入物體
         EnemyCharacter character = new EnemyCharacter("Enemy", EnemyType);
