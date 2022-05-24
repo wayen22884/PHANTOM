@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attrName: 
   _attrType: 
-  _maxHP: 100
-  _HP: 55
+  _maxHP: 12
+  _HP: 8
   _maxSP: 0
   _SP: 0
   _EP: 0
   _MaxEP: 0
-  _STR: 30
+  _STR: 0
   _DEF: 0
   _MoveSpeed: 10
   _dashMultiplicator: 0
