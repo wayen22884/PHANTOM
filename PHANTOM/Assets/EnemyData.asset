@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttrName: 
   AttrType: 
-  MaxHP: 100
+  MaxHP: 8
   MaxSP: 0
   STR: 0
   DEF: 0

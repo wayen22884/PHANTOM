@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attrName: 
   _attrType: 
-  _maxHP: 100
-  _HP: 100
+  _maxHP: 12
+  _HP: 8
   _maxSP: 0
   _SP: 0
   _EP: 0
