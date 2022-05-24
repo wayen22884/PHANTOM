@@ -8,6 +8,7 @@ public enum FSMTransition
     Go_Idle,
     Go_Chase,
     Go_Attack,
+    Go_BeAttack,
     Go_Dead,
 }
 
@@ -19,6 +20,7 @@ public enum FSMStateID
     MoveToState,
     ChaseState,
     AttackState,
+    BeAttack,
     DeadState,
 }
 
@@ -92,7 +94,6 @@ public class FSMIdleState : FSMState
         if (AIData.EnemyPositionX > 8.5f) { _FSMSystem.Translate(FSMTransition.Go_Chase);return; }
         if (AIData.Distance < AIData.ChaseDistance) _FSMSystem.Translate(FSMTransition.Go_Attack);
         else _FSMSystem.Translate(FSMTransition.Go_Chase);
-
     }
     public override void Do(AIData AIData)
     {
@@ -156,6 +157,26 @@ public class FSMAttackState : FSMState
 
         AIData.Character.Attack();
         _FSMSystem.Translate(FSMTransition.Go_Idle);
+    }
+}
+
+public class BeAttackState : FSMState
+{
+    public BeAttackState(FSMSystem system) : base(system)
+    {
+        ID = FSMStateID.BeAttack;
+        TimeCheckInterval = 2;
+    }
+    
+    public override void CheckCondition(AIData AIData)
+    {
+        if (!IsUpdateTime) return;
+        _FSMSystem.Translate(FSMTransition.Go_Idle);
+    }
+    public override void Do(AIData AIData)
+    {
+        //AIData.Character.ChangeAnimationState("BeAttack");
+        Debug.Log("BeAttack");
     }
 }
 public class FSMDeadState : FSMState

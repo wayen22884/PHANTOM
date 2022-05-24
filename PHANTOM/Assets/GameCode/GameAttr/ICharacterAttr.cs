@@ -6,10 +6,10 @@ public abstract class  ICharacterAttr
 {
     protected IBaseAttr _baseAttr;
     IAttrStrategy _attrStrategy;
-    bool _noDamage;
-    public void SetNoDamage(bool value)
+    int shield=3;
+    public void SetNoDamage(int value)
     {
-        _noDamage = value;
+        shield = value;
     }
     public void SetBaseAttr(IBaseAttr BaseAttr)
     {
@@ -31,7 +31,9 @@ public abstract class  ICharacterAttr
     }
     public bool SetFace(float move)
     {
-        return _baseAttr.SetFace(move);
+        var face = _baseAttr.SetFace(move);
+        if(face) Debug.Log(face);
+        return face;
     }
     //取得現在生命值
     public int GetNowHP()
@@ -51,13 +53,20 @@ public abstract class  ICharacterAttr
     /// <param name="damage"></param>
     public void GetInjuryed(int damage)
     {
-        if (_noDamage) return;
+        if (shield>0)
+        {
+            shield--;
+            return;
+        }
+
+        InJuryedAction();
         if (damage < 0) damage = 0;
         _baseAttr.SetHP(-damage);
         if (_baseAttr.HP==0) Dead();
     }
     protected float MoveSpeed { get => _baseAttr.MoveSpeed ; }
     public abstract void Dead();
+    protected abstract void InJuryedAction();
     public abstract void ReSet();
 }
 

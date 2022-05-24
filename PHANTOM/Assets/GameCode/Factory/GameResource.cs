@@ -39,8 +39,6 @@ public static class GameResource
         AllSourcePool.Initialize();
         var player = Factory.CreatePlayer();
         player.StartInput();
-        var enemy= AllSourcePool.UseNewEnemy(CharacterID.Enemy);
-        enemy.StartInput();
     }
 
     static void CanvasSetting()

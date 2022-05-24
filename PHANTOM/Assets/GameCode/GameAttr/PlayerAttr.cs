@@ -18,6 +18,11 @@ public class PlayerAttr : ICharacterAttr
         _playerCharacter.Dead();
     }
 
+    protected override void InJuryedAction()
+    {
+        _playerCharacter.InJuryedAction();
+    }
+
     public override void ReSet()
     {
         throw new System.NotImplementedException();
