@@ -10,6 +10,7 @@ public class MusicSystem : MonoBehaviour
     [SerializeField] private AudioClip StartBGM;
     [SerializeField] private List<AudioClip> LoopBGMs;
 
+    [SerializeField] private AudioClip SelectedBGM;
     public static MusicSystem Instance;
 
     private void Awake()
@@ -37,6 +38,11 @@ public class MusicSystem : MonoBehaviour
     public void PlayMusic()
     {
         BGMSource.clip = CurrentBGM;
+        BGMSource.Play();
+    }
+    public void PlayMusicSelectMusic()
+    {
+        BGMSource.clip = SelectedBGM;
         BGMSource.Play();
     }
 

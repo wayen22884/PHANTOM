@@ -21,5 +21,9 @@ public class MusicSystemEditor : Editor
         {
             system.PlayMusicAndLoop();
         }
+        if (GUILayout.Button("ChangeMusic"))
+        {
+            system.PlayMusicSelectMusic();
+        }
     }
 }
