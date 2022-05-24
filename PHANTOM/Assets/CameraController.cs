@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         var tempPosition = transform.position;
-        if (AllSourcePool.PlayerCharacter!=null)
+        if (AllSourcePool.PlayerCharacter!=null && AllSourcePool.PlayerCharacter.Transform!=null)
         {
             tempPosition.x=AllSourcePool.PlayerCharacter.Transform.position.x;
         }

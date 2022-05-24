@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MusicSystem : MonoBehaviour
 {
-    [SerializeField]private AudioClip CurrentBGM;
-    
-    [SerializeField]private AudioClip StartBGM;
-    [SerializeField]private List<AudioClip> LoopBGMs;
+    [SerializeField] private AudioClip CurrentBGM;
+
+    [SerializeField] private AudioClip StartBGM;
+    [SerializeField] private List<AudioClip> LoopBGMs;
 
     public static MusicSystem Instance;
 
@@ -33,7 +33,7 @@ public class MusicSystem : MonoBehaviour
     private AudioSource bgmSource;
 
     private Queue<AudioSourceContainer> bgvSources;
-    
+
     public void PlayMusic()
     {
         BGMSource.clip = CurrentBGM;
@@ -45,9 +45,11 @@ public class MusicSystem : MonoBehaviour
         CurrentBGM = audioClip;
         PlayMusic();
     }
+
     public void StopMusic()
     {
         BGMSource.Stop();
+        checkLooptimer?.Dispose();
     }
 
     public void PlayBGV(AudioClip audioClip)
@@ -68,7 +70,7 @@ public class MusicSystem : MonoBehaviour
             return new AudioSourceContainer(source, bgvSources);
         }
     }
-    
+
     private class AudioSourceContainer
     {
         private AudioSource audioSource;
@@ -110,13 +112,39 @@ public class MusicSystem : MonoBehaviour
         }
     }
 
+    private IDisposable checkLooptimer;
+
+    private int loopIndex;
+
     public void PlayMusicAndLoop()
     {
-        BGMSource.clip = CurrentBGM;
-        BGMSource.Play();
-        Observable.EveryUpdate().Subscribe(_ =>
+        loopIndex = 0;
+        PlayMusic(StartBGM);
+        checkLooptimer = Observable.Interval(TimeSpan.FromSeconds(0.1f)).Subscribe(_ => CheckLoop());
+    }
+
+    private void CheckLoop()
+    {
+        if (!BGMSource.isPlaying)
         {
-            //BGMSource
-        });
+            PlayNextMusic();
+        }
+    }
+
+
+    private void PlayNextMusic()
+    {
+        if (LoopBGMs.Count <= 0)
+        {
+            checkLooptimer?.Dispose();
+            return;
+        }
+
+        
+        if (loopIndex >= LoopBGMs.Count)
+        {
+            loopIndex=0;
+        }
+        PlayMusic(LoopBGMs[loopIndex++]);
     }
 }

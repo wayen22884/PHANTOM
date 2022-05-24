@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class BattleScene:MonoBehaviour
 {
-    private static ReactiveProperty<bool> Pause = new ReactiveProperty<bool>();
+    private ReactiveProperty<bool> Pause = new ReactiveProperty<bool>();
     [SerializeField] private EnemyGenerate enemyGenerate;
     private void Awake()
     {
