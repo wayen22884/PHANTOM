@@ -8,6 +8,8 @@ public class StartMenu :MonoBehaviour
 {
     public string Name { get; }
 
+    private MainMenuUI mainMenuUI;
+    private SettingUI settingUI;
     public StartMenu()
     {
         Name = GetType().ToString();
@@ -16,6 +18,7 @@ public class StartMenu :MonoBehaviour
     private void Awake()
     {
         GameResource.MainMenuSceneInitialize();
-        Tool.GetUIComponent<Button>(GameResource.Canvas, "StartBattleSceneButton").onClick.AddListener(()=>Main.LoadSceneMode("BattleScene"));
+        mainMenuUI = new MainMenuUI();
+        settingUI = new SettingUI();
     }
 }

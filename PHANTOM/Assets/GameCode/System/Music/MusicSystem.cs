@@ -25,6 +25,7 @@ public class MusicSystem : MonoBehaviour
             if (!bgmSource)
             {
                 bgmSource = gameObject.AddComponent<AudioSource>();
+                bgmSource.outputAudioMixerGroup = GameResource.BGMGroup;
             }
 
             return bgmSource;

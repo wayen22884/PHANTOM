@@ -17,7 +17,7 @@ public static class GameResource
         // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
          Addressables.LoadAssetAsync<GameObject>("Prefabs/bloodBar.prefab").Completed += (i) => {  BloodBar= i.Result; };
         // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/Player.controller").Completed += (i) => {  _playerAnimatorController= i.Result; };
-        // Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) => { audioMixer = i.Result; _BGMGroup = FindMusicGroup("BGM"); _EffectGroup = FindMusicGroup("Effect"); };
+        Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) => { audioMixer = i.Result; _BGMGroup = FindMusicGroup("BGM"); _EffectGroup = FindMusicGroup("Effect"); };
         Addressables.LoadAssetAsync<PlayerBaseAttr>("DataForTest/PlayerBaseData.asset").Completed += (i) => {  PlayerBaseAttr= i.Result; };
         // Addressables.LoadAssetAsync<AudioClip>("Music/Zapper.wav").Completed+= (i)=> { bulletaudio = i.Result; };
         
@@ -25,6 +25,7 @@ public static class GameResource
     public static void MainMenuSceneInitialize()
     {
         CanvasSetting();
+        
     }
     public static void BattleSceneInitialize()
     {
@@ -140,6 +141,4 @@ public static class GameResource
         if (ID == CharacterID.Enemy) return enemyData;
         else { Debug.LogError("The saveData is not exist"); return null; }
     }
-
-
 }

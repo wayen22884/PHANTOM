@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Codice.Client.Common.FsNodeReaders.Watcher;
+using UniRx;
 using UnityEngine;
 
 public class EnemyGenerate : MonoBehaviour
@@ -29,6 +32,26 @@ public class EnemyGenerate : MonoBehaviour
             Debug.LogWarning("There is no enemyData");
         }
     }
+
+    private int index=1;
+[ContextMenu("Test")]
+    public void GenerateEnemyByWave()
+    {
+        int waveIndex = index;
+        StartCoroutine(GenerateEnemyByWave(waveIndex));
+        index++;
+    }
+    private IEnumerator GenerateEnemyByWave(int waveIndex)
+    {
+        var groupData= GenerateEnemyDatas.Peek();
+        while (groupData.Wave == waveIndex)
+        {
+            GenerateEnemy();
+            yield return new WaitForSeconds(5); 
+            groupData = GenerateEnemyDatas.Peek();
+        }
+    }
+    
     
     [ContextMenu("TestGenerate")]
     private void TestGenerate()
@@ -53,6 +76,7 @@ public struct GenerateEnemyData
 [Serializable]
 class GenerateEnemyGroupData
 {
-    public string Name;
+    [Range(1, 8)]public int Wave;
+    [Range(1, 8)]public int part;
     public List<GenerateEnemyData> groupData = new List<GenerateEnemyData>();
 }

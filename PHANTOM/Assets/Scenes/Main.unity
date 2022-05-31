@@ -214,9 +214,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: StartBGM
+      value: 
+      objectReference: {fileID: 8300000, guid: 8425c4006d641244c8a02811a9bd2ad9, type: 3}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
       propertyPath: CurrentBGM
       value: 
       objectReference: {fileID: 8300000, guid: e708907ebb864d847950ad821ef668fd, type: 3}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: SelectedBGM
+      value: 
+      objectReference: {fileID: 8300000, guid: e708907ebb864d847950ad821ef668fd, type: 3}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: LoopBGMs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: LoopBGMs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8425c4006d641244c8a02811a9bd2ad9, type: 3}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: LoopBGMs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 87f87571912f1c94086a617193b3d0ad, type: 3}
+    - target: {fileID: 3809602358493242156, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
+      propertyPath: LoopBGMs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8425c4006d641244c8a02811a9bd2ad9, type: 3}
     - target: {fileID: 3809602359195943616, guid: 3e42b7c228c260e4180b5d167b85c9aa, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class BattleScene:MonoBehaviour
 {
-    private ReactiveProperty<bool> Pause = new ReactiveProperty<bool>();
     [SerializeField] private EnemyGenerate enemyGenerate;
     private void Awake()
     {
@@ -22,13 +21,10 @@ public class BattleScene:MonoBehaviour
             enemyGenerate.GenerateEnemy();
         });
         
-        Tool.GetUIComponent<Button>(GameResource.Canvas, "PauseButton").onClick.AddListener(() =>
-        {
-            Pause.Value = !Pause.Value;
-        });
+        Tool.GetUIComponent<Button>(GameResource.Canvas, "PauseButton").onClick.AddListener(Main.ClickPause);
         
-        Pause.Subscribe(AllSourcePool.PlayerCharacter.ClickPause);
-        Pause.Subscribe(AllSourcePool.ClickPause);
-        Pause.Subscribe(isPause => Time.timeScale = isPause ? 0 : 1);
+        Main.PauseEvent.Subscribe(AllSourcePool.PlayerCharacter.ClickPause);
+        Main.PauseEvent.Subscribe(AllSourcePool.ClickPause);
+        Main.PauseEvent.Subscribe(isPause => Time.timeScale = isPause ? 0 : 1);
     }
 }
