@@ -120,7 +120,7 @@ TextureImporter:
         width: 594
         height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,7 +141,7 @@ TextureImporter:
         width: 396
         height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,13 +157,13 @@ TextureImporter:
       name: comic2_1_2
       rect:
         serializedVersion: 2
-        x: 1596
-        y: 6
-        width: 317
-        height: 631
+        x: 1597
+        y: 7
+        width: 313
+        height: 630
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 3, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -178,12 +178,12 @@ TextureImporter:
       name: comic2_1_3
       rect:
         serializedVersion: 2
-        x: 904
+        x: 906
         y: 8
-        width: 679
+        width: 680
         height: 629
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,12 +199,12 @@ TextureImporter:
       name: comic2_1_4
       rect:
         serializedVersion: 2
-        x: 419
-        y: 765
-        width: 463
+        x: 421
+        y: 764
+        width: 460
         height: 306
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,10 +222,10 @@ TextureImporter:
         serializedVersion: 2
         x: 11
         y: 764
-        width: 400
+        width: 399
         height: 307
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,13 +241,13 @@ TextureImporter:
       name: comic2_1_6
       rect:
         serializedVersion: 2
-        x: 8
+        x: 11
         y: 7
-        width: 873
+        width: 870
         height: 752
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 3, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
