@@ -27,11 +27,10 @@ public class PlayerCharacter : ICharacter
         controller.SetFace = move =>
         {
             var changeFace = Attr.SetFace(move);
-
             if (changeFace)
             {
-                Debug.Log(Transform.localScale.x);
-                Transform.DOScaleX(-Transform.localScale.x, 0f);
+                var localScale= Mathf.Abs(Transform.localScale.x);
+                Transform.DOScaleX(move >= 0 ? localScale : -localScale, 0f);
             }
 
             return changeFace;
@@ -42,7 +41,6 @@ public class PlayerCharacter : ICharacter
         controller.DashInput = () => Input.GetButtonDown("Dash");
         controller.MoveInput = () => Input.GetAxis("Horizontal");
         controller.JumpInput = () => Input.GetButtonDown("Jump");
-        
         controller.StartInput();
     }
 
@@ -53,8 +51,9 @@ public class PlayerCharacter : ICharacter
         attackTime = attackTime % 3;
         attackTime++;
         detectAttack?.Dispose();
-        detectAttack = Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => attackTime = 0);
+        detectAttack = Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => attackTime = 0);
         ChangeAnimationState($"Smash_{attackTime}");
+        Debug.Log($"Smash_{attackTime}");
         AttackAction();
     }
 
@@ -112,7 +111,8 @@ public class PlayerCharacter : ICharacter
 
     public override void InJuryedAction()
     {
-        ChangeAnimationState("BeAttack");
+        ChangeAnimationState("Hurt");
+        controller.StopInput(0.5f);
     }
     public override void ReSet()
     {
@@ -122,7 +122,8 @@ public class PlayerCharacter : ICharacter
     {
         if (Death) return;
         Death = true;
-        ChangeAnimationState("die");
+        ChangeAnimationState("Die");
+        Observable.Timer(TimeSpan.FromSeconds(4)).Subscribe(_ => BattleScene.GameEnd(false));
     }
 
     protected override void DoPause(bool pause)

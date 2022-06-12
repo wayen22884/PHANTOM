@@ -133,7 +133,7 @@ public class FSMAttackState : FSMState
     }
     public override void DoBeforeEnter(AIData AIData)
     {
-        AIData.Character.ChangeAnimationState("Smash_1");
+        AIData.Character.ChangeAnimationState("Smash");
     }
 
     public override void CheckCondition(AIData AIData)
@@ -165,7 +165,7 @@ public class BeAttackState : FSMState
     public BeAttackState(FSMSystem system) : base(system)
     {
         ID = FSMStateID.BeAttack;
-        TimeCheckInterval = 2;
+        TimeCheckInterval = 0.3f;
     }
     
     public override void CheckCondition(AIData AIData)
@@ -173,10 +173,10 @@ public class BeAttackState : FSMState
         if (!IsUpdateTime) return;
         _FSMSystem.Translate(FSMTransition.Go_Idle);
     }
-    public override void Do(AIData AIData)
+    public override void DoBeforeEnter(AIData AIData)
     {
-        //AIData.Character.ChangeAnimationState("BeAttack");
-        Debug.Log("BeAttack");
+        AIData.Character.ChangeAnimationState("Hurt");
+        Debug.Log("Hurt");
     }
 }
 public class FSMDeadState : FSMState
@@ -185,5 +185,10 @@ public class FSMDeadState : FSMState
     {
         ID = FSMStateID.DeadState;
         TimeCheckInterval = 1f;
+    }
+    public override void DoBeforeEnter(AIData AIData)
+    {
+        AIData.Character.ChangeAnimationState("Die");
+        Debug.Log("Die");
     }
 }

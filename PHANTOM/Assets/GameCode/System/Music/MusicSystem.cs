@@ -74,6 +74,7 @@ public class MusicSystem : MonoBehaviour
         else
         {
             var source = gameObject.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = GameResource.BGVGroup;
             return new AudioSourceContainer(source, bgvSources);
         }
     }
@@ -137,7 +138,6 @@ public class MusicSystem : MonoBehaviour
             PlayNextMusic();
         }
     }
-
 
     private void PlayNextMusic()
     {

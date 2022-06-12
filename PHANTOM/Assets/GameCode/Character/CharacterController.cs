@@ -167,8 +167,15 @@ public class CharacterController : MonoBehaviour
     private void AttackAction()
     {
         attackAction?.Invoke();
+        StopInput(0.5f);
+    }
+
+    private IDisposable stopInputDisposable;
+    public void StopInput(float stopSeconds)
+    {
         IsOnAnimation = true;
-        Observable.Timer(TimeSpan.FromSeconds(0.5f)).Subscribe(_ => IsOnAnimation = false);
+        stopInputDisposable?.Dispose();
+        stopInputDisposable=Observable.Timer(TimeSpan.FromSeconds(stopSeconds)).Subscribe(_ => IsOnAnimation = false);
     }
 
 

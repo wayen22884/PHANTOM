@@ -9,15 +9,17 @@ public static class GameResource
     {
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Player.prefab").Completed += (i) => {  PlayerObj= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/PlayerModel.prefab").Completed += (i) => {  PlayerModel= i.Result; };
+        Addressables.LoadAssetAsync<GameObject>("Prefabs/EnemyModel.prefab").Completed += (i) => {  enemy1Model= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/AttackTrigger.prefab").Completed += (i) => {  AttackTrigger= i.Result; };
         Addressables.LoadAssetAsync<GameObject>("Prefabs/Enemy.prefab").Completed += (i) => { enemy1 = i.Result; };
-        //Addressables.LoadAssetAsync<GameObject>("Prefabs/EnemyModel.prefab").Completed += (i) => { enemy1Model = i.Result; };
         Addressables.LoadAssetAsync<SaveData>("EnemyData.asset").Completed += (i) => {  enemyData= i.Result; };
-        // Addressables.LoadAssetAsync<GameObject>("Prefabs/Rifle.prefab").Completed += (i) => {  _rifle= i.Result; };
-        // Addressables.LoadAssetAsync<GameObject>("Prefabs/ShootGun.prefab").Completed += (i) => {  _shootGun= i.Result; };
          Addressables.LoadAssetAsync<GameObject>("Prefabs/bloodBar.prefab").Completed += (i) => {  BloodBar= i.Result; };
-        // Addressables.LoadAssetAsync<RuntimeAnimatorController>("Animator/Player.controller").Completed += (i) => {  _playerAnimatorController= i.Result; };
-        Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) => { audioMixer = i.Result; _BGMGroup = FindMusicGroup("BGM"); _EffectGroup = FindMusicGroup("Effect"); };
+        Addressables.LoadAssetAsync<AudioMixer>("Music/MusicController.mixer").Completed += (i) =>
+        {
+            audioMixer = i.Result; 
+            _BGMGroup = FindMusicGroup("BGM"); 
+            _bgvGroup = FindMusicGroup("Effect");
+        };
         Addressables.LoadAssetAsync<PlayerBaseAttr>("DataForTest/PlayerBaseData.asset").Completed += (i) => {  PlayerBaseAttr= i.Result; };
         // Addressables.LoadAssetAsync<AudioClip>("Music/Zapper.wav").Completed+= (i)=> { bulletaudio = i.Result; };
         
@@ -109,7 +111,7 @@ public static class GameResource
     private static AudioClip _CQCShootGunEffect;
     private static AudioMixer audioMixer;
     private static AudioMixerGroup _BGMGroup;
-    private static AudioMixerGroup _EffectGroup;
+    private static AudioMixerGroup _bgvGroup;
 
     public static AudioClip BulletSound => bulletaudio;
     public static AudioClip MainMenuBGM => _mainMenuBGM;
@@ -117,7 +119,7 @@ public static class GameResource
     public static AudioClip SecBattleBGM => _SecBattleBGM;
     public static AudioClip TransformBGM =>_transformBGM;
     public static AudioMixerGroup BGMGroup => _BGMGroup;
-    public static AudioMixerGroup EffectGroup => _EffectGroup;
+    public static AudioMixerGroup BGVGroup => _bgvGroup;
     public static GameObject AttackTrigger { get; private set; }
 
 
@@ -136,6 +138,7 @@ public static class GameResource
         else { Debug.LogError("The sound is not exist"); return null; }
     }
     private static SaveData enemyData;
+
     public static SaveData SaveData(CharacterID ID)
     {
         if (ID == CharacterID.Enemy) return enemyData;

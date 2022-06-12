@@ -114,7 +114,7 @@ public class SettingUI : IUserInterface
     void ChangeEffect(float value)
     {
         float result = ValueChanged_UI_To_AudioMixer(value);
-        GameResource.EffectGroup.audioMixer.SetFloat("EffectVol",result );
+        GameResource.BGVGroup.audioMixer.SetFloat("EffectVol",result );
         SaveSystem.Load(out  Volume data);
         data.Effect = result;
         SaveSystem.Save(data);

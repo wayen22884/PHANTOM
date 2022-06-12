@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public static class TimeEventCheck
@@ -24,7 +25,7 @@ public static class TimeEventCheck
         List<TimeEvent> Copy = (from te in allEvents select te).ToList();
         foreach (var te in Copy)
         {
-            if (pause)
+            if (_pause)
             {
                 if (te.Pause) continue;
             }
@@ -44,8 +45,6 @@ public static class TimeEventCheck
         {
             allEvents = (from te in allEvents where te.drop == false select te).ToList();
         }
-
-
     }
 
     static TimeEvent CreateTimeEvent(Action _action, float dt, TimeScale timeScale,bool IsPause)
@@ -60,10 +59,10 @@ public static class TimeEventCheck
         }
         else { Debug.LogError("there is no that kind of TimeScale."); return null; }
     }
-    static bool pause;
-    public static void Pause()
+    static bool _pause;
+    public static void Pause(bool pause)
     {
-        pause = !pause;
+        _pause = pause;
     }
 }
 public static class TimeEventUpdate

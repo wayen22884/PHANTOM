@@ -17,7 +17,7 @@ public abstract class ICharacter : ISourcePoolObj
     public Transform AttackPoint{ get; private set; }
     public Animator Animator { get; private set; }
 
-    public Action<Transform, string, bool> DoAnimation { get; set; }
+    public event Action<Transform, string, bool> DoAnimation;
     public bool Death { get; protected set; }
 
     protected Transform model;

@@ -38,7 +38,7 @@ public static class Factory
     public static EnemyCharacter CreateEnemy(CharacterID EnemyType)
     {
         var GO = GameObject.Instantiate(GameResource.EnemyObj(EnemyType));
-        var model = GameObject.Instantiate(GameResource.PlayerModel, Tool.FindChildGameObject(GO,"ModelPoint").transform);
+        var model = GameObject.Instantiate(GameResource.EnemyModel(CharacterID.Enemy), Tool.FindChildGameObject(GO,"ModelPoint").transform);
         //EnemyCharacter內塞入物體
         EnemyCharacter character = new EnemyCharacter("Enemy", EnemyType);
         character.AddValueEventHandler(AllSourcePool.PlayerCharacter.ChangeValue);

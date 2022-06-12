@@ -74,13 +74,9 @@ public class EnemyCharacter : ICharacter
     public override void Dead()
     {
         AllSourcePool.AliveEnemyRemove(this, ID);
-        ChangeAnimationState("die");
-        TimeEventCheck.AddTimeEvent(Recycle, 0.433f, TimeEventCheck.TimeScale.ScaleTime);
+        ChangeAnimationState("Die");
+        TimeEventCheck.AddTimeEvent(Recycle, 1.433f, TimeEventCheck.TimeScale.ScaleTime);
         if (AllSourcePool.PlayerCharacter.Transformation) return;
-        _valueHandle.OnNext(new ValueEventArgs(ValueType.SP,1));
-        _valueHandle.OnNext(new ValueEventArgs(ValueType.EP,10));
-        _valueHandle.OnNext(new ValueEventArgs(ValueType.Score, score));
-        
     }
     void Recycle()
     {
