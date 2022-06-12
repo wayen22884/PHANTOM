@@ -68,7 +68,7 @@ public class CharacterController : MonoBehaviour
         controllDisposable = Observable.EveryUpdate().Subscribe(_ => Controll()).AddTo(gameObject);
     }
 
-    private void StopInputDetectAndPhysicsCaculation()
+    public void StopInputDetectAndPhysicsCaculation()
     {
         controllDisposable?.Dispose();
     }

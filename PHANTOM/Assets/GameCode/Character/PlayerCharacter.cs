@@ -122,6 +122,7 @@ public class PlayerCharacter : ICharacter
     {
         if (Death) return;
         Death = true;
+        controller.StopInputDetectAndPhysicsCaculation();
         ChangeAnimationState("Die");
         Observable.Timer(TimeSpan.FromSeconds(4)).Subscribe(_ => BattleScene.GameEnd(false));
     }

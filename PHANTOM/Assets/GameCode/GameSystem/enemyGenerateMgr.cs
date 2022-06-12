@@ -24,7 +24,7 @@ public class enemyGenerateMgr : MonoBehaviour
             while (EnemyGenerate.Status == EnemyGenerate.WaveStatus.CreateEnemy ||
                    AllSourcePool.GetAliveEnemyListCopy().Count > 0)
             {
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(10);
             }
 
             Debug.LogError("WaveClear");
