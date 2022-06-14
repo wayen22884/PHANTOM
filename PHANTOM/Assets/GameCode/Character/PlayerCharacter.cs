@@ -124,7 +124,7 @@ public class PlayerCharacter : ICharacter
         Death = true;
         controller.StopInputDetectAndPhysicsCaculation();
         ChangeAnimationState("Die");
-        Observable.Timer(TimeSpan.FromSeconds(4)).Subscribe(_ => BattleScene.GameEnd(false));
+        Observable.Timer(TimeSpan.FromSeconds(4)).Subscribe(_ => BattleScene.Instance.GameEnd(false));
     }
 
     protected override void DoPause(bool pause)

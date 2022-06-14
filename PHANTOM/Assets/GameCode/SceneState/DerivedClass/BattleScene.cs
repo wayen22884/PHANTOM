@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class BattleScene:MonoBehaviour
 {
     [SerializeField] private enemyGenerateMgr enemyGenerateMgr;
+    [SerializeField] private PlayAnimation showDead;
+
+    public static BattleScene Instance { get; private set; }
     private void Awake()
     {
+        Instance = this;
+        showDead.OnClickCollider += ChangeScene;
         GameResource.BattleSceneInitialize();
         Tool.GetUIComponent<Button>(GameResource.Canvas, "LoseButton").onClick.AddListener(() =>
         {
@@ -35,7 +40,7 @@ public class BattleScene:MonoBehaviour
         TimeEventCheck.TimeUpdate();
     }
 
-    public static void GameEnd(bool win)
+    public void GameEnd(bool win)
     {
         if (win)
         {
@@ -47,13 +52,18 @@ public class BattleScene:MonoBehaviour
         }
     }
 
-    private static void GameOver()
+    private void GameOver()
+    {
+        showDead.ShowSprite();
+    }
+
+    private static void ChangeScene()
     {
         AllSourcePool.Clear();
         Main.LoadSceneMode("StartMenu");
     }
 
-    private static void GameComplete()
+    private void GameComplete()
     {
         GameOver();
     }

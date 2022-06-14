@@ -32,7 +32,7 @@ public class enemyGenerateMgr : MonoBehaviour
 
         if (EnemyGenerate.Status == EnemyGenerate.WaveStatus.End)
         {
-            BattleScene.GameEnd(true);
+            BattleScene.Instance.GameEnd(true);
         }
     }
 }
