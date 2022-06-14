@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,9 +6,10 @@ public class MainMenuUI : IUserInterface
 {
     private Button _start;
     private Button _exit;
-
-    public MainMenuUI()
+    private Action onClickStart;
+    public MainMenuUI(Action onClickStart)
     {
+        this.onClickStart = onClickStart;
         Initialize();
     }
     public override void Initialize()
@@ -16,7 +18,7 @@ public class MainMenuUI : IUserInterface
         _RootUI = Tool.FindChildGameObject(GameResource.Canvas, "MainSMenuSatus");
         
         _start = Tool.GetUIComponent<Button>(_RootUI, "StartBattleSceneButton");
-        _start.onClick.AddListener(()=>Main.LoadSceneMode("BattleScene"));
+        _start.onClick.AddListener(()=>onClickStart?.Invoke());
         
         _exit = Tool.GetUIComponent<Button>(_RootUI, "ExitButtion");
         _exit.onClick.AddListener(Application.Quit);

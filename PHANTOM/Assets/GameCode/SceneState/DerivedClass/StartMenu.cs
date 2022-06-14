@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class StartMenu :MonoBehaviour
 {
+    [SerializeField] private PlayAnimation playAnimation;
     public string Name { get; }
 
     private MainMenuUI mainMenuUI;
@@ -18,7 +15,8 @@ public class StartMenu :MonoBehaviour
     private void Awake()
     {
         GameResource.MainMenuSceneInitialize();
-        mainMenuUI = new MainMenuUI();
+        mainMenuUI = new MainMenuUI(playAnimation.Play);
         settingUI = new SettingUI();
+        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("BattleScene");
     }
 }

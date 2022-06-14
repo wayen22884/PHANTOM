@@ -27,7 +27,6 @@ public static class GameResource
     public static void MainMenuSceneInitialize()
     {
         CanvasSetting();
-        
     }
     public static void BattleSceneInitialize()
     {
