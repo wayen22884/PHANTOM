@@ -63,11 +63,11 @@ MonoBehaviour:
   IsForceMove: 1
   allowAirDash: 1
   moveForce: 35
-  jumpForce: 5
+  jumpForce: 8
   airForce: 0.7
-  gravity: 45
+  gravity: 100
   isGround: 1
-  velocity: {x: 0.0008255863, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
   boundaryFactor: 1
   stachDistance: 3
   stachUseTime: 0.6
