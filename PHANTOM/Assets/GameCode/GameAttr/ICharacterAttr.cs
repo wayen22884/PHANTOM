@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class ICharacterAttr
 {
     protected IBaseAttr _baseAttr;
     IAttrStrategy _attrStrategy;
-    int shield = 3;
-
-    public void SetNoDamage(int value)
+    bool _noDamage;
+    public void SetNoDamage(bool value)
     {
-        shield = value;
+        _noDamage = value;
+    }
+    public void SetShield(int value)
+    {
+        _baseAttr.Shield = value;
     }
 
     public void SetBaseAttr(IBaseAttr BaseAttr)
@@ -35,6 +36,7 @@ public abstract class ICharacterAttr
         get { return _baseAttr.FaceRight ? MoveSpeed : -MoveSpeed; }
     }
 
+    public float StiffTime => _baseAttr.StiffTime;
     public bool SetFace(float move)
     {
         var face = _baseAttr.SetFace(move);
@@ -61,9 +63,10 @@ public abstract class ICharacterAttr
     /// <param name="damage"></param>
     public void GetInjuryed(int damage)
     {
-        if (shield > 0)
+        if (_noDamage) return;
+        if (_baseAttr.Shield > 0)
         {
-            shield--;
+            _baseAttr.Shield--;
             return;
         }
 

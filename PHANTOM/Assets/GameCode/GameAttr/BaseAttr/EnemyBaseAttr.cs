@@ -14,5 +14,7 @@ public class EnemyBaseAttr : ICharacterBaseAttr
         _DEF = saveData.DEF;
         _attrName = saveData.AttrName;
         _attrType = saveData.AttrType;
+        Shield = saveData.ShieldNumber;
+        StiffTime= saveData.StiffTime;
     }
 }

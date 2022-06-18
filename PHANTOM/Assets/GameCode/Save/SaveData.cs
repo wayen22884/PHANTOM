@@ -11,4 +11,6 @@ public class SaveData :ScriptableObject
     public int STR;
     public int DEF;
     public float MoveSpeed;
+    public int ShieldNumber;
+    public float StiffTime;
 }

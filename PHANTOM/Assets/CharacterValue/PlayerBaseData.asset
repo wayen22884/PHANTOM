@@ -15,12 +15,14 @@ MonoBehaviour:
   _attrName: 
   _attrType: 
   _maxHP: 12
-  _HP: 0
+  _HP: 10
   _maxSP: 0
   _SP: 0
   _EP: 0
   _MaxEP: 0
   _STR: 2
+  _shield: 0
   _DEF: 0
   _MoveSpeed: 10
   _dashMultiplicator: 0
+  noDamageTime: 5

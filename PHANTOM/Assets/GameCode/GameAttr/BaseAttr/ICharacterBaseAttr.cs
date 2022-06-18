@@ -43,6 +43,11 @@ public abstract class ICharacterBaseAttr :ScriptableObject,  IBaseAttr
 
     [SerializeField]
     protected int _STR;
+
+    [SerializeField]
+    protected int _shield;
+
+    public float StiffTime { get; set; }
     public int STR => _STR;
     [SerializeField]
     protected int _DEF;
@@ -55,6 +60,13 @@ public abstract class ICharacterBaseAttr :ScriptableObject,  IBaseAttr
     
     
     public bool FaceRight => _FaceRight;
+
+    public int Shield
+    {
+        get => _shield;
+        set => _shield = value;
+    }
+
     /// <summary>
     /// 有改變方向為true，沒改變方向為false
     /// </summary>

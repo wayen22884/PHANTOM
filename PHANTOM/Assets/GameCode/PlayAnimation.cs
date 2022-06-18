@@ -36,19 +36,18 @@ public class PlayAnimation : MonoBehaviour
     
     private void ChangeSprite(long value)
     {
-        Debug.Log(value);
-        if (playlist.Count <= value)
         if (playlist.Count>value)
         {
-            PlayAnimationEnd();
             image.sprite = playlist[(int)value];
         }
         else
         {
-            image.sprite = playlist[(int)value];
             playAnimationDisposable?.Dispose();
             OnPlayAnimationEnd?.Invoke();
         }
+    }
+
+    private void ChangeColor(long value)
     {
         if (frame>=value)
         {
@@ -60,6 +59,7 @@ public class PlayAnimation : MonoBehaviour
         {
             ShowSpriteDisposable?.Dispose();
             image.GetComponent<Button>().interactable = true;
+            image.raycastTarget = true;
             OnShowSpriteEnd?.Invoke();
         }
     }

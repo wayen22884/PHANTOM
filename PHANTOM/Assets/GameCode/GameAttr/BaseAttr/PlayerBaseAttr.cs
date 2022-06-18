@@ -6,6 +6,11 @@ public class PlayerBaseAttr : ICharacterBaseAttr
 {
     [SerializeField]
     private float _dashMultiplicator;
+    
+    [SerializeField]
+    private float noDamageTime;
+    
+    public float NoDamageTime=>noDamageTime;
     public float DashMultiplicator 
     {
         get 

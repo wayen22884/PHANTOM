@@ -111,8 +111,10 @@ public class PlayerCharacter : ICharacter
 
     public override void InJuryedAction()
     {
+        Attr.SetNoDamage(true);
         ChangeAnimationState("Hurt");
         controller.StopInput(0.5f);
+        Observable.Timer(TimeSpan.FromSeconds(playerAttr.NoDamageTime)).Subscribe(_ => Attr.SetNoDamage(false));
     }
     public override void ReSet()
     {

@@ -10,6 +10,7 @@ public class PlayerAttr : ICharacterAttr
         _playerCharacter = PlayerCharacter;
     }
     public float DashMove { get => (_baseAttr as PlayerBaseAttr).DashMultiplicator*MoveVelocity; }
+    public float NoDamageTime { get => (_baseAttr as PlayerBaseAttr).NoDamageTime; }
 
 
     public override void Dead()

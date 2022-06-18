@@ -19,6 +19,9 @@ public interface IBaseAttr
     bool FaceRight { get; }
     bool SetFace(float move);
     float MoveSpeed { get; }
+    
+    int Shield{ get; set; }
+    float StiffTime { get; }
     int STR { get; }
     int DEF { get; }
     bool SetMaxHP(int MaxHP);

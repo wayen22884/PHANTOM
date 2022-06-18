@@ -19,3 +19,5 @@ MonoBehaviour:
   STR: 0
   DEF: 0
   MoveSpeed: 10
+  ShieldNumber: 0
+  StiffTime: 5.3

@@ -165,7 +165,7 @@ public class BeAttackState : FSMState
     public BeAttackState(FSMSystem system) : base(system)
     {
         ID = FSMStateID.BeAttack;
-        TimeCheckInterval = 5.3f;
+        TimeCheckInterval = GameResource.SaveData(CharacterID.Enemy).StiffTime;
     }
     
     public override void CheckCondition(AIData AIData)
