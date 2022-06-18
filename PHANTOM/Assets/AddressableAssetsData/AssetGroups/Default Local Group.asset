@@ -49,6 +49,14 @@ MonoBehaviour:
     m_Address: EnemyData.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 62923be3ebc4168498f99c2ab6aea88e
+    m_Address: Scenes/End
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 059babd99ef405342a6a4137c16bbf65
+    m_Address: Scenes/Prologue
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:

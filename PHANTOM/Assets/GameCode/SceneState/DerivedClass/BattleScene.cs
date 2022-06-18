@@ -12,11 +12,15 @@ public class BattleScene:MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        showDead.OnClickCollider += ChangeScene;
+        showDead.OnClickCollider += ChangeStartScene;
         GameResource.BattleSceneInitialize();
         Tool.GetUIComponent<Button>(GameResource.Canvas, "LoseButton").onClick.AddListener(() =>
         {
             GameEnd(false);
+        });
+        Tool.GetUIComponent<Button>(GameResource.Canvas, "WinButton").onClick.AddListener(() =>
+        {
+            GameEnd(true);
         });
         Tool.GetUIComponent<Button>(GameResource.Canvas, "EnemyGenerateButton").onClick.AddListener(() =>
         {
@@ -57,14 +61,19 @@ public class BattleScene:MonoBehaviour
         showDead.ShowSprite();
     }
 
-    private static void ChangeScene()
+    private static void ChangeStartScene()
+    {
+        ChangeScene("StartMenu");
+    }
+
+    private static void ChangeScene(string sceneName)
     {
         AllSourcePool.Clear();
-        Main.LoadSceneMode("StartMenu");
+        Main.LoadSceneMode(sceneName);
     }
 
     private void GameComplete()
     {
-        GameOver();
+        ChangeScene("End");
     }
 }

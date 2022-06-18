@@ -17,6 +17,6 @@ public class StartMenu :MonoBehaviour
         GameResource.MainMenuSceneInitialize();
         mainMenuUI = new MainMenuUI(playAnimation.Play);
         settingUI = new SettingUI();
-        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("BattleScene");
+        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("Prologue");
     }
 }
