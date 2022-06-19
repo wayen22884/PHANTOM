@@ -15,16 +15,14 @@ public class SpawnInArea : StateMachineBehaviour
 
     private void spawn(Transform transform)
     {
-        Vector3 spawnPoint = this.getSpawnPoint(transform);
+        Vector3 spawnPoint = transform.position + this.getSpawnPoint();
         Instantiate(this.toSpawn, spawnPoint, Quaternion.identity);
     }
 
-    private Vector3 getSpawnPoint(Transform transform)
+    private Vector3 getSpawnPoint()
     {
-        var isFaceToRight = transform.right.x > 0;
-        var spawnX = Random.Range(this.bounds.min.x, this.bounds.max.x) * (isFaceToRight ? 1 : -1);
+        var spawnX = Random.Range(this.bounds.min.x, this.bounds.max.x);
         var spawnY = Random.Range(this.bounds.min.y, this.bounds.max.y);
-        var spawnPoint = transform.position + new Vector3(spawnX, spawnY);
-        return spawnPoint;
+        return new Vector3(spawnX, spawnY);
     }
 }
