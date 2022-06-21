@@ -57,6 +57,30 @@ MonoBehaviour:
     m_Address: Scenes/Prologue
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 93b5e7917cba185429422c5bd39620d5
+    m_Address: Music_battlefield_BGMstart_loop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd5bcbba61cbd5f41b64d46052836832
+    m_Address: Music_battlefield_BGM_loop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d0ab4c33b11b35544926f71852046826
+    m_Address: Music_Title_BGMStart
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d1a4056431205944a74ef41b7cc6481
+    m_Address: Music_Title_Loop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 095f4c6ac9f361a4c84590344ffbca10
+    m_Address: Music_Final_Failure_Stinger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3a134a45de64794d9e3f4ae09b33fee
+    m_Address: Music_Final_Victory_Stinger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:

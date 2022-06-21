@@ -21,7 +21,12 @@ public static class GameResource
             _bgvGroup = FindMusicGroup("Effect");
         };
         Addressables.LoadAssetAsync<PlayerBaseAttr>("DataForTest/PlayerBaseData.asset").Completed += (i) => {  PlayerBaseAttr= i.Result; };
-        // Addressables.LoadAssetAsync<AudioClip>("Music/Zapper.wav").Completed+= (i)=> { bulletaudio = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_battlefield_BGMstart_loop").Completed+= (i)=> { BattleStartBGM = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_battlefield_BGM_loop").Completed+= (i)=> { BattleLoopBGM = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_Title_BGMStart").Completed+= (i)=> { TitleStartBGM = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_Title_Loop").Completed+= (i)=> { TitleLoopBGM = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_Final_Victory_Stinger").Completed+= (i)=> { VictoryBGM = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_Final_Failure_Stinger").Completed+= (i)=> { FailureBGM = i.Result; };
         
     }
     public static void MainMenuSceneInitialize()
@@ -120,6 +125,12 @@ public static class GameResource
     public static AudioMixerGroup BGMGroup => _BGMGroup;
     public static AudioMixerGroup BGVGroup => _bgvGroup;
     public static GameObject AttackTrigger { get; private set; }
+    public static AudioClip BattleStartBGM { get; private set; }
+    public static AudioClip TitleStartBGM { get; private set; }
+    public static AudioClip BattleLoopBGM { get; private set; }
+    public static AudioClip TitleLoopBGM { get; private set; }
+    public static AudioClip VictoryBGM { get; private set; }
+    public static AudioClip FailureBGM { get; private set; }
 
 
     static AudioMixerGroup  FindMusicGroup(string adress)

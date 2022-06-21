@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,12 @@ public class BattleScene:MonoBehaviour
         Instance = this;
         showDead.OnClickCollider += ChangeStartScene;
         GameResource.BattleSceneInitialize();
+
+        MusicSystem.Instance.StartBGM = GameResource.BattleStartBGM;
+        var loopList= new List<AudioClip>();
+        loopList.Add(GameResource.BattleLoopBGM);
+        MusicSystem.Instance.LoopBGMs = loopList;
+        MusicSystem.Instance.PlayMusicAndLoop();
         Tool.GetUIComponent<Button>(GameResource.Canvas, "LoseButton").onClick.AddListener(() =>
         {
             GameEnd(false);
@@ -58,6 +65,7 @@ public class BattleScene:MonoBehaviour
 
     private void GameOver()
     {
+        PlayMusic(GameResource.FailureBGM);
         showDead.ShowSprite();
     }
 
@@ -66,14 +74,23 @@ public class BattleScene:MonoBehaviour
         ChangeScene("StartMenu");
     }
 
-    private static void ChangeScene(string sceneName)
+    private static void ChangeScene(string sceneName,Action onLoadEnd=null)
     {
         AllSourcePool.Clear();
-        Main.LoadSceneMode(sceneName);
+        Main.LoadSceneMode(sceneName,onLoadEnd);
     }
 
     private void GameComplete()
     {
-        ChangeScene("End");
+        ChangeScene("End",() => PlayMusic(GameResource.VictoryBGM));
+    }
+
+    void PlayMusic(AudioClip BGM)
+    {
+        MusicSystem.Instance.StartBGM = BGM;
+        var loopList= new List<AudioClip>();
+        loopList.Add(BGM);
+        MusicSystem.Instance.LoopBGMs = loopList;
+        MusicSystem.Instance.PlayMusicAndLoop();
     }
 }

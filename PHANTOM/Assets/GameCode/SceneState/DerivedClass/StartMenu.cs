@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class StartMenu :MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class StartMenu :MonoBehaviour
         GameResource.MainMenuSceneInitialize();
         mainMenuUI = new MainMenuUI(playAnimation.Play);
         settingUI = new SettingUI();
-        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("Prologue");
+        MusicSystem.Instance.StartBGM = GameResource.TitleStartBGM;
+        var loopList= new List<AudioClip>();
+        loopList.Add(GameResource.TitleLoopBGM);
+        MusicSystem.Instance.LoopBGMs = loopList;
+        MusicSystem.Instance.PlayMusicAndLoop();
+        
+        
+        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("BattleScene");
     }
 }

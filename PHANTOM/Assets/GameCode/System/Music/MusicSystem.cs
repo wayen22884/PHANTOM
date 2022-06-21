@@ -7,8 +7,8 @@ public class MusicSystem : MonoBehaviour
 {
     [SerializeField] private AudioClip CurrentBGM;
 
-    [SerializeField] private AudioClip StartBGM;
-    [SerializeField] private List<AudioClip> LoopBGMs;
+    [SerializeField] public AudioClip StartBGM;
+    [SerializeField] public List<AudioClip> LoopBGMs;
 
     [SerializeField] private AudioClip SelectedBGM;
     public static MusicSystem Instance;
