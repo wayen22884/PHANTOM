@@ -9,6 +9,9 @@ public class AnimateState : StateMachineBehaviour
     {
         foreach (Transform obj in animator.gameObject.transform)
         {
+            // HACK: Hardcoded is bad
+            if (obj.name.StartsWith("__HACK__"))
+                continue;
             obj.gameObject.SetActive(obj.name.Equals(this.animateObjectName));
         }
     }

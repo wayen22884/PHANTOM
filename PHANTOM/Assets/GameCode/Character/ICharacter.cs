@@ -18,6 +18,8 @@ public abstract class ICharacter : ISourcePoolObj
     public Animator Animator { get; private set; }
 
     public event Action<Transform, string, bool> DoAnimation;
+    public event Action<int> ShieldAnimationCallBack;
+    public event Action<Transform> BeAttackVFXAnimationCallBack;
     public bool Death { get; protected set; }
 
     protected Transform model;

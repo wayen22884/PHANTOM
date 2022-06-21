@@ -53,6 +53,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animateObjectName: Smash
+--- !u!114 &-2512769885591197010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c980f50e09c5d4cb753e8dbac84b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toSpawn: {fileID: 3292210061259258904, guid: d2980df01b84f1c4d9b49b7118e52c20, type: 3}
+  bounds:
+    m_Center: {x: 0, y: 1, z: 0}
+    m_Extent: {x: 0.5, y: 1, z: 0}
 --- !u!1102 &-2445528265872402173
 AnimatorState:
   serializedVersion: 6
@@ -66,6 +82,7 @@ AnimatorState:
   m_Transitions: []
   m_StateMachineBehaviours:
   - {fileID: 8592449261109825197}
+  - {fileID: -2512769885591197010}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -75,33 +92,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: f8c4d5cd73273834684e6624c2048919, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-557836819842204360
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Pre run
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours:
-  - {fileID: 8193247496624519423}
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 06f3b41a383ab2e43a1f01655a6e4c95, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -276,9 +266,6 @@ AnimatorStateMachine:
     m_State: {fileID: -6370388503015708909}
     m_Position: {x: 260, y: 110, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -557836819842204360}
-    m_Position: {x: 490, y: 110, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 4555330020775264631}
     m_Position: {x: 260, y: 170, z: 0}
   - serializedVersion: 1
@@ -303,19 +290,6 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6370388503015708909}
---- !u!114 &8193247496624519423
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1bd5ec0467035c408c4d2b4e10dec0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animateObjectName: Rig root
 --- !u!114 &8592449261109825197
 MonoBehaviour:
   m_ObjectHideFlags: 1

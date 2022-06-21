@@ -47,3 +47,6 @@ TagManager:
   - name: Character
     uniqueID: 2737739251
     locked: 0
+  - name: VFX
+    uniqueID: 481079643
+    locked: 0
