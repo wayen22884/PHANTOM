@@ -11,6 +11,7 @@ public class PlayerCharacter : ICharacter
 
     PlayerAttr playerAttr;
     private CharacterController controller;
+    public Combo combo;
 
     public override ICharacterAttr Attr => playerAttr;
     public void SetCharacterAttr(PlayerAttr characterAttr)
@@ -18,18 +19,17 @@ public class PlayerCharacter : ICharacter
         playerAttr = characterAttr;
     }
 
-
     public override void StartInput()
     {
         controller = GameObject.GetComponent<CharacterController>();
         controller.OnChangeState = ChangeAnimationState;
-        controller.ReturnIsRight = () =>ReturnIsRight;
+        controller.ReturnIsRight = () => ReturnIsRight;
         controller.SetFace = move =>
         {
             var changeFace = Attr.SetFace(move);
             if (changeFace)
             {
-                var localScale= Mathf.Abs(Transform.localScale.x);
+                var localScale = Mathf.Abs(Transform.localScale.x);
                 Transform.DOScaleX(move >= 0 ? localScale : -localScale, 0f);
             }
 
@@ -50,6 +50,7 @@ public class PlayerCharacter : ICharacter
     {
         attackTime = attackTime % 3;
         attackTime++;
+        this.combo?.Add(1);
         detectAttack?.Dispose();
         detectAttack = Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => attackTime = 0);
         ChangeAnimationState($"Smash_{attackTime}");
@@ -59,7 +60,7 @@ public class PlayerCharacter : ICharacter
 
     private void AttackAction()
     {
-        DamageData damageData = new DamageData(Target.enemy, this,AttackPoint.position );
+        DamageData damageData = new DamageData(Target.enemy, this, AttackPoint.position);
 
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);
@@ -82,13 +83,13 @@ public class PlayerCharacter : ICharacter
         if (args.Type == ValueType.SP)
         {
             playerAttr.GetBaseAttr().SetSP(args.Value);
-            float value = (float) Attr.GetBaseAttr().SP / Attr.GetBaseAttr().MaxSP;
+            float value = (float)Attr.GetBaseAttr().SP / Attr.GetBaseAttr().MaxSP;
             //GameSystems.Instance.UpdateUI(args.Type, value);
         }
         else if (args.Type == ValueType.EP)
         {
             playerAttr.GetBaseAttr().SetEP(args.Value);
-            float value = (float) Attr.GetBaseAttr().EP / Attr.GetBaseAttr().MaxEP;
+            float value = (float)Attr.GetBaseAttr().EP / Attr.GetBaseAttr().MaxEP;
             //GameSystems.Instance.UpdateUI(args.Type, value);
         }
         else if (args.Type == ValueType.Score)
@@ -118,6 +119,7 @@ public class PlayerCharacter : ICharacter
     }
     public override void ReSet()
     {
+        this.combo?.Reset();
     }
 
     public override void Dead()
@@ -132,5 +134,10 @@ public class PlayerCharacter : ICharacter
     protected override void DoPause(bool pause)
     {
         controller.DoPause(pause);
+    }
+
+    public override void Update()
+    {
+        this.combo?.Tick(Time.deltaTime);
     }
 }
