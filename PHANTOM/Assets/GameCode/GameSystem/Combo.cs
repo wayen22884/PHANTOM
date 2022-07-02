@@ -6,8 +6,8 @@ public class Combo : ScriptableObject
 {
     // TODO: make it reactive?
     [SerializeField]
-    private float refreshTime = 1;
-    private float sinceLastRefresh;
+    private float timeToRefresh = 1;
+    private float sinceLastHit;
     public ReactiveProperty<int> counter;
 
     // FIXME: I don't know why ReadOnlyReactiveProperty always give me `null`
@@ -17,7 +17,7 @@ public class Combo : ScriptableObject
     public void Reset()
     {
         Debug.Log("Combo reset");
-        this.sinceLastRefresh = 0;
+        this.refreshTimer();
         this.counter = new ReactiveProperty<int>();
         // this.counter = this._counter.ToReadOnlyReactiveProperty();
     }
@@ -25,19 +25,16 @@ public class Combo : ScriptableObject
     public void Add(int delta)
     {
         Debug.Assert(delta >= 0);
-        if (this.counter.Value == 0)
-        {
-            this.sinceLastRefresh = 0;
-        }
+        this.refreshTimer();
         this.counter.Value += delta;
     }
 
     public void Tick(float delta)
     {
-        this.sinceLastRefresh += delta;
-        if (this.sinceLastRefresh > this.refreshTime)
+        this.sinceLastHit += delta;
+        if (this.sinceLastHit > this.timeToRefresh)
         {
-            this.sinceLastRefresh = 0;
+            this.refreshTimer();
             this.counter.Value = 0;
         }
     }
@@ -46,5 +43,9 @@ public class Combo : ScriptableObject
     {
         this.Reset();
     }
-}
 
+    private void refreshTimer()
+    {
+        this.sinceLastHit = 0;
+    }
+}

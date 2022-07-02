@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ead7dcbb0f23a349bf48e949b424815, type: 3}
   m_Name: PlayerCombo
   m_EditorClassIdentifier: 
-  refreshTime: 5
+  timeToRefresh: 5
   counter:
     value: 0
