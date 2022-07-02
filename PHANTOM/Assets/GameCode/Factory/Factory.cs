@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Animations;
 
 
@@ -34,6 +32,11 @@ public static class Factory
         SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         // Register event listener
         foreach (var subscriber in GO.GetComponentsInChildren<ICharacterAnimationSubscriber<ICharacter>>())
+        {
+            subscriber.Subscribe(player);
+        }
+        var playerSubscribers = GO.GetComponentsInChildren<ICharacterAnimationSubscriber<PlayerCharacter>>();
+        foreach (var subscriber in playerSubscribers)
         {
             subscriber.Subscribe(player);
         }
