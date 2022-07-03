@@ -69,7 +69,9 @@ public class BattleScene:MonoBehaviour
 
     private void GameOver()
     {
-        PlayMusic(GameResource.FailureBGM);
+        //PlayMusic(GameResource.FailureBGM);
+        MusicSystem.Instance.StopMusic();
+        MusicSystem.Instance.PlayBGV(GameResource.FailureBGM);
         showDead.ShowSprite();
     }
 

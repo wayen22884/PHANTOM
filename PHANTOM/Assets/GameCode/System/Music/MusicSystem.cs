@@ -34,7 +34,7 @@ public class MusicSystem : MonoBehaviour
 
     private AudioSource bgmSource;
 
-    private Queue<AudioSourceContainer> bgvSources;
+    private Queue<AudioSourceContainer> bgvSources=new Queue<AudioSourceContainer>();
 
     public void PlayMusic()
     {
@@ -55,8 +55,8 @@ public class MusicSystem : MonoBehaviour
 
     public void StopMusic()
     {
-        BGMSource.Stop();
         checkLooptimer?.Dispose();
+        BGMSource.Stop();
     }
 
     public void PlayBGV(AudioClip audioClip)
@@ -128,6 +128,7 @@ public class MusicSystem : MonoBehaviour
     {
         loopIndex = 0;
         PlayMusic(StartBGM);
+        checkLooptimer?.Dispose();
         checkLooptimer = Observable.Interval(TimeSpan.FromSeconds(0.1f)).Subscribe(_ => CheckLoop());
     }
 

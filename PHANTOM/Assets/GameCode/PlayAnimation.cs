@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayAnimation : MonoBehaviour
 {
     
     [SerializeField] private Image image;
+    [SerializeField] private List<Image> leafImages=new List<Image>();
+    [SerializeField] private List<Image> closeleafImages=new List<Image>();
 
     [SerializeField] private List<Sprite> playlist;
 
@@ -24,6 +27,10 @@ public class PlayAnimation : MonoBehaviour
     public void Play()
     {
         var interval = totalSeconds / playlist.Count;
+        foreach (var closeleafImage in closeleafImages)
+        {
+            closeleafImage.gameObject.SetActive(false);
+        }
         playAnimationDisposable = Observable.Interval(TimeSpan.FromSeconds(interval)).Subscribe(ChangeSprite);
     }
     [ContextMenu("ShowSprite")]
@@ -53,6 +60,10 @@ public class PlayAnimation : MonoBehaviour
         {
             var color = image.color;
             color.a= colorInterval*value;
+            foreach (var leafImage in leafImages)
+            {
+                leafImage.color = color;
+            }
             image.color = color;            
         }
         else
