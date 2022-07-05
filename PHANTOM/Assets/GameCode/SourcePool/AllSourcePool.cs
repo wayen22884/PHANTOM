@@ -10,6 +10,8 @@ public static class AllSourcePool
     public static void SetPlayer(PlayerCharacter  playerCharacter)
     {
         PlayerCharacter = playerCharacter;
+        PlayerCharacter.ReSet();
+        Debug.Log("Player updated");
     }
 
     private static IDisposable updateDisposable;
@@ -123,6 +125,7 @@ public static class AllSourcePool
         shootGuns?.Update();
         floatingbar?.Update();
         triggerPool?.Update();
+        PlayerCharacter?.Update();
     }
     public static void Clear()
     {
