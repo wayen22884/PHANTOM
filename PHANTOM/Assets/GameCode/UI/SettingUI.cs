@@ -11,8 +11,8 @@ public class SettingUI : IUserInterface
     }
     
     //private GameObject _RootSetting;
-    private Scrollbar _BGM;
-    private Scrollbar _Effect;
+    private Slider _BGM;
+    private Slider _Effect;
     private Button _SettingHide;
     private Button _BackToMainMenu;
     private Button _Exit;
@@ -30,7 +30,7 @@ public class SettingUI : IUserInterface
         
         
         SaveSystem.Load(out  Volume data);
-        _BGM = Tool.GetUIComponent<Scrollbar>(_RootUI, "BGM");
+        _BGM = Tool.GetUIComponent<Slider>(_RootUI, "BGM");
         
 
         
@@ -40,7 +40,7 @@ public class SettingUI : IUserInterface
         //GameResource.BGMGroup.audioMixer.GetFloat("BGMVol",out float s);
         
         
-        _Effect = Tool.GetUIComponent<Scrollbar>(_RootUI, "Effect");
+        _Effect = Tool.GetUIComponent<Slider>(_RootUI, "Effect");
         GameResource.BGMGroup.audioMixer.SetFloat("EffectVol", data.Effect);
         _Effect.value =ValueChanged_AudioMixer_To_UI(data.Effect);
         _Effect.onValueChanged.AddListener(ChangeEffect);

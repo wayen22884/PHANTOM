@@ -96,4 +96,9 @@ public abstract class ICharacter : ISourcePoolObj
     public virtual void Update()
     {
     }
+
+    public void ChangeShield(int i)
+    {
+        ShieldAnimationCallBack?.Invoke(i);
+    }
 }

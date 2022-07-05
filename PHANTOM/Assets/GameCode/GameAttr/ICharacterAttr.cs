@@ -2,6 +2,7 @@
 
 public abstract class ICharacterAttr
 {
+    private ICharacter character;
     protected IBaseAttr _baseAttr;
     IAttrStrategy _attrStrategy;
     bool _noDamage;
@@ -17,6 +18,10 @@ public abstract class ICharacterAttr
     public void SetBaseAttr(IBaseAttr BaseAttr)
     {
         _baseAttr = BaseAttr;
+    }
+    public void SetBaseCharacter(ICharacter character)
+    {
+        this.character=character;
     }
 
     public IBaseAttr GetBaseAttr()
@@ -67,6 +72,7 @@ public abstract class ICharacterAttr
         if (_baseAttr.Shield > 0)
         {
             _baseAttr.Shield--;
+            character.ChangeShield(_baseAttr.Shield);
             return;
         }
 

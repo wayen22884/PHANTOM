@@ -29,6 +29,7 @@ public static class Factory
         var playerBaseAttr = GameResource.PlayerBaseAttr;
         //PlayerAttr內塞入PlayerBaseAttr
         playerAttr.SetBaseAttr(playerBaseAttr);
+        playerAttr.SetBaseCharacter(player);
         SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         // Register event listener
         foreach (var subscriber in GO.GetComponentsInChildren<ICharacterAnimationSubscriber<ICharacter>>())
@@ -66,6 +67,7 @@ public static class Factory
         var EnemyBaseAttr = new EnemyBaseAttr();
 
         enemyAttr.SetBaseAttr(EnemyBaseAttr);
+        enemyAttr.SetBaseCharacter(character);
 
         SaveData EnemySaveData = GameResource.SaveData(EnemyType);
         EnemyBaseAttr.SetAllValue(EnemySaveData);

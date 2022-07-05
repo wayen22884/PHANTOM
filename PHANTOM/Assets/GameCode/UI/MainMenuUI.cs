@@ -14,11 +14,15 @@ public class MainMenuUI : IUserInterface
     }
     public override void Initialize()
     {
-        
+        _bActive = true;
         _RootUI = Tool.FindChildGameObject(GameResource.Canvas, "MainSMenuSatus");
         
         _start = Tool.GetUIComponent<Button>(_RootUI, "StartBattleSceneButton");
-        _start.onClick.AddListener(()=>onClickStart?.Invoke());
+        _start.onClick.AddListener(() =>
+        {
+            RootClick();
+            onClickStart?.Invoke();
+        });
         
         _exit = Tool.GetUIComponent<Button>(_RootUI, "ExitButtion");
         _exit.onClick.AddListener(Application.Quit);
