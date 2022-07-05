@@ -15,7 +15,7 @@ MonoBehaviour:
   _attrName: 
   _attrType: 
   _maxHP: 50
-  _HP: 0
+  _HP: 50
   _maxSP: 0
   _SP: 0
   _EP: 0

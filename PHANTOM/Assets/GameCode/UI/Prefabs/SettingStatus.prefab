@@ -601,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BGM
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
   m_sharedMaterial: {fileID: 1001239395840632747, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 114.95709, w: 12.100708}
+  m_margin: {x: 0, y: 0, z: 93.65732, w: 12.100708}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -5,6 +5,7 @@ public class StartMenu :MonoBehaviour
 {
     [SerializeField] private PlayAnimation playAnimation;
     public string Name { get; }
+    public string ChangeScene;
 
     private MainMenuUI mainMenuUI;
     private SettingUI settingUI;
@@ -25,6 +26,6 @@ public class StartMenu :MonoBehaviour
         MusicSystem.Instance.PlayMusicAndLoop();
         
         
-        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode("BattleScene");
+        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode(ChangeScene);
     }
 }

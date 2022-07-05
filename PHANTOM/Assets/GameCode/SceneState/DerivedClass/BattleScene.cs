@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class BattleScene:MonoBehaviour
 {
     [SerializeField] private enemyGenerateMgr enemyGenerateMgr;
     [SerializeField] private PlayAnimation showDead;
+    [SerializeField] private TextMeshProUGUI clickReturnMainMenu;
 
     private SettingUI settingUI;
     public static BattleScene Instance { get; private set; }
@@ -15,6 +17,7 @@ public class BattleScene:MonoBehaviour
     {
         Instance = this;
         showDead.OnClickCollider += ChangeStartScene;
+        showDead.OnShowSpriteEnd += ()=>clickReturnMainMenu.gameObject.SetActive(true);
         GameResource.BattleSceneInitialize();
 
         MusicSystem.Instance.StartBGM = GameResource.BattleStartBGM;

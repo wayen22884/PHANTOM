@@ -28,6 +28,7 @@ public static class Factory
         playerAttr.SetAttrStrategy(new AttrStrategy());
         var playerBaseAttr = GameResource.PlayerBaseAttr;
         //PlayerAttr內塞入PlayerBaseAttr
+        playerBaseAttr.SetHP(playerBaseAttr.MaxHP);
         playerAttr.SetBaseAttr(playerBaseAttr);
         playerAttr.SetBaseCharacter(player);
         SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
