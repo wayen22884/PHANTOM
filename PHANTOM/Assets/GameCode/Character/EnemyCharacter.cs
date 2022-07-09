@@ -45,7 +45,7 @@ public class EnemyCharacter : ICharacter
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);
     }
-    public override void Attack(ICharacterAttr Target)
+    public override void Attack(ICharacterAttr Target,int attackType)
     {
         int damage = _enemyAttr.DamageCount(Target);
         Target.GetInjuryed(damage);

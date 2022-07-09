@@ -50,6 +50,5 @@ public class DamageData
         }
     }
 
-
-
+    public int attackType;
 }

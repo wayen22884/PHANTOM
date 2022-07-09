@@ -34,7 +34,7 @@ public abstract class AttackTrigger : ISourcePoolObj
         if (Data.EnemyList.Count == 0) return;
         var targets = FindTargets();
         if (targets.Count == 0) return;
-        targets.ForEach(target => Data.Attacker.Attack(target.Attr));
+        targets.ForEach(target => Data.Attacker.Attack(target.Attr,Data.attackType));
         targets.ForEach(target => attackedList.Add(target));
     }
 

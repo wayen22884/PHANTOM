@@ -27,4 +27,9 @@ public class EnemyAttr : ICharacterAttr
         _baseAttr.ReSet();
     }
 
+    protected override void CountCombo(int attackType)
+    {
+        CallCombo?.Invoke(attackType);
+        Debug.LogError($"attackType:{attackType}");
+    }
 }

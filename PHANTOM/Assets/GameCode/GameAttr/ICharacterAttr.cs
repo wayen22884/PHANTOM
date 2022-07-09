@@ -66,7 +66,7 @@ public abstract class ICharacterAttr
     /// 直接給正數傷害，給負數會歸0
     /// </summary>
     /// <param name="damage"></param>
-    public void GetInjuryed(int damage)
+    public void GetInjuryed(int damage,int attackType=0)
     {
         if (_noDamage) return;
         if (_baseAttr.Shield > 0)
@@ -76,6 +76,10 @@ public abstract class ICharacterAttr
             return;
         }
 
+        if (attackType!=0)
+        {
+            CountCombo(attackType);
+        }
         if (damage < 0) damage = 0;
         _baseAttr.SetHP(-damage);
         if (_baseAttr.HP <= 0)
@@ -85,6 +89,8 @@ public abstract class ICharacterAttr
             InJuryedAction();
         }
     }
+
+    protected virtual void CountCombo(int attackType){}
 
     protected float MoveSpeed
     {

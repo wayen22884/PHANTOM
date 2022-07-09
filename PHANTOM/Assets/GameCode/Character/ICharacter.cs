@@ -83,7 +83,7 @@ public abstract class ICharacter : ISourcePoolObj
         Animator.updateMode = AnimatorUpdateMode.Normal;
     }
 
-    public abstract void Attack(ICharacterAttr target);
+    public abstract void Attack(ICharacterAttr target,int attackType);
     public abstract void ReSet();
 
     public virtual void Dead()

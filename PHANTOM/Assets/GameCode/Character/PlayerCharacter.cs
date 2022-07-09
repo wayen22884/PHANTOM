@@ -59,15 +59,15 @@ public class PlayerCharacter : ICharacter
     private void AttackAction()
     {
         DamageData damageData = new DamageData(Target.enemy, this, AttackPoint.position);
-
+        damageData.attackType = attackTime;
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);
     }
 
-    public override void Attack(ICharacterAttr Target)
+    public override void Attack(ICharacterAttr Target,int attackType)
     {
         int damage = playerAttr.DamageCount(Target);
-        Target.GetInjuryed(damage);
+        Target.GetInjuryed(damage,attackType);
     }
 
 
