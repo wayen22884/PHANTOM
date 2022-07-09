@@ -30,6 +30,6 @@ public class EnemyAttr : ICharacterAttr
     protected override void CountCombo(int attackType)
     {
         CallCombo?.Invoke(attackType);
-        Debug.LogError($"attackType:{attackType}");
+        Debug.Log($"attackType:{attackType}");
     }
 }
