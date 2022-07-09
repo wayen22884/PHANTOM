@@ -10,6 +10,7 @@ public class EnemyCharacter : ICharacter
     }
     EnemyAttr _enemyAttr;
     private FSMSystem _FSM;
+    public Combo combo;
     public void SetCharacterAttr(EnemyAttr characterAttr)
     {
         _enemyAttr = characterAttr;
@@ -70,7 +71,7 @@ public class EnemyCharacter : ICharacter
         }
     }
 
-
+    
     public override void Dead()
     {
         AllSourcePool.AliveEnemyRemove(this, ID);

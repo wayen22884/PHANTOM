@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttr : ICharacterAttr
 {
     private EnemyCharacter _enemyCharacter;
+    public event Action<int> CallCombo;
 
     public void SetEnemyCharacter(EnemyCharacter enemyCharacter)
     {

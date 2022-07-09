@@ -11,7 +11,6 @@ public class PlayerCharacter : ICharacter
 
     PlayerAttr playerAttr;
     private CharacterController controller;
-    public Combo combo;
 
     public override ICharacterAttr Attr => playerAttr;
     public void SetCharacterAttr(PlayerAttr characterAttr)
@@ -50,7 +49,6 @@ public class PlayerCharacter : ICharacter
     {
         attackTime = attackTime % 3;
         attackTime++;
-        this.combo?.Add(1);
         detectAttack?.Dispose();
         detectAttack = Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => attackTime = 0);
         ChangeAnimationState($"Smash_{attackTime}");
@@ -119,7 +117,6 @@ public class PlayerCharacter : ICharacter
     }
     public override void ReSet()
     {
-        this.combo?.Reset();
     }
 
     public override void Dead()
@@ -138,6 +135,5 @@ public class PlayerCharacter : ICharacter
 
     public override void Update()
     {
-        this.combo?.Tick(Time.deltaTime);
     }
 }

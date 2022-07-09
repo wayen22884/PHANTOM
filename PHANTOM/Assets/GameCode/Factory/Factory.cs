@@ -52,14 +52,14 @@ public static class Factory
         //EnemyCharacter內塞入物體
         EnemyCharacter character = new EnemyCharacter("Enemy", EnemyType);
         character.AddValueEventHandler(AllSourcePool.PlayerCharacter.ChangeValue);
-
         //將物件加入sourcepool
         GO.SetActive(false);
         AllSourcePool.AddToDeadList(character, EnemyType);
         character.SetGameObject(GO, model);
         character.SetAI();
-
+        
         var enemyAttr = new EnemyAttr();
+        //enemyAttr.CallCombo
         enemyAttr.SetEnemyCharacter(character);
         //EnemyCharacter內塞入EnemyAttr
         character.SetCharacterAttr(enemyAttr);
