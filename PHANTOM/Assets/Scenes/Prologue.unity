@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -485.46}
-  m_SizeDelta: {x: 1010.7092, y: 109.09}
+  m_AnchoredPosition: {x: 0, y: -435.81592}
+  m_SizeDelta: {x: 1010.7092, y: 208.3781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22198680
 MonoBehaviour:
@@ -229,7 +229,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u56E0\u70BA\u4ED6\u6DF1\u611B\u7684\u4E3B\u4EBA  \u7267\u7F8A\u5973-\u5967\u6735\u672D\u6700\u8FD1\u7E3D\u662F\u5782\u982D\u55AA\u6C23"
+  m_Text: "\u56E0\u70BA\u4ED6\u6DF1\u611B\u7684\u4E3B\u4EBA  \u7267\u7F8A\u5973-\u5967\u6735\u672D\u6700\u8FD1\u7E3D\u662F\u5782\u982D\u55AA\u6C23\nA
+    girl is sad."
 --- !u!222 &22198683
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -686,7 +687,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8E0F\u4E0A\u5049\u5927\u7684\u9A0E\u58EB\u4E4B\u8DEF"
+  m_Text: "\u8E0F\u4E0A\u5049\u5927\u7684\u9A0E\u58EB\u4E4B\u8DEF\nChicken is happy"
 --- !u!222 &396662121
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -814,7 +815,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5E36\u4E0A\u8CAA\u5403\u7684\u5C0F\u96DE\u4F5C\u70BA\u50D5\u5F9E"
+  m_Text: "\u5E36\u4E0A\u8CAA\u5403\u7684\u5C0F\u96DE\u4F5C\u70BA\u50D5\u5F9E\nA
+    chicken."
 --- !u!222 &592001158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1246,7 +1248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6709\u4E00\u96BB\u5E73\u51E1\u7684\u5C0F\u9D28"
+  m_Text: "\u6709\u4E00\u96BB\u5E73\u51E1\u7684\u5C0F\u9D28\nThere is a duck."
 --- !u!222 &1067128597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1362,7 +1364,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u6210\u70BA\u9A0E\u58EB\u4E26\u91CD\u62FE\u4E3B\u4EBA\u7684\u7B11\u5BB9 
-    \u5C31\u662F\u4ED6\u7684\u5929\u547D"
+    \u5C31\u662F\u4ED6\u7684\u5929\u547D\nHe likes the painting."
 --- !u!222 &1090246970
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1572,7 +1574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6240\u4EE5\u5C0F\u9D28\u76F8\u4FE1\u4E86 "
+  m_Text: "\u6240\u4EE5\u5C0F\u9D28\u76F8\u4FE1\u4E86 \nThink! Duck, think!"
 --- !u!222 &1322903274
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1782,7 +1784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u65BC\u662F \u4ED6\u5168\u526F\u6B66\u88DD\n"
+  m_Text: "\u65BC\u662F \u4ED6\u5168\u526F\u6B66\u88DD\nHe digs garbage."
 --- !u!222 &1494641607
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1897,7 +1899,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4ED6\u5F88\u56F0\u64FE..."
+  m_Text: "\u4ED6\u5F88\u56F0\u64FE...\nHe is not happy."
 --- !u!222 &1563522665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2089,7 +2091,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u4E0A\u9762\u756B\u6EFF\u82F1\u52C7\u7684\u9A0E\u58EB\u5927\u6230\u7F8A\u7FA4 
-    \u6311\u6230\u98A8\u8ECA\u7684\u63D2\u756B"
+    \u6311\u6230\u98A8\u8ECA\u7684\u63D2\u756B\nA knight's picture."
 --- !u!222 &1649010714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2318,7 +2320,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9084\u597D\u9019\u5929\u4ED6\u64BF\u5230\u4E86\u4E00\u672C\u7CBE\u7DFB\u7684\u7E6A\u672C"
+  m_Text: "\u9084\u597D\u9019\u5929\u4ED6\u64BF\u5230\u4E86\u4E00\u672C\u7CBE\u7DFB\u7684\u7E6A\u672C\nA
+    book!"
 --- !u!222 &1723696685
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2608,7 +2611,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5F88\u4E45\u4EE5\u524D  \u5728\u4E00\u500B\u9059\u9060\u7684\u8FB2\u838A"
+  m_Text: "\u5F88\u4E45\u4EE5\u524D  \u5728\u4E00\u500B\u9059\u9060\u7684\u8FB2\u838A\nThere's
+    a farm."
 --- !u!222 &1941477173
 CanvasRenderer:
   m_ObjectHideFlags: 0
