@@ -31,8 +31,22 @@ public class MusicSystem : MonoBehaviour
             return bgmSource;
         }
     }
+    private AudioSource LoopBGVSource
+    {
+        get
+        {
+            if (!loopBGVSource)
+            {
+                loopBGVSource = gameObject.AddComponent<AudioSource>();
+                loopBGVSource.outputAudioMixerGroup = GameResource.BGVGroup;
+            }
+
+            return loopBGVSource;
+        }
+    }
 
     private AudioSource bgmSource;
+    private AudioSource loopBGVSource;
 
     private Queue<AudioSourceContainer> bgvSources=new Queue<AudioSourceContainer>();
 
@@ -55,7 +69,7 @@ public class MusicSystem : MonoBehaviour
 
     public void StopMusic()
     {
-        checkLooptimer?.Dispose();
+        BGMcheckLooptimer?.Dispose();
         BGMSource.Stop();
     }
 
@@ -120,7 +134,8 @@ public class MusicSystem : MonoBehaviour
         }
     }
 
-    private IDisposable checkLooptimer;
+    private IDisposable BGMcheckLooptimer;
+    private IDisposable BGVcheckLooptimer;
 
     private int loopIndex;
 
@@ -128,11 +143,11 @@ public class MusicSystem : MonoBehaviour
     {
         loopIndex = 0;
         PlayMusic(StartBGM);
-        checkLooptimer?.Dispose();
-        checkLooptimer = Observable.Interval(TimeSpan.FromSeconds(0.1f)).Subscribe(_ => CheckLoop());
+        BGMcheckLooptimer?.Dispose();
+        BGMcheckLooptimer = Observable.Interval(TimeSpan.FromSeconds(0.1f)).Subscribe(_ => CheckBGMLoop());
     }
 
-    private void CheckLoop()
+    private void CheckBGMLoop()
     {
         if (!BGMSource.isPlaying)
         {
@@ -144,7 +159,7 @@ public class MusicSystem : MonoBehaviour
     {
         if (LoopBGMs.Count <= 0)
         {
-            checkLooptimer?.Dispose();
+            BGMcheckLooptimer?.Dispose();
             return;
         }
 
@@ -154,5 +169,17 @@ public class MusicSystem : MonoBehaviour
             loopIndex=0;
         }
         PlayMusic(LoopBGMs[loopIndex++]);
+    }
+
+    public void PlayLoopBGV(AudioClip duckWalk)
+    {
+        LoopBGVSource.loop = true;
+        LoopBGVSource.clip=duckWalk;
+        LoopBGVSource.Play();
+    }
+
+    public void StopLooopBGV()
+    {
+        LoopBGVSource.Stop();
     }
 }

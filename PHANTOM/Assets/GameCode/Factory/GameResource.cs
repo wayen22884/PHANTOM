@@ -28,6 +28,19 @@ public static class GameResource
         Addressables.LoadAssetAsync<AudioClip>("Music_Final_Victory_Stinger").Completed+= (i)=> { VictoryBGM = i.Result; };
         Addressables.LoadAssetAsync<AudioClip>("Music_Final_Failure_Stinger").Completed+= (i)=> { FailureBGM = i.Result; };
         
+        Addressables.LoadAssetAsync<AudioClip>("Duck_Attack1").Completed+= (i)=> { Duck_Attack[0] = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Duck_Attack2").Completed+= (i)=> { Duck_Attack[1] = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Duck_Attack3").Completed+= (i)=> { Duck_Attack[2] = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Duck_GetHurt").Completed+= (i)=> { Duck_Hurt = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Duck_Die").Completed+= (i)=> { Duck_Die = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Duck_Walk").Completed+= (i)=> { Duck_Walk = i.Result; };
+
+        Addressables.LoadAssetAsync<AudioClip>("Sheep_Die").Completed+= (i)=> { Sheep_Die = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Sheep_Attack1").Completed+= (i)=> { Sheep_Attack = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Sheep_GetHurt").Completed+= (i)=> { Sheep_Hurt = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Button_Yes").Completed+= (i)=> { Button_Yes = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Button_No").Completed+= (i)=> { Button_No = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Button_Option").Completed+= (i)=> { Button_Option = i.Result; };
     }
     public static void MainMenuSceneInitialize()
     {
@@ -132,6 +145,17 @@ public static class GameResource
     public static AudioClip VictoryBGM { get; private set; }
     public static AudioClip FailureBGM { get; private set; }
 
+    public static AudioClip[] Duck_Attack = new AudioClip[3];
+    public static AudioClip Duck_Hurt{ get; private set; }
+    public static AudioClip Duck_Die { get;private set; }
+    public static AudioClip Duck_Walk { get;private set; }
+
+    public static AudioClip Sheep_Attack{ get; private set; }
+    public static AudioClip Sheep_Hurt{ get; private set; }
+    public static AudioClip Sheep_Die { get;private set; }
+    public static AudioClip Button_Yes { get;private set; }
+    public static AudioClip Button_No { get;private set; }
+    public static AudioClip Button_Option { get;private set; }
 
     static AudioMixerGroup  FindMusicGroup(string adress)
     {
@@ -153,5 +177,10 @@ public static class GameResource
     {
         if (ID == CharacterID.Enemy) return enemyData;
         else { Debug.LogError("The saveData is not exist"); return null; }
+    }
+
+    public static AudioClip GetDuck_Attack(int attackTime)
+    {
+        return Duck_Attack[attackTime - 1];
     }
 }

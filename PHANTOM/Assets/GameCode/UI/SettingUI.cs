@@ -22,6 +22,7 @@ public class SettingUI : IUserInterface
     {
         //開啟Setting按鈕
         _Setting = Tool.GetUIComponent<Button>(GameResource.Canvas, "Setting");
+        _Setting.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_Option));
         _Setting.onClick.AddListener(RootClick);
         if (Main.NowScene == "BattleScene") _Setting.onClick.AddListener(Main.ClickPause);
 
@@ -48,6 +49,7 @@ public class SettingUI : IUserInterface
 
         _SettingHide = Tool.GetUIComponent<Button>(_RootUI, "SettingHide");
         _SettingHide.onClick.AddListener(RootClick);
+        if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_No));
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(Main.ClickPause);
 
         //_BackToMainMenu = Tool.GetUIComponent<Button>(_RootUI, "BackToMainMenuButton");

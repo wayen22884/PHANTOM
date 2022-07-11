@@ -48,9 +48,17 @@ public abstract class ICharacter : ISourcePoolObj
     public void ChangeAnimationState(string state)
     {
         if (_nowState == state) return;
+
+
+        ChangeStateMusic(state);
+
         Animator.Play(state);
         DoAnimation?.Invoke(Transform, state, Attr.FaceRight);
         _nowState = state;
+    }
+
+    protected virtual void ChangeStateMusic(string state)
+    {
     }
 
     public bool ReturnIsRight => Attr.FaceRight;

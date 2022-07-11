@@ -81,6 +81,54 @@ MonoBehaviour:
     m_Address: Music_Final_Victory_Stinger
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 93953e5011a053c40bbb7ca6f0d76dfa
+    m_Address: Duck_Die
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca8982bc7d40ab943930671be08bb23b
+    m_Address: Duck_Attack1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b9b6e741fac45448ad39075e99b6afa
+    m_Address: Duck_Attack2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 683bc1a11248d4e47bd4760c69acd00a
+    m_Address: Duck_Attack3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58993015728a8184d881c31b2656d0bd
+    m_Address: Duck_GetHurt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0310daaac766b824284109c0f224aa83
+    m_Address: Duck_Walk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3a547546af78a1d41859df8cce979db1
+    m_Address: Sheep_Die
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52db3fb7a74b2c044bf5d44c4b363b18
+    m_Address: Sheep_GetHurt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58d14ea5300e86247830e6555b1ed088
+    m_Address: Sheep_Attack1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c090ea51447a6d459ccfa9c37c26ab9
+    m_Address: Button_Yes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a704a74f17e9b3543aa6300a6b69d20c
+    m_Address: Button_No
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ac5edda168ef24c43be3a5a2d06c0fb5
+    m_Address: Button_Option
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:

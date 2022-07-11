@@ -36,6 +36,7 @@ public class EnemyCharacter : ICharacter
 
     public override void Attack()
     {
+        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Attack);
         AttackAction();
     }
     private void AttackAction()
@@ -76,6 +77,7 @@ public class EnemyCharacter : ICharacter
     {
         AllSourcePool.AliveEnemyRemove(this, ID);
         ChangeAnimationState("Die");
+        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Die); 
         TimeEventCheck.AddTimeEvent(Recycle, 1.433f, TimeEventCheck.TimeScale.ScaleTime);
         if (AllSourcePool.PlayerCharacter.Transformation) return;
     }
@@ -94,6 +96,7 @@ public class EnemyCharacter : ICharacter
 
     public override void InJuryedAction()
     {
+        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Hurt); 
         _FSM.GlobalTranslate(FSMTransition.Go_BeAttack);
     }
 }

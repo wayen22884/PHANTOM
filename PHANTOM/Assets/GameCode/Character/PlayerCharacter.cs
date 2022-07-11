@@ -51,6 +51,7 @@ public class PlayerCharacter : ICharacter
         attackTime++;
         detectAttack?.Dispose();
         detectAttack = Observable.Timer(TimeSpan.FromSeconds(1.5f)).Subscribe(_ => attackTime = 0);
+        MusicSystem.Instance.PlayBGV(GameResource.GetDuck_Attack(attackTime));
         ChangeAnimationState($"Smash_{attackTime}");
         Debug.Log($"Smash_{attackTime}");
         AttackAction();
@@ -112,6 +113,7 @@ public class PlayerCharacter : ICharacter
     {
         Attr.SetNoDamage(true);
         ChangeAnimationState("Hurt");
+        MusicSystem.Instance.PlayBGV(GameResource.Duck_Hurt);
         controller.StopInput(0.5f);
         Observable.Timer(TimeSpan.FromSeconds(playerAttr.NoDamageTime)).Subscribe(_ => Attr.SetNoDamage(false));
     }
@@ -125,6 +127,7 @@ public class PlayerCharacter : ICharacter
         Death = true;
         controller.StopInputDetectAndPhysicsCaculation();
         ChangeAnimationState("Die");
+        MusicSystem.Instance.PlayBGV(GameResource.Duck_Die);
         Observable.Timer(TimeSpan.FromSeconds(1)).Subscribe(_ => BattleScene.Instance.GameEnd(false));
     }
 
@@ -135,5 +138,18 @@ public class PlayerCharacter : ICharacter
 
     public override void Update()
     {
+
+    }
+
+    protected override void ChangeStateMusic(string state)
+    {
+        if (state=="Run")
+        {
+            MusicSystem.Instance.PlayLoopBGV(GameResource.Duck_Walk);
+        }
+        else
+        {
+            MusicSystem.Instance.StopLooopBGV();
+        }
     }
 }
