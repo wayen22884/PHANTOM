@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyGenerate : MonoBehaviour
 {
+    [SerializeField] private ShowWave showWave;
     public enum WaveStatus
     {
         BeforeStart,
@@ -48,6 +49,7 @@ public class EnemyGenerate : MonoBehaviour
     public void GenerateEnemyByWave()
     {
         int waveIndex = index;
+        showWave.Show(waveIndex);
         StartCoroutine(GenerateEnemyByWave(waveIndex));
         index++;
     }
