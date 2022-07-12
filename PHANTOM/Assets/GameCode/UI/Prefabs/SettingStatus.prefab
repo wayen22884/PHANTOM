@@ -251,7 +251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BGV
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
   m_sharedMaterial: {fileID: 1001239395840632747, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
