@@ -16,7 +16,7 @@ MonoBehaviour:
   AttrType: 
   MaxHP: 6
   MaxSP: 0
-  STR: 1
+  STR: 2
   DEF: 0
   MoveSpeed: 10
   ShieldNumber: 0
