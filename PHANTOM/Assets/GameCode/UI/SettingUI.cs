@@ -16,6 +16,7 @@ public class SettingUI : IUserInterface
     private Button _SettingHide;
     private Button _BackToMainMenu;
     private Button _Exit;
+    private Button testBgv;
     private Toggle _FullScreen;
     private Dropdown _ScreenSize;
     public override void Initialize()
@@ -51,7 +52,11 @@ public class SettingUI : IUserInterface
         _SettingHide.onClick.AddListener(RootClick);
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_No));
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(Main.ClickPause);
-
+        
+        
+        testBgv = Tool.GetUIComponent<Button>(_RootUI, "TstSFXButton");
+        testBgv.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.TestSFX));
+        
         //_BackToMainMenu = Tool.GetUIComponent<Button>(_RootUI, "BackToMainMenuButton");
         // if (GameLoop.Instance.SceneState == typeof(MainMenuState).ToString()) _BackToMainMenu.gameObject.SetActive(false);
         // else _BackToMainMenu.gameObject.SetActive(true);
