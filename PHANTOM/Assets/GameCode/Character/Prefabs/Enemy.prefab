@@ -62,10 +62,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsForceMove: 1
   allowAirDash: 1
+  gravityForceFactor: 5
   moveForce: 50
   jumpForce: 5
   airForce: 0.7
-  gravity: 45
+  gravity: 17
   isGround: 1
   velocity: {x: 0.0008255863, y: 0, z: 0}
   boundaryFactor: 1

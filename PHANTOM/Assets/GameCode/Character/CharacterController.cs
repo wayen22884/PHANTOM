@@ -184,7 +184,8 @@ public class CharacterController : MonoBehaviour
         var tempValue = velocityY;
         if (!isGround)
         {
-            tempValue += -(gravity * moveForceFactor);
+            var forceFactor = gravity * Time.deltaTime;
+            tempValue += -forceFactor;
         }
         else
         {
