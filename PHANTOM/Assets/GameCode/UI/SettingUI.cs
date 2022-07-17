@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ public class SettingUI : IUserInterface
         Initialize();
     }
     
+    
     //private GameObject _RootSetting;
     private Slider _BGM;
     private Slider _Effect;
@@ -19,17 +22,26 @@ public class SettingUI : IUserInterface
     private Button testBgv;
     private Toggle _FullScreen;
     private Dropdown _ScreenSize;
+
+    private GameObject menu;
+    private SettingAnimation settingAnimation;
     public override void Initialize()
     {
         //開啟Setting按鈕
         _Setting = Tool.GetUIComponent<Button>(GameResource.Canvas, "Setting");
         _Setting.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_Option));
-        _Setting.onClick.AddListener(RootClick);
+        _Setting.onClick.AddListener(ClickSetting);
         if (Main.NowScene == "BattleScene") _Setting.onClick.AddListener(Main.ClickPause);
 
         //Setting內部
         _RootUI = Tool.FindChildGameObject(GameResource.Canvas, "SettingStatus");
-        
+
+        menu = Tool.FindChildGameObject(GameResource.Canvas, "Menu");
+        var BG = Tool.FindChildGameObject(GameResource.Canvas,"AnimationBG");
+        settingAnimation = BG.GetComponent(typeof(SettingAnimation)) as SettingAnimation;
+        settingAnimation.MenuStatusCallBack += MenuStatusCallBackClick;
+        settingAnimation.rootUICallBack += RootUICallBack;
+        settingAnimation.Interactable += interactable=> _Setting.interactable=interactable;
         
         SaveSystem.Load(out  Volume data);
         _BGM = Tool.GetUIComponent<Slider>(_RootUI, "BGM");
@@ -49,7 +61,7 @@ public class SettingUI : IUserInterface
 
 
         _SettingHide = Tool.GetUIComponent<Button>(_RootUI, "SettingHide");
-        _SettingHide.onClick.AddListener(RootClick);
+        _SettingHide.onClick.AddListener(ClickSetting);
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_No));
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(Main.ClickPause);
         
@@ -75,6 +87,26 @@ public class SettingUI : IUserInterface
         // _ScreenSize = Tool.GetUIComponent<Dropdown>(_RootUI, "ScreenSize");
         // _ScreenSize.onValueChanged.AddListener(ChangScreenSize);
         // IntializeScreensize(_ScreenSize);
+    }
+
+    private  void RootUICallBack(bool value)
+    {
+        if (IsVisable()!=value)
+        {
+            RootClick();
+        }
+    }
+
+    private void ClickSetting()
+    {
+        if (IsVisable())
+        {
+            settingAnimation.Close();
+        }
+        else
+        {
+            settingAnimation.PlayAnimation();
+        }
     }
 
     void IntializeScreensize(Dropdown dropdown)
@@ -135,5 +167,11 @@ public class SettingUI : IUserInterface
     {
         if (value >= 0.2f) return (value + 20) / 40;
         else return (value + 80) / 340;
+    }
+
+
+    private void MenuStatusCallBackClick(bool enable)
+    {
+        menu.SetActive(enable);
     }
 }

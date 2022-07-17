@@ -129,6 +129,10 @@ MonoBehaviour:
     m_Address: Button_Option
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2577bd7a73afc9d4191c52ffd66d6861
+    m_Address: TestSFX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:
