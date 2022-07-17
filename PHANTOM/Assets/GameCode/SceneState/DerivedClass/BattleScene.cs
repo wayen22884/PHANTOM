@@ -10,7 +10,8 @@ public class BattleScene:MonoBehaviour
     [SerializeField] private enemyGenerateMgr enemyGenerateMgr;
     [SerializeField] private PlayAnimation showDead;
     [SerializeField] private TextMeshProUGUI clickReturnMainMenu;
-
+    [SerializeField] private GameStatus gameStatus;
+    
     private SettingUI settingUI;
     public static BattleScene Instance { get; private set; }
     private void Awake()
@@ -25,6 +26,12 @@ public class BattleScene:MonoBehaviour
         loopList.Add(GameResource.BattleLoopBGM);
         MusicSystem.Instance.LoopBGMs = loopList;
         MusicSystem.Instance.PlayMusicAndLoop();
+        
+        
+        
+        
+        
+        
         var testRoot=Tool.FindChildGameObject(GameResource.Canvas, "TestStatus");
         Tool.GetUIComponent<Button>(testRoot, "LoseButton").onClick.AddListener(() =>
         {
@@ -51,6 +58,9 @@ public class BattleScene:MonoBehaviour
         Main.PauseEvent.Subscribe(AllSourcePool.ClickPause);
         Main.PauseEvent.Subscribe(isPause => Time.timeScale = isPause ? 0 : 1);
         Main.PauseEvent.Subscribe(TimeEventCheck.Pause);
+
+        gameStatus = new GameStatus();
+        gameStatus.Initialize();
     }
 
     private void Update()
