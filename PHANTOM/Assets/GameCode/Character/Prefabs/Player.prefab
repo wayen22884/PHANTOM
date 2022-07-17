@@ -63,7 +63,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsForceMove: 1
   allowAirDash: 1
-  gravityForceFactor: 5
   moveForce: 35
   jumpForce: 8
   airForce: 0.7
