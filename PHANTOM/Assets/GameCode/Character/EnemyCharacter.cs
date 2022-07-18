@@ -3,11 +3,13 @@ using UniRx;
 using UnityEngine;
 
 public class EnemyCharacter : ICharacter
-{ 
+{
     public EnemyCharacter(string name, CharacterID characterID) : base(characterID)
     {
 
     }
+    // HACK: This should not expose, at least not in this way...
+    public EnemyAttr E_Attr => this._enemyAttr;
     EnemyAttr _enemyAttr;
     private FSMSystem _FSM;
     public Combo combo;
@@ -22,7 +24,7 @@ public class EnemyCharacter : ICharacter
     {
         controller = GameObject.GetComponent<CharacterController>();
         controller.OnChangeState = null;
-        controller.ReturnIsRight = () =>ReturnIsRight;
+        controller.ReturnIsRight = () => ReturnIsRight;
         controller.SetFace = Attr.SetFace;
         controller.attackAction = Attack;
 
@@ -30,7 +32,7 @@ public class EnemyCharacter : ICharacter
         controller.DashInput = () => false;
         controller.MoveInput = () => 0f;
         controller.JumpInput = () => false;
-        
+
         controller.StartInput();
     }
 
@@ -41,12 +43,12 @@ public class EnemyCharacter : ICharacter
     }
     private void AttackAction()
     {
-        DamageData damageData = new DamageData(Target.player, this,AttackPoint.position );
+        DamageData damageData = new DamageData(Target.player, this, AttackPoint.position);
 
         var attackTrigger = AllSourcePool.UseAttackTrigger();
         attackTrigger.Set(damageData);
     }
-    public override void Attack(ICharacterAttr Target,int attackType)
+    public override void Attack(ICharacterAttr Target, int attackType)
     {
         int damage = _enemyAttr.DamageCount(Target);
         Target.GetInjuryed(damage);
@@ -65,19 +67,19 @@ public class EnemyCharacter : ICharacter
     {
         get
         {
-            if (ID== CharacterID.Enemy) return 100;
+            if (ID == CharacterID.Enemy) return 100;
             if (ID == CharacterID.Rifle) return 150;
             if (ID == CharacterID.ShootGun) return 200;
-            else { Debug.LogError("socre is wrong");return 0; }
+            else { Debug.LogError("socre is wrong"); return 0; }
         }
     }
 
-    
+
     public override void Dead()
     {
         AllSourcePool.AliveEnemyRemove(this, ID);
         ChangeAnimationState("Die");
-        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Die); 
+        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Die);
         TimeEventCheck.AddTimeEvent(Recycle, 1.433f, TimeEventCheck.TimeScale.ScaleTime);
         if (AllSourcePool.PlayerCharacter.Transformation) return;
     }
@@ -96,7 +98,7 @@ public class EnemyCharacter : ICharacter
 
     public override void InJuryedAction()
     {
-        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Hurt); 
+        MusicSystem.Instance.PlayBGV(GameResource.Sheep_Hurt);
         _FSM.GlobalTranslate(FSMTransition.Go_BeAttack);
     }
 }
