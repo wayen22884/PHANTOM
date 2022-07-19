@@ -24,7 +24,7 @@ public class Combo : ScriptableObject
 
     public void Add(int delta)
     {
-        Debug.Assert(delta >= 0);
+        // Debug.Assert(delta >= 0);
         this.refreshTimer();
         this.counter.Value += delta;
     }
