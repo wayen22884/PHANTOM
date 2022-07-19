@@ -31,7 +31,7 @@ public static class Factory
         playerBaseAttr.SetHP(playerBaseAttr.MaxHP);
         playerAttr.SetBaseAttr(playerBaseAttr);
         playerAttr.SetBaseCharacter(player);
-        SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
+        //SetBloodBar(player.GameObject, player.Attr.GetBaseAttr(), new Color(0, 255, 0, 255), true);
         // Register event listener
         foreach (var subscriber in GO.GetComponentsInChildren<ICharacterAnimationSubscriber<ICharacter>>())
         {

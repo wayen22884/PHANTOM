@@ -75,6 +75,7 @@ public class PlayerCharacter : ICharacter
     #region Update
 
     bool _transformation;
+    public Action<int> ChangeHP;
     public bool Transformation => _transformation;
 
     public void ChangeValue(ValueEventArgs args)
@@ -113,6 +114,7 @@ public class PlayerCharacter : ICharacter
     {
         Attr.SetNoDamage(true);
         ChangeAnimationState("Hurt");
+        ChangeHP?.Invoke(Attr.GetNowHP());
         MusicSystem.Instance.PlayBGV(GameResource.Duck_Hurt);
         controller.StopInput(0.5f);
         Observable.Timer(TimeSpan.FromSeconds(playerAttr.NoDamageTime)).Subscribe(_ => Attr.SetNoDamage(false));
@@ -127,6 +129,7 @@ public class PlayerCharacter : ICharacter
         Death = true;
         controller.StopInputDetectAndPhysicsCaculation();
         ChangeAnimationState("Die");
+        ChangeHP?.Invoke(Attr.GetNowHP());
         MusicSystem.Instance.PlayBGV(GameResource.Duck_Die);
         Observable.Timer(TimeSpan.FromSeconds(1)).Subscribe(_ => BattleScene.Instance.GameEnd(false));
     }
