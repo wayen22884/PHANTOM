@@ -1,5 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UniRx;
+using DG.Tweening;
 
 public class ShowCombo : MonoBehaviour
 {
@@ -7,8 +10,16 @@ public class ShowCombo : MonoBehaviour
     private Combo combo;
     [SerializeField]
     private GameObject digitPrefab;
+    [SerializeField]
+    private Transform digitRoot;
+    [SerializeField]
+    private Image floatingText;
+    [SerializeField]
+    private Sprite[] floatingTextSprites;
 
     private bool registerd;
+    private Tween floating;
+    private Coroutine updateDigit;
 
     void Start()
     {
@@ -24,23 +35,45 @@ public class ShowCombo : MonoBehaviour
     {
         if (this.combo.counter == null)
             return;
-        combo.counter
-            .Subscribe(setComboValue)
+        this.combo.counter
+            .Throttle(System.TimeSpan.FromSeconds(0.1))
+            .Subscribe(this.updateComboValue)
+            .AddTo(this);
+        this.combo.counter
+            .Throttle(System.TimeSpan.FromSeconds(0.1))
+            .Subscribe(this.updateFloatingText)
             .AddTo(this);
         this.registerd = true;
     }
 
-    private void setComboValue(int x)
+    private void updateComboValue(int x)
     {
-        var children = GetComponentsInChildren<ComboDigit>();
+        this.adjustDigitCount(x);
+        StartCoroutine(this.updateDigitValue(x));
+        Debug.Log($"Combo: {x}");
+    }
+
+    private IEnumerator updateDigitValue(int x)
+    {
+        ComboDigit[] children = this.digitRoot.GetComponentsInChildren<ComboDigit>();
+        for (int i = children.Length - 1; i >= 0; i--)
+        {
+            children[i].Value = x % 10;
+            x /= 10;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void adjustDigitCount(int x)
+    {
+        var children = this.digitRoot.GetComponentsInChildren<ComboDigit>();
         var expectedDigitCount = this.countDigits(x);
         if (expectedDigitCount > children.Length)
         {
             for (int i = 0; i < expectedDigitCount - children.Length; i++)
             {
-                var go = Instantiate(this.digitPrefab, transform);
+                var go = Instantiate(this.digitPrefab, this.digitRoot);
             }
-            children = GetComponentsInChildren<ComboDigit>();
         }
         else if (expectedDigitCount < children.Length)
         {
@@ -48,14 +81,7 @@ public class ShowCombo : MonoBehaviour
             {
                 Destroy(children[i].gameObject);
             }
-            children = GetComponentsInChildren<ComboDigit>();
         }
-        for (int i = children.Length - 1; i >= 0; i--)
-        {
-            children[i].Value = x % 10;
-            x /= 10;
-        }
-        Debug.Log($"Combo: {x}");
     }
 
     private int countDigits(int x)
@@ -68,5 +94,37 @@ public class ShowCombo : MonoBehaviour
             cnt++;
         }
         return cnt;
+    }
+
+    private void updateFloatingText(int comboValue)
+    {
+        // TODO: Avoid hard-coded thresholds
+        int step = 10;
+        int threshold = (this.floatingTextSprites.Length - 1) * step;
+        for (int i = this.floatingTextSprites.Length - 1; i >= 0; i--)
+        {
+            if (comboValue >= threshold)
+            {
+                this.floatingText.sprite = this.floatingTextSprites[i];
+                this.floatingText.SetNativeSize();
+                break;
+            }
+            threshold -= step;
+        }
+        this.floating?.Complete();
+        var jump = this.floatingText.transform
+            .DOMoveY(this.floatingText.transform.position.y + 40, 0.1f)
+            .SetLoops(2, LoopType.Yoyo);
+        var scale = this.floatingText.transform
+            .DOScale(this.floatingText.transform.localScale.x * 1.1f, 0.1f)
+            .SetLoops(2, LoopType.Yoyo);
+        this.floating = DOTween.Sequence()
+            .Append(jump)
+            .Insert(0, scale);
+    }
+
+    void OnDestroy()
+    {
+        this.floatingText.transform.DOKill();
     }
 }

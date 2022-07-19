@@ -32,19 +32,21 @@ public class ComboDigit : MonoBehaviour
             Debug.LogWarning($"ComboDigit can only present one non-negative digit.\nBut got {newValue}.");
             return;
         }
-        if (newValue == this._value)
-        {
-            return;
-        }
-
-        this.digitTransition?.Complete();
-        this.digitTransition = DOTween.Sequence()
-            .Append(
-                transform
-                    .DOScale(1.1f, 0.1f)
-                    .OnComplete(() => this.image.sprite = this.sprites[newValue])
-            )
-            .Append(transform.DOScale(1f, 0.1f));
+        this.UpdateTween()
+            .OnComplete(() => this.image.sprite = this.sprites[newValue]);
         this._value = newValue;
+    }
+
+    public Tween UpdateTween()
+    {
+        this.digitTransition?.Complete();
+        return this.digitTransition = this.transform
+            .DOScale(1.1f, 0.1f)
+            .SetLoops(2, LoopType.Yoyo);
+    }
+
+    void OnDestroy()
+    {
+        this.digitTransition?.Kill();
     }
 }
