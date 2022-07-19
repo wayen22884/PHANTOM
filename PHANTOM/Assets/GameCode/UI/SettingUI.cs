@@ -105,6 +105,7 @@ public class SettingUI : IUserInterface
         }
         else
         {
+            MusicSystem.Instance.PlayBGV(GameResource.OpenSettingPage);
             settingAnimation.PlayAnimation();
         }
     }

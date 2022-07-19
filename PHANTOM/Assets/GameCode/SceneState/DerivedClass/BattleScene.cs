@@ -70,8 +70,10 @@ public class BattleScene:MonoBehaviour
 
     public void GameEnd(bool win)
     {
+        MusicSystem.Instance.StopLooopBGV();
         if (win)
         {
+            MusicSystem.Instance.PlayBGV(GameResource.VictoryBGV);
             GameComplete();
         }
         else

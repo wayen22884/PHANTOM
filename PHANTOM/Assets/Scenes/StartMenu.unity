@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playAnimation: {fileID: 1661240572}
-  ChangeScene: BattleScene
+  ChangeScene: Prologuee
 --- !u!224 &1588058463 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2354929740180803608, guid: 135d42c692d6b3c4f952d99f93bcdf8d, type: 3}
