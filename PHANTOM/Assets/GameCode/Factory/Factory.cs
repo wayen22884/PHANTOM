@@ -57,9 +57,8 @@ public static class Factory
         AllSourcePool.AddToDeadList(character, EnemyType);
         character.SetGameObject(GO, model);
         character.SetAI();
-        
+
         var enemyAttr = new EnemyAttr();
-        //enemyAttr.CallCombo
         enemyAttr.SetEnemyCharacter(character);
         //EnemyCharacter內塞入EnemyAttr
         character.SetCharacterAttr(enemyAttr);
@@ -74,6 +73,10 @@ public static class Factory
         EnemyBaseAttr.SetAllValue(EnemySaveData);
         // Register event listener
         foreach (var subscriber in GO.GetComponentsInChildren<ICharacterAnimationSubscriber<ICharacter>>())
+        {
+            subscriber.Subscribe(character);
+        }
+        foreach (var subscriber in GO.GetComponentsInChildren<ICharacterAnimationSubscriber<EnemyCharacter>>())
         {
             subscriber.Subscribe(character);
         }

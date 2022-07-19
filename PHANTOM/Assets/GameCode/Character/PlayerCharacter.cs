@@ -11,6 +11,7 @@ public class PlayerCharacter : ICharacter
 
     PlayerAttr playerAttr;
     private CharacterController controller;
+    public Combo combo;
 
     public override ICharacterAttr Attr => playerAttr;
     public void SetCharacterAttr(PlayerAttr characterAttr)
@@ -65,10 +66,10 @@ public class PlayerCharacter : ICharacter
         attackTrigger.Set(damageData);
     }
 
-    public override void Attack(ICharacterAttr Target,int attackType)
+    public override void Attack(ICharacterAttr Target, int attackType)
     {
         int damage = playerAttr.DamageCount(Target);
-        Target.GetInjuryed(damage,attackType);
+        Target.GetInjuryed(damage, attackType);
     }
 
 
@@ -141,12 +142,12 @@ public class PlayerCharacter : ICharacter
 
     public override void Update()
     {
-
+        this.combo.Tick(Time.deltaTime);
     }
 
     protected override void ChangeStateMusic(string state)
     {
-        if (state=="Run")
+        if (state == "Run")
         {
             MusicSystem.Instance.PlayLoopBGV(GameResource.Duck_Walk);
         }

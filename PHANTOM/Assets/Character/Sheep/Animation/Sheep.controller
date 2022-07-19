@@ -87,10 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c980f50e09c5d4cb753e8dbac84b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toSpawn: {fileID: 3292210061259258904, guid: d2980df01b84f1c4d9b49b7118e52c20, type: 3}
+  toSpawn: {fileID: 2898281646177003588, guid: a4c37981f9faf09469bd3cbfb22c6067, type: 3}
   bounds:
-    m_Center: {x: 0, y: 1, z: 0}
-    m_Extent: {x: 0.5, y: 1, z: 0}
+    m_Center: {x: 0, y: 2, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0}
 --- !u!1102 &-2445528265872402173
 AnimatorState:
   serializedVersion: 6

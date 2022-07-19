@@ -24,13 +24,14 @@ public class Combo : ScriptableObject
 
     public void Add(int delta)
     {
-        Debug.Assert(delta >= 0);
+        // Debug.Assert(delta >= 0);
         this.refreshTimer();
         this.counter.Value += delta;
     }
 
     public void Tick(float delta)
     {
+        if (this.counter.Value <= 0) return;
         this.sinceLastHit += delta;
         if (this.sinceLastHit > this.timeToRefresh)
         {

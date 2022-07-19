@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034635f828d89c643bbcfd288f6c3b3e, type: 3}
+  m_Name: henrykuh
+  m_EditorClassIdentifier: 
+  Name: "\u7279\u91CC\u65AF\u5361"
+  JobPosition: "\u76E3\u88FD"
+  Sentence: "\u88FD\u4F5C\u4EBA\u5C31\u662F\u8981\u50CF\u4E09\u85CF\u4E00\u6A23\u6BCF\u5929\u770B\u795E\u4ED9\u6253\u67B6\uFF01"
