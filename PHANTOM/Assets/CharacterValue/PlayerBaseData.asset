@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attrName: 
   _attrType: 
-  _maxHP: 12
+  _maxHP: 6
   _HP: 0
   _maxSP: 0
   _SP: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   _DEF: 0
   _MoveSpeed: 10
   _dashMultiplicator: 0
-  noDamageTime: 0.5
+  noDamageTime: 0.8

@@ -63,17 +63,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsForceMove: 1
   allowAirDash: 1
-  moveForce: 35
-  jumpForce: 8
-  airForce: 0.7
-  gravity: 17
-  isGround: 1
-  velocity: {x: 0, y: 0, z: 0}
+  moveForce: 50
+  jumpForce: 10
+  airForce: 0.5
+  gravity: 15.6
+  isGround: 0
+  velocity: {x: 0, y: -8.145257, z: 0}
   boundaryFactor: 1
   stachDistance: 3
   stachUseTime: 0.6
   maxXDirctionSpeed: 20
-  collider: {x: 1, y: 1.39, z: 0.2}
+  collider: {x: 1, y: 2.03, z: 0.2}
 --- !u!114 &-7276494141106894037
 MonoBehaviour:
   m_ObjectHideFlags: 0
