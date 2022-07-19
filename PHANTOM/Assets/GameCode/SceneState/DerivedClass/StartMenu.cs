@@ -26,6 +26,6 @@ public class StartMenu :MonoBehaviour
         MusicSystem.Instance.PlayMusicAndLoop();
         
         
-        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode(ChangeScene);
+        playAnimation.OnPlayAnimationEnd += ()=>Main.LoadSceneMode(ChangeScene,()=>MusicSystem.Instance.PlayMusic(GameResource.StoryPrologue));
     }
 }

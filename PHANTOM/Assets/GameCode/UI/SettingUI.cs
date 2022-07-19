@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SettingUI : IUserInterface
@@ -16,6 +17,7 @@ public class SettingUI : IUserInterface
     //private GameObject _RootSetting;
     private Slider _BGM;
     private Slider _Effect;
+    private EventTrigger effectEventTrigger;
     private Button _SettingHide;
     private Button _BackToMainMenu;
     private Button _Exit;
@@ -58,8 +60,7 @@ public class SettingUI : IUserInterface
         GameResource.BGMGroup.audioMixer.SetFloat("EffectVol", data.Effect);
         _Effect.value =ValueChanged_AudioMixer_To_UI(data.Effect);
         _Effect.onValueChanged.AddListener(ChangeEffect);
-
-
+        
         _SettingHide = Tool.GetUIComponent<Button>(_RootUI, "SettingHide");
         _SettingHide.onClick.AddListener(ClickSetting);
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_No));

@@ -53,6 +53,8 @@ public static class GameResource
         Addressables.LoadAssetAsync<AudioClip>("TestSFX").Completed += (i) => { TestSFX = i.Result; };
         Addressables.LoadAssetAsync<AudioClip>("VictoryBGV").Completed += (i) => { VictoryBGV = i.Result; };
         Addressables.LoadAssetAsync<AudioClip>("OpenSettingPage").Completed += (i) => { OpenSettingPage = i.Result; };
+        Addressables.LoadAssetAsync<AudioClip>("Music_StoryPrologue").Completed += (i) => { StoryPrologue = i.Result; };
+        
         
     }
 
@@ -186,6 +188,7 @@ public static class GameResource
     public static AudioClip TestSFX { get; private set; }
     public static AudioClip OpenSettingPage { get; private set; }
     public static AudioClip VictoryBGV { get; private set; }
+    public static AudioClip StoryPrologue { get; private set; }
 
     static AudioMixerGroup FindMusicGroup(string adress)
     {

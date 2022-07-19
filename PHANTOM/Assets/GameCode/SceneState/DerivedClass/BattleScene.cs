@@ -70,11 +70,12 @@ public class BattleScene:MonoBehaviour
 
     public void GameEnd(bool win)
     {
+        MusicSystem.Instance.StopMusic();
         MusicSystem.Instance.StopLooopBGV();
         if (win)
         {
             MusicSystem.Instance.PlayBGV(GameResource.VictoryBGV);
-            GameComplete();
+            Observable.Timer(TimeSpan.FromSeconds(5)).Subscribe(_=>GameComplete());
         }
         else
         {
@@ -84,8 +85,6 @@ public class BattleScene:MonoBehaviour
 
     private void GameOver()
     {
-        //PlayMusic(GameResource.FailureBGM);
-        MusicSystem.Instance.StopMusic();
         MusicSystem.Instance.PlayBGV(GameResource.FailureBGM);
         showDead.ShowSprite();
     }

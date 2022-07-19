@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wave1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
   m_sharedMaterial: {fileID: 1001239395840632747, guid: 4ab5cb4686882964f939914d46a41a27, type: 2}
@@ -2375,8 +2375,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278223615
-  m_fontColor: {r: 1, g: 0.5098561, b: 0, a: 1}
+    rgba: 33535
+  m_fontColor: {r: 1, g: 0.5098561, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

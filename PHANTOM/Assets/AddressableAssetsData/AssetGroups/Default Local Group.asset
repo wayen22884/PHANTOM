@@ -141,6 +141,10 @@ MonoBehaviour:
     m_Address: VictoryBGV
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0f7a22985ba95124ba1a7880f57a94f2
+    m_Address: Music_StoryPrologue
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:
