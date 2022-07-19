@@ -20,6 +20,7 @@ public class ShowCombo : MonoBehaviour
     private bool registerd;
     private Tween floating;
     private Coroutine updateDigit;
+    private bool isUpdatingDigit;
 
     void Start()
     {
@@ -49,12 +50,18 @@ public class ShowCombo : MonoBehaviour
     private void updateComboValue(int x)
     {
         this.adjustDigitCount(x);
-        StartCoroutine(this.updateDigitValue(x));
+        if (this.isUpdatingDigit)
+        {
+            StopCoroutine(this.updateDigit);
+            this.isUpdatingDigit = false;
+        }
+        this.updateDigit = StartCoroutine(this.updateDigitValue(x));
         Debug.Log($"Combo: {x}");
     }
 
     private IEnumerator updateDigitValue(int x)
     {
+        this.isUpdatingDigit = true;
         ComboDigit[] children = this.digitRoot.GetComponentsInChildren<ComboDigit>();
         for (int i = children.Length - 1; i >= 0; i--)
         {
@@ -62,6 +69,7 @@ public class ShowCombo : MonoBehaviour
             x /= 10;
             yield return new WaitForSeconds(0.05f);
         }
+        this.isUpdatingDigit = false;
     }
 
     private void adjustDigitCount(int x)
