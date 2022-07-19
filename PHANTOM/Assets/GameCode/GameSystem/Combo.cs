@@ -31,6 +31,7 @@ public class Combo : ScriptableObject
 
     public void Tick(float delta)
     {
+        if (this.counter.Value <= 0) return;
         this.sinceLastHit += delta;
         if (this.sinceLastHit > this.timeToRefresh)
         {

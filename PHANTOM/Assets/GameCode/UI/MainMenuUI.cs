@@ -16,7 +16,7 @@ public class MainMenuUI : IUserInterface
     {
         _bActive = true;
         _RootUI = Tool.FindChildGameObject(GameResource.Canvas, "MainSMenuSatus");
-        
+
         _start = Tool.GetUIComponent<Button>(_RootUI, "StartBattleSceneButton");
         _start.onClick.AddListener(() =>
         {
@@ -24,14 +24,17 @@ public class MainMenuUI : IUserInterface
             RootClick();
             onClickStart?.Invoke();
         });
-        
+
         _exit = Tool.GetUIComponent<Button>(_RootUI, "ExitButtion");
-        _exit.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_Yes));
+        _exit.onClick.AddListener(() => MusicSystem.Instance.PlayBGV(GameResource.Button_Yes));
         _exit.onClick.AddListener(Application.Quit);
-        
-        //Tool.GetUIComponent<Button>(_RootUI, "StaffButton");
+
+        Tool.GetUIComponent<Button>(_RootUI, "CreditButton").onClick.AddListener(() =>
+        {
+            Main.LoadSceneMode("Credit");
+        });
         //Tool.GetUIComponent<Button>(_RootUI, "ControlButton");
     }
-    
-    
+
+
 }
