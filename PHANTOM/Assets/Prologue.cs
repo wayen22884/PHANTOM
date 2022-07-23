@@ -19,5 +19,6 @@ public class Prologue : MonoBehaviour
     public void SaveKey()
     {
         PlayerPrefs.SetString(isRead, isRead);
+        PlayerPrefs.Save();
     }
 }

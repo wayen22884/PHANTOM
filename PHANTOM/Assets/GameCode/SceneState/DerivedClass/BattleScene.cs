@@ -61,6 +61,8 @@ public class BattleScene:MonoBehaviour
 
         gameStatus = new GameStatus();
         gameStatus.Initialize();
+        Observable.Timer(TimeSpan.FromSeconds(1)).Subscribe(     _=>enemyGenerateMgr.StartBattle()
+            );
     }
 
     private void Update()
