@@ -21,7 +21,6 @@ public class SettingUI : IUserInterface
     private Button _SettingHide;
     private Button _BackToMainMenu;
     private Button _Exit;
-    private Button testBgv;
     private Toggle _FullScreen;
     private Dropdown _ScreenSize;
 
@@ -59,16 +58,18 @@ public class SettingUI : IUserInterface
         _Effect = Tool.GetUIComponent<Slider>(_RootUI, "Effect");
         GameResource.BGMGroup.audioMixer.SetFloat("EffectVol", data.Effect);
         _Effect.value =ValueChanged_AudioMixer_To_UI(data.Effect);
-        _Effect.onValueChanged.AddListener(ChangeEffect);
+
+        var trigger= _Effect.gameObject.AddComponent<EventTrigger>();
         
+        
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.EndDrag;
+        entry.callback.AddListener( _=>ChangeEffect(_Effect.value));
+        trigger.triggers.Add(entry);
         _SettingHide = Tool.GetUIComponent<Button>(_RootUI, "SettingHide");
         _SettingHide.onClick.AddListener(ClickSetting);
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.Button_No));
         if (Main.NowScene == "BattleScene") _SettingHide.onClick.AddListener(Main.ClickPause);
-        
-        
-        testBgv = Tool.GetUIComponent<Button>(_RootUI, "TstSFXButton");
-        testBgv.onClick.AddListener(()=>MusicSystem.Instance.PlayBGV(GameResource.TestSFX));
         
         //_BackToMainMenu = Tool.GetUIComponent<Button>(_RootUI, "BackToMainMenuButton");
         // if (GameLoop.Instance.SceneState == typeof(MainMenuState).ToString()) _BackToMainMenu.gameObject.SetActive(false);
@@ -154,6 +155,7 @@ public class SettingUI : IUserInterface
     }
     void ChangeEffect(float value)
     {
+        MusicSystem.Instance.PlayBGV(GameResource.TestSFX);
         float result = ValueChanged_UI_To_AudioMixer(value);
         GameResource.BGVGroup.audioMixer.SetFloat("EffectVol",result );
         SaveSystem.Load(out  Volume data);

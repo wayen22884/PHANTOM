@@ -8,6 +8,6 @@ public class BackToMenuButton : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => Main.LoadSceneMode("Main"));
+        GetComponent<Button>().onClick.AddListener(() => Main.LoadSceneMode("StartMenu"));
     }
 }
