@@ -101,13 +101,13 @@ public class SettingUI : IUserInterface
 
     private void ClickSetting()
     {
+        MusicSystem.Instance.PlayBGV(GameResource.OpenSettingPage);
         if (IsVisable())
         {
             settingAnimation.Close();
         }
         else
         {
-            MusicSystem.Instance.PlayBGV(GameResource.OpenSettingPage);
             settingAnimation.PlayAnimation();
         }
     }

@@ -24,6 +24,7 @@ public class EnemyGenerate : MonoBehaviour
 
     private void Awake()
     {
+        Status = WaveStatus.BeforeStart;
         GenerateEnemyDatas = new Queue<GenerateEnemyGroupData>();
         enemyGenerateEnemyDatas.ForEach(data => { GenerateEnemyDatas.Enqueue(data); });
     }

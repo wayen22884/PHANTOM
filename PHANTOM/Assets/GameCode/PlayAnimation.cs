@@ -34,6 +34,7 @@ public class PlayAnimation : MonoBehaviour
     [ContextMenu("ShowSprite")]
     public void ShowSprite()
     {
+        image.gameObject.SetActive(true);
         var interval = totalSeconds / frame;
         colorInterval = interval;
         ShowSpriteDisposable = Observable.Interval(TimeSpan.FromSeconds(interval)).Subscribe(ChangeColor);
