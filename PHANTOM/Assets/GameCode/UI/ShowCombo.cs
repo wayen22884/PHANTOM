@@ -7,8 +7,6 @@ using DG.Tweening;
 public class ShowCombo : MonoBehaviour
 {
     [SerializeField]
-    private Combo combo;
-    [SerializeField]
     private GameObject digitPrefab;
     [SerializeField]
     private Transform digitRoot;
@@ -21,10 +19,11 @@ public class ShowCombo : MonoBehaviour
     private Tween floating;
     private Coroutine updateDigit;
     private bool isUpdatingDigit;
+    private Combo combo;
 
     void Start()
     {
-        Debug.Assert(this.combo != null);
+        this.combo = GameResource.Combo;
         // Continously call `register` to solve the dependecy issue
         Observable.EveryUpdate()
             .Where(_ => !this.registerd)
@@ -49,12 +48,12 @@ public class ShowCombo : MonoBehaviour
 
     private void updateComboValue(int x)
     {
-        this.adjustDigitCount(x);
         if (this.isUpdatingDigit)
         {
             StopCoroutine(this.updateDigit);
             this.isUpdatingDigit = false;
         }
+        this.adjustDigitCount(x);
         this.updateDigit = StartCoroutine(this.updateDigitValue(x));
         Debug.Log($"Combo: {x}");
     }
@@ -65,6 +64,9 @@ public class ShowCombo : MonoBehaviour
         ComboDigit[] children = this.digitRoot.GetComponentsInChildren<ComboDigit>();
         for (int i = children.Length - 1; i >= 0; i--)
         {
+            // The combo digit might has beed scheduled to destroy
+            if (!children[i])
+                continue;
             children[i].Value = x % 10;
             x /= 10;
             yield return new WaitForSeconds(0.05f);
@@ -134,5 +136,7 @@ public class ShowCombo : MonoBehaviour
     void OnDestroy()
     {
         this.floatingText.transform.DOKill();
+        if (this.isUpdatingDigit)
+            StopCoroutine(this.updateDigit);
     }
 }
