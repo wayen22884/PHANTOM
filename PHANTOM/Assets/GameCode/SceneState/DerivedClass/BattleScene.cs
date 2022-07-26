@@ -32,25 +32,25 @@ public class BattleScene:MonoBehaviour
         
         
         
-        var testRoot=Tool.FindChildGameObject(GameResource.Canvas, "TestStatus");
-        Tool.GetUIComponent<Button>(testRoot, "LoseButton").onClick.AddListener(() =>
-        {
-            GameEnd(false);
-        });
-        Tool.GetUIComponent<Button>(testRoot, "WinButton").onClick.AddListener(() =>
-        {
-            GameEnd(true);
-        });
-        Tool.GetUIComponent<Button>(testRoot, "EnemyGenerateButton").onClick.AddListener(() =>
-        {
-            enemyGenerateMgr.GenerateNextEnemy();
-        });
-        Tool.GetUIComponent<Button>(testRoot, "StartBattleButton").onClick.AddListener(() =>
-        {
-            enemyGenerateMgr.StartBattle();
-        });
-        
-        Tool.GetUIComponent<Button>(testRoot, "PauseButton").onClick.AddListener(Main.ClickPause);
+        // var testRoot=Tool.FindChildGameObject(GameResource.Canvas, "TestStatus");
+        // Tool.GetUIComponent<Button>(testRoot, "LoseButton").onClick.AddListener(() =>
+        // {
+        //     GameEnd(false);
+        // });
+        // Tool.GetUIComponent<Button>(testRoot, "WinButton").onClick.AddListener(() =>
+        // {
+        //     GameEnd(true);
+        // });
+        // Tool.GetUIComponent<Button>(testRoot, "EnemyGenerateButton").onClick.AddListener(() =>
+        // {
+        //     enemyGenerateMgr.GenerateNextEnemy();
+        // });
+        // Tool.GetUIComponent<Button>(testRoot, "StartBattleButton").onClick.AddListener(() =>
+        // {
+        //     enemyGenerateMgr.StartBattle();
+        // });
+        //
+        // Tool.GetUIComponent<Button>(testRoot, "PauseButton").onClick.AddListener(Main.ClickPause);
 
 
         settingUI = new SettingUI();
