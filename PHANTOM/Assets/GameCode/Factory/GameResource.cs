@@ -190,6 +190,9 @@ public static class GameResource
     public static AudioClip VictoryBGV { get; private set; }
     public static AudioClip StoryPrologue { get; private set; }
 
+    public static  Combo Combo { get; private set; }
+    
+    
     static AudioMixerGroup FindMusicGroup(string adress)
     {
         AudioMixerGroup[] Result = audioMixer.FindMatchingGroups(adress);
