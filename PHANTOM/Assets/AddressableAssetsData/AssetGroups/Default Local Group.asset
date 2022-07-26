@@ -149,6 +149,10 @@ MonoBehaviour:
     m_Address: Scenes/Credit
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c1456d051149c054b98d094fe53ee0a6
+    m_Address: PlayerCombo
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 285d556b28bc1db4ca10b77c7312c0d6, type: 2}
   m_SchemaSet:

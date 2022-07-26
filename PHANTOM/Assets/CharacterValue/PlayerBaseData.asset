@@ -15,7 +15,7 @@ MonoBehaviour:
   _attrName: 
   _attrType: 
   _maxHP: 6
-  _HP: 0
+  _HP: 5
   _maxSP: 0
   _SP: 0
   _EP: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   _DEF: 0
   _MoveSpeed: 10
   _dashMultiplicator: 0
-  noDamageTime: 0.8
+  noDamageTime: 3
