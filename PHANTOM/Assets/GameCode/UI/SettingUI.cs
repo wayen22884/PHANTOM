@@ -60,6 +60,18 @@ public class SettingUI : IUserInterface
         _Effect.value =ValueChanged_AudioMixer_To_UI(data.Effect);
 
         var trigger= _Effect.gameObject.AddComponent<EventTrigger>();
+
+        _BackToMainMenu=Tool.GetUIComponent<Button>(_RootUI, "BackToMainMenu");
+        _BackToMainMenu.gameObject.SetActive(Main.NowScene == "BattleScene");
+        if (Main.NowScene == "BattleScene")
+        {
+            _BackToMainMenu.onClick.AddListener(() =>
+            {
+                AllSourcePool.Clear();
+                Main.ClickPause();
+                Main.LoadSceneMode("StartMenu");
+            });
+        }
         
         
         EventTrigger.Entry entry = new EventTrigger.Entry();
