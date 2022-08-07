@@ -9,11 +9,11 @@ public class CharacterController : MonoBehaviour
     public bool IsForceMove = true;
     public bool allowAirDash = true;
     private float moveForceFactor = 0.001f;
-    [Range(0, 100f)] [SerializeField] private int moveForce = 35;
-    [Range(0, 20f)] [SerializeField] private int jumpForce = 5;
+    [Range(0, 100f)][SerializeField] private int moveForce = 35;
+    [Range(0, 20f)][SerializeField] private int jumpForce = 5;
 
-    [Range(0, 100f)] [SerializeField] private float airForce = 0.7F;
-    [Range(0, 100f)] [SerializeField] private float gravity = 45;
+    [Range(0, 100f)][SerializeField] private float airForce = 0.7F;
+    [Range(0, 100f)][SerializeField] private float gravity = 45;
 
 
     [SerializeField] private bool isGround;
@@ -21,16 +21,16 @@ public class CharacterController : MonoBehaviour
     private bool istouchRight;
     private float mass = 1;
     [SerializeField] private Vector3 velocity;
-    [Range(0, 20f)] [SerializeField] private float boundaryFactor = 1;
-    [Range(0, 20f)] [SerializeField] private float stachDistance = 3;
-    [Range(0, 5f)] [SerializeField] private float stachUseTime = 0.6F;
-    [Range(0, 20f)] [SerializeField] private float maxXDirctionSpeed = 20;
+    [Range(0, 20f)][SerializeField] private float boundaryFactor = 1;
+    [Range(0, 20f)][SerializeField] private float stachDistance = 3;
+    [Range(0, 5f)][SerializeField] private float stachUseTime = 0.6F;
+    [Range(0, 20f)][SerializeField] private float maxXDirctionSpeed = 20;
     private int groundLayer = 6;
 
     public Vector3 collider;
 
     public Action attackAction;
-    public Func<float,bool> SetFace;
+    public Func<float, bool> SetFace;
     public Func<bool> ReturnIsRight;
     public Action<string> OnChangeState;
 
@@ -44,7 +44,7 @@ public class CharacterController : MonoBehaviour
     private IDisposable controllDisposable;
     public void StartInput()
     {
-        checkList.Add(() => CheckAction(()=>IsOnAnimation, ()=>{}));
+        checkList.Add(() => CheckAction(() => IsOnAnimation, () => { }));
         checkList.Add(() => CheckAction(AttackInput, AttackAction));
         checkList.Add(() => CheckAction(() => DashInput() && (isGround || allowAirDash), DashAction));
         checkList.Add(() => CheckAction(() => true, MoveAction));
@@ -94,7 +94,7 @@ public class CharacterController : MonoBehaviour
     {
         var xAxis = MoveInput();
         SetFace?.Invoke(xAxis);
-        var state = Mathf.Abs(xAxis)>0.001?"Run":"Idle";
+        var state = Mathf.Abs(xAxis) > 0.001 ? "Run" : "Idle";
         OnChangeState?.Invoke(state);
         var force = new Vector3(xAxis * moveForce * moveForceFactor, 0, 0);
         if (JumpInput() && isGround)
@@ -175,7 +175,7 @@ public class CharacterController : MonoBehaviour
     {
         IsOnAnimation = true;
         stopInputDisposable?.Dispose();
-        stopInputDisposable=Observable.Timer(TimeSpan.FromSeconds(stopSeconds)).Subscribe(_ => IsOnAnimation = false);
+        stopInputDisposable = Observable.Timer(TimeSpan.FromSeconds(stopSeconds)).Subscribe(_ => IsOnAnimation = false);
     }
 
 
