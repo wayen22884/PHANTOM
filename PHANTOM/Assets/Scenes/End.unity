@@ -485,8 +485,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5C0F\u9D28\uFF1A  \u6211\u4E0D\u914D\u6210\u70BA\u4E00\u500B\u9A0E\u58EB\nDuck
-    Sad"
+  m_Text: "\u5C0F\u9D28\uFF1A  \u6211\u4E0D\u914D\u6210\u70BA\u4E00\u500B\u9A0E\u58EB\n
+    OH! MY! DUCK!!"
 --- !u!222 &488837599
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -602,7 +602,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5967\u6735\u672D\uFF1A\u662F\u5440 ...\u9019\u662F\u4E00\u4F4D\u6545\u4EBA\u7684\u907A\u7269 
-    \u9084\u597D\u6709\u4F60\u5011\u70BA\u6211\u8457\u60F3...\nSheep! Good!"
+    \u9084\u597D\u6709\u4F60\u5011\u70BA\u6211\u8457\u60F3...\nThe book was a gift
+    from a very important someone..."
 --- !u!222 &650981288
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2306,8 +2307,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5967\u6735\u672D\uFF1A\u9019\u662F\u6700\u68D2\u7684\u4E00\u6B21\u751F\u65E5\u4E86\uFF01\nDuck!
-    Very Good!"
+  m_Text: "\u5967\u6735\u672D\uFF1A\u9019\u662F\u6700\u68D2\u7684\u4E00\u6B21\u751F\u65E5\u4E86\uFF01\nThis
+    is the best surprise ever!!"
 --- !u!222 &1348966336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2750,7 +2751,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5967\u6735\u672D\uFF1A\u4F60\u627E\u5230\u4E86\u6211\u7684\u7E6A\u672C\u5440
-    \nA Green book!"
+    \nOH...... My diary! "
 --- !u!222 &1654637122
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3707,8 +3708,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u5C0F\u9D28\u3001\u7F8A\uFF1A \u6240\u4EE5\u5967\u6735\u672D\u5927\u4EBA  
-    \u60A8\u60B6\u60B6\u4E0D\u6A02\u5C31\u662F\u70BA\u4E86\u9019\u7E6A\u672C\u55CE\uFF1F\nShe
-    is not sad."
+    \u60A8\u60B6\u60B6\u4E0D\u6A02\u5C31\u662F\u70BA\u4E86\u9019\u7E6A\u672C\u55CE\uFF1F\n(Duck:
+    I see. That's why Lord Al was sad.)"
 --- !u!222 &2063100184
 CanvasRenderer:
   m_ObjectHideFlags: 0
