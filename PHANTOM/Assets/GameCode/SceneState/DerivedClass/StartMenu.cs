@@ -23,10 +23,20 @@ public class StartMenu : MonoBehaviour
             playAnimation.Play();
         });
         settingUI = new SettingUI();
-        MusicSystem.Instance.StartBGM = GameResource.TitleStartBGM;
-        var loopList = new List<AudioClip>();
-        loopList.Add(GameResource.TitleLoopBGM);
-        MusicSystem.Instance.LoopBGMs = loopList;
+        if (PlayerPrefs.HasKey(BattleScene.winPrefs))
+        {
+            MusicSystem.Instance.StartBGM = GameResource.TitleStartBGM;
+            var loopList = new List<AudioClip>();
+            loopList.Add(GameResource.TitleLoopBGM);
+            MusicSystem.Instance.LoopBGMs = loopList;            
+        }
+        else
+        {
+            MusicSystem.Instance.StartBGM = GameResource.TitleStartBGM;
+            var loopList = new List<AudioClip>();
+            loopList.Add(GameResource.TitleLoopBGM);
+            MusicSystem.Instance.LoopBGMs = loopList;            
+        }
         MusicSystem.Instance.PlayMusicAndLoop();
 
 

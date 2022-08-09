@@ -36,7 +36,7 @@ public class AIData
     {
         get
         {
-            if (_character.ID == CharacterID.Enemy) return 1f;
+            if (_character.ID == CharacterID.Enemy) return 1f+(Random.Range(-10,10)*0.04f);
             else { Debug.LogError("there is no right characterID."); return 0; }
         }
     }

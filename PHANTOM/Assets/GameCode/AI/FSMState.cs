@@ -112,7 +112,6 @@ public class FSMChaseState : FSMState
     {
         if (!IsUpdateTime) return;
         if (AIData.player.Death) { _FSMSystem.Translate(FSMTransition.Go_Idle);return; }
-        if (AIData.EnemyPositionX > 8.5f) return;
         if (AIData.Distance < AIData.AttackDistance) _FSMSystem.Translate(FSMTransition.Go_Attack);
     }
     public override void Do(AIData AIData)

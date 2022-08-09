@@ -11,7 +11,9 @@ public class BattleScene:MonoBehaviour
     [SerializeField] private PlayAnimation showDead;
     [SerializeField] private TextMeshProUGUI clickReturnMainMenu;
     [SerializeField] private GameStatus gameStatus;
-    
+
+
+    public static string winPrefs="winPrefs";
     private SettingUI settingUI;
     public static BattleScene Instance { get; private set; }
     private void Awake()
@@ -103,6 +105,8 @@ public class BattleScene:MonoBehaviour
 
     private void GameComplete()
     {
+        PlayerPrefs.SetString(winPrefs, winPrefs);
+        PlayerPrefs.Save();
         ChangeScene("End",() => PlayMusic(GameResource.VictoryBGM));
     }
 
