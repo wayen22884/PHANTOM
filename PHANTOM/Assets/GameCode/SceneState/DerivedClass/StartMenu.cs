@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private PlayAnimation playAnimation;
+    [SerializeField] private Image image;
     public string Name { get; }
     public string ChangeScene;
 
     private MainMenuUI mainMenuUI;
     private SettingUI settingUI;
+    
     public StartMenu()
     {
         Name = GetType().ToString();
@@ -19,6 +22,8 @@ public class StartMenu : MonoBehaviour
         GameResource.MainMenuSceneInitialize();
         mainMenuUI = new MainMenuUI(() =>
         {
+            settingUI.CloseSetting();
+            image.gameObject.SetActive(false);
             playAnimation.gameObject.SetActive(true);
             playAnimation.Play();
         });

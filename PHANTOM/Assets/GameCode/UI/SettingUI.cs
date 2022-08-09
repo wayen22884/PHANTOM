@@ -185,7 +185,13 @@ public class SettingUI : IUserInterface
         else return (value + 80) / 340;
     }
 
-
+    public void CloseSetting()
+    {
+        if (IsVisable())
+        {
+            RootClick();
+        }
+    }
     private void MenuStatusCallBackClick(bool enable)
     {
         menu.SetActive(enable);
